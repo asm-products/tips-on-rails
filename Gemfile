@@ -57,6 +57,10 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'guard-rspec'
+  gem 'spork-rails'
+  gem 'guard-spork'
+  gem 'childprocess'
 end
 
 group :test do
