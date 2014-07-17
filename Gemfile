@@ -5,7 +5,7 @@ ruby '2.1.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'
 # Use mysql as the database for Active Record
-gem 'mysql2'
+gem 'mysql2' 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -25,6 +25,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 #Twitter Boostrap
 gem 'bootstrap-sass'
+gem 'sprockets'
 # Draper adds an object-oriented layer of presentation logic. Instructions: https://github.com/drapergem/draper
 gem 'draper'
 # Exception notification for Rails apps

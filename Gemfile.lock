@@ -255,6 +255,7 @@ DEPENDENCIES
   selenium-webdriver
   spork-rails
   spring
+  sprockets
   thin
   turbolinks
   uglifier (>= 1.3.0)

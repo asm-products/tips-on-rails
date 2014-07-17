@@ -2,44 +2,26 @@ require 'rails_helper'
 
 describe 'Static pages' do
 
-	let(:base_title) { "Tips on Rails"}
+	subject { page }
 
 	describe 'Help page' do 
+		before { visit help_path }
 
-		it "should have the content 'Help' " do 
-			visit '/help'
-			expect(page).to have_content('Help')
-		end
-
-		it "should have the title 'Help'" do
-      visit '/help'
-      expect(page).to have_title( "#{base_title} | Help")
-    end
+		it { should have_content('Help') } 
+		it { should have_title(full_title('Help')) }
 	end
 
 	describe 'About page' do
+	before { visit about_path }
 
-		it "should have the content 'About' " do
-			visit '/about'
-			expect(page).to have_content('About')
-		end
-
-			it "should have the title 'About'" do
-      visit '/about'
-      expect(page).to have_title("#{base_title} | About")
-    end
+		it { should have_content('About') } 
+		it { should have_title(full_title('About')) }
 	end
 
 	describe 'Contact page' do
+	before { visit contact_path }
 
-		it "should have the content 'Contact' " do
-			visit '/contact'
-			expect(page).to have_content('Contact')
-		end
-
-			it "should have the title 'Contact'" do
-      visit '/contact'
-      expect(page).to have_title("#{base_title} | Contact")
-    end
+		it { should have_content('Contact') } 
+		it { should have_title(full_title('Contact')) }
 	end
 end
