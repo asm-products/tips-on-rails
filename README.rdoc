@@ -2,7 +2,7 @@ Ever been in a situation where your just not sure where to start? How to impleme
 
 Tips on Rails was made for people just like you. It's here as a tool to enable Rails users to learn, post, and socialize about the latest and greatest tips out there!
 
-Getting started with Tips on Rails
+Getting started with Tips on Rails:
 
 Tips on Rails is ran on the Thin web server:
 
