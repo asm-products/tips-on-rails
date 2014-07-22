@@ -1,0 +1,19 @@
+<% provide(:title, @user.full_name) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.full_name %>
+      </h1>
+    </section>
+  </aside>
+   <div class="span8">
+    <% if @user.tips.any? %>
+      <h3>Tips (<%= @user.tips.count %>)</h3>
+      <ol class="tips">
+        <%= render @user.tips %>
+      </ol>
+    <% end %>
+  </div>
+</div>

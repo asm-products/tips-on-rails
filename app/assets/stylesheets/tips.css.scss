@@ -1,3 +1,20 @@
 // Place all the styles related to the Tips controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.tips {
+	border-bottom: solid 3px #CCC;
+	padding: 3px 0
+}
+
+.hidden {
+	display: none;
+}
+
+.tips.hover {
+	background: #FAFAFA;
+}
+
+.tips.hover .hidden{
+	display: inline;
+}

@@ -1,0 +1,22 @@
+<div class="tip">
+<li id="<%= @tip %>">
+  <span class="user"><strong><%= link_to tip.user.full_name, current_user %></strong>
+  </span>
+
+  <span class="content"><%= link_to tip.description, tip_path(tip) %>
+  </span>
+  <span class="timestamp">Posted <%= time_ago_in_words(tip.created_at) %> ago.
+  </span>
+
+  <span class="hidden">
+    <% if can? :delete, tip %>
+    <%= link_to "Delete", tip, method: :delete,
+                                     data: { confirm: "If you delete this, it's not coming back. Maybe, you would rather edit this tip." },
+                                    title: tip.description %>
+    <% end %>
+    <% if can? :update, tip %>
+    <%= link_to "Edit", edit_tip_path(tip) %>
+  <% end %> 
+</span>
+</li>
+</div>

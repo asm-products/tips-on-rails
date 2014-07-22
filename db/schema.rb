@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140717191118) do
+ActiveRecord::Schema.define(version: 20140722180440) do
 
   create_table "tips", force: true do |t|
     t.string   "title"
@@ -36,6 +36,12 @@ ActiveRecord::Schema.define(version: 20140717191118) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.string   "password"
+    t.string   "password_confirmation"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

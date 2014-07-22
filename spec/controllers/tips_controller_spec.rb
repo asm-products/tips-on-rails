@@ -1,5 +1,3 @@
 require 'rails_helper'
+require 'cancan/matchers'
 
-RSpec.describe TipsController, :type => :controller do
-
-end

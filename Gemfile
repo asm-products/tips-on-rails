@@ -30,6 +30,8 @@ gem 'sprockets'
 gem 'draper'
 # Exception notification for Rails apps
 gem 'exception_notification'
+#Authorization
+gem 'cancancan', '~> 1.8'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -55,16 +57,18 @@ group :development do
 	gem 'binding_of_caller'
 end
 
-group :development, :test do
-  gem 'rspec-rails'
-  gem 'capybara'
-  gem 'guard-rspec'
-  gem 'spork-rails'
-  gem 'guard-spork'
-  gem 'childprocess'
+	group :development, :test do
+	  gem 'rspec-rails'
+	  gem 'capybara'
+	  gem 'guard-rspec'
+	  gem 'spork-rails'
+	  gem 'guard-spork'
+	  gem 'childprocess'
+	  gem 'factory_girl_rails'
 end
 
 group :test do
+	gem 'faker'
   gem 'selenium-webdriver'
-  
+  gem 'shoulda-matchers', require: false
 end
