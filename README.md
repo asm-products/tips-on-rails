@@ -24,6 +24,22 @@ Tips on Rails is ran on the Thin web server using environment variables. You'll 
 
     bundle 
 
+**Make sure you have the foreman gem instaled:**
+
+    foreman
+
+If the Terminal tells you that it can't find it, you'll have to get it. Go to https://github.com/ddollar/foreman and follow the instructions.
+
+
+**Get your development and test databases ready:**
+
+    foreman run rake db:setup
+    foreman run rake db:migrate RAILS_ENV=test
+
+**Start the application:**
+
+    foreman start -f Procfile.dev
+
 **Go to:**
 
     localhost:5100/ (use the port number you specified in the .env file)
