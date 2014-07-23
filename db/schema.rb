@@ -14,12 +14,14 @@
 ActiveRecord::Schema.define(version: 20140722180440) do
 
   create_table "tips", force: true do |t|
-    t.string   "title"
-    t.text     "description"
+    t.text     "title"
+    t.string   "description"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "tips", ["user_id", "created_at"], name: "index_tips_on_user_id_and_created_at", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name"
