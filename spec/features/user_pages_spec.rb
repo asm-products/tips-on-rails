@@ -2,8 +2,6 @@ require 'rails_helper'
 
 describe "User pages" do
 
-	before { @user = User.new(first_name: "Example", last_name: "User", email: "user@example.com", 
-															password: "foobar123", password_confirmation: "foobar123") }
 	subject { page }
 
 	 describe "signup page" do
@@ -14,7 +12,9 @@ describe "User pages" do
   end
 
 	describe "profile page" do
-		before { visit user_registration_path }
-		it { should have_content(@user.full_name) }
+		let(:user) { FactoryGirl.build(:user)}
+		before { visit user_path(user) }
+
+		it { should have_content(user.name) }
 	end
 end

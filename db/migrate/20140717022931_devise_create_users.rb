@@ -4,8 +4,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
       ## Database authenticatable
       t.string :first_name
       t.string :last_name
-      t.string :email,              null: false, default: ""
-      t.string :encrypted_password, null: false, default: ""
+      t.string :email,              null: false, default: " "
+      t.string :encrypted_password, null: false, default: " "
 
       ## Recoverable
       t.string   :reset_password_token
@@ -21,7 +21,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string   :current_sign_in_ip
       t.string   :last_sign_in_ip
 
-  
 
       ## Lockable
       # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
