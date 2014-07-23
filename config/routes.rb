@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :users
-
-  resources :tips
-  resources :users
 
   root to: 'tips#index'
+  devise_for :users
+  
+  get '/users/:id', to: 'users#show', as: :user
+
+  resources :tips
+
   get '/new_user_registration', to: "users#new"
   get '/help', to: "static_pages#help"
   get '/about', to: "static_pages#about"
