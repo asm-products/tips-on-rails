@@ -12,7 +12,7 @@
     <% if @user.tips.any? %>
       <h3><%= @user.name %> Tips (<%= @user.tips.count %>)</h3>
       <ol class="tips">
-        <%= @tips %>
+        <%= render partial: 'shared/tip', collection: @user.tips %>
       </ol>
     <% end %>
   </div>
@@ -20,7 +20,7 @@
     <% if @user.bookmarks.any? %>
       <h3><%= @user.name %> Bookmarks (<%= @user.bookmarks.count %>)</h3>
       <ol class="tips">
-        <%= @bookmarks %>
+        <%= render partial: 'shared/bookmark', collection: @user.bookmarks %>
       </ol>
     <% end %>
   </div>

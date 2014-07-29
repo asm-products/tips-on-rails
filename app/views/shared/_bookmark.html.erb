@@ -1,0 +1,10 @@
+<div class="tip">
+  <li id="<%= bookmark.id %>">
+      <span class="user"><strong><%= link_to bookmark.tip.user.name, user_path(bookmark.user) %></strong>
+      </span>
+      <span class="content"><%= link_to bookmark.tip.description, bookmark_path(bookmark) %>
+      </span>
+
+      
+  </li>
+</div>
