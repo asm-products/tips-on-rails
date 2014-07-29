@@ -1,0 +1,4 @@
+<%= form_tag bookmarks_path, method: :post do %> 
+  <div><%= hidden_field_tag :tip_id, @tip.id %></div>
+  <%= submit_tag "Bookmark", class: "btn btn-large btn-primary" %>
+<% end %>

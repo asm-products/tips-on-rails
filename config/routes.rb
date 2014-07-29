@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/users/:id', to: 'users#show', as: :user
 
   resources :tips
+  resources :bookmarks
 
   get '/new_user_registration', to: "users#new"
   get '/help', to: "static_pages#help"

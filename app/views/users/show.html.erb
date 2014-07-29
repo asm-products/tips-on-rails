@@ -10,10 +10,20 @@
   </aside>
    <div class="span8">
     <% if @user.tips.any? %>
-      <h3>Tips (<%= @user.tips.count %>)</h3>
+      <h3><%= @user.name %> Tips (<%= @user.tips.count %>)</h3>
       <ol class="tips">
-        <%= render @user.tips %>
+        <%= @tips %>
+      </ol>
+    <% end %>
+  </div>
+  <div class="span8">
+    <% if @user.bookmarks.any? %>
+      <h3><%= @user.name %> Bookmarks (<%= @user.bookmarks.count %>)</h3>
+      <ol class="tips">
+        <%= @bookmarks %>
       </ol>
     <% end %>
   </div>
 </div>
+
+<%= link_to 'Back', tips_path %>

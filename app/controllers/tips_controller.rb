@@ -1,13 +1,15 @@
 class TipsController < ApplicationController
 	before_filter :authenticate_user!, :except => [:show, :index]
 	
-
 	def index
 		@tips = Tip.all
 	end
 
 	def show
 		@tip = Tip.find(params[:id])
+		#place this here because you are showing a tip and need to know whether the user
+		#has bookmarked a tip.
+		@bookmark = @tip.bookmarked_by(current_user)
 	end
 
 	def new
@@ -20,7 +22,7 @@ class TipsController < ApplicationController
       flash[:success] = "Tip created!"
       redirect_to @tip
     else
-      render 'static_pages/home'
+      render new
     end
   end
 
@@ -44,14 +46,10 @@ class TipsController < ApplicationController
 	end
 
 private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_tip
-      @tip = Tip.find(params[:id])
-    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tip_params
-      params.require(:tip).permit(:title, :description)
+      params.require(:tip).permit(:title, :description, :code, :references)
     end
 
     def correct_user
@@ -59,4 +57,3 @@ private
       redirect_to root_url if @tip.nil?
     end
 end
-
