@@ -1,0 +1,22 @@
+<div class="row">
+  <% if notice %>
+    <div class="col-xs-12">
+      <script>
+        window.setTimeout(function() { $(".alert-success").fadeOut(); }, 4000);
+      </script>
+      <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= notice %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if alert %>
+    <div class="col-xs-12">
+      <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= alert %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,29 +1,25 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-  <aside class="span4">
-    <section>
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
-    </section>
-  </aside>
-   <div class="span8">
+  <div class="col-sm-7 col-md-8">
     <% if @user.tips.any? %>
-      <h3><%= @user.first_name + "'s"  %> Tips (<%= @user.tips.count %>)</h3>
+      <h3><i class="fa fa-comment"></i> <%= @user.first_name %>'s tips (<%= @user.tips.count %>)</h3>
       <ol class="tips">
         <%= render partial: 'shared/tip', collection: @user.tips %>
       </ol>
     <% end %>
-  </div>
-  <div class="span8">
+    <hr>
     <% if @user.bookmarks.any? %>
-      <h3><%= @user.first_name + "'s" %> Bookmarks (<%= @user.bookmarks.count %>)</h3>
+      <h3><i class="fa fa-bookmark"></i> <%= @user.first_name %>'s bookmarks (<%= @user.bookmarks.count %>)</h3>
       <ol class="tips">
         <%= render partial: 'shared/bookmark', collection: @user.bookmarks %>
       </ol>
     <% end %>
   </div>
+  <div class="col-sm-5 col-md-4">
+    <div class="well well-sm" id="user-badge">
+      <%= gravatar_for @user %>
+      <h4><%= @user.name %></h4>
+      <div class="clearfix"></div>
+    </div>
+  </div>
 </div>
-
-<%= link_to 'Back', tips_path %>
