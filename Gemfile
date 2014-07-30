@@ -32,14 +32,12 @@ gem 'draper'
 gem 'exception_notification'
 #Authorization
 gem 'cancancan', '~> 1.8'
+gem "font-awesome-rails"
+
+gem 'ace-rails-ap'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
 
 group :doc do
 	# bundle exec rake doc:rails generates the API under doc/api.

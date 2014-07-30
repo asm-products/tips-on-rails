@@ -10,7 +10,7 @@
   </aside>
    <div class="span8">
     <% if @user.tips.any? %>
-      <h3><%= @user.name %> Tips (<%= @user.tips.count %>)</h3>
+      <h3><%= @user.first_name + "'s"  %> Tips (<%= @user.tips.count %>)</h3>
       <ol class="tips">
         <%= render partial: 'shared/tip', collection: @user.tips %>
       </ol>
@@ -18,7 +18,7 @@
   </div>
   <div class="span8">
     <% if @user.bookmarks.any? %>
-      <h3><%= @user.name %> Bookmarks (<%= @user.bookmarks.count %>)</h3>
+      <h3><%= @user.first_name + "'s" %> Bookmarks (<%= @user.bookmarks.count %>)</h3>
       <ol class="tips">
         <%= render partial: 'shared/bookmark', collection: @user.bookmarks %>
       </ol>

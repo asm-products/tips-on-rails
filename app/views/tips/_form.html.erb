@@ -1,19 +1,29 @@
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :code %><br>
-    <%= f.text_area :code %>
-  </div>
-  <div class="field">
-    <%= f.label :references %><br>
-    <%= f.text_area :references %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <title>ACE in Action</title>
+        <style type="text/css" media="screen">
+          #editor { 
+              position: absolute;
+              top: 240px;
+              right: 150px;
+              bottom: 240px;
+              left: 150px;
+          }
+        </style>
+    </head>
+  <body>
+
+      <div id="editor">function foo(items) {
+          var x = "All this is syntax highlighted";
+          return x;
+      }</div>
+          
+    <script src="/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+          var editor = ace.edit("editor");
+          editor.setTheme("ace/theme/monokai");
+          editor.getSession().setMode("ace/mode/ruby");
+     </script>
+   </body>
+</html>

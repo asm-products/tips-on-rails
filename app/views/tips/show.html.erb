@@ -1,28 +1,8 @@
 <% provide(:title, "The Tip") %>
-<%=  %>
 
-<p>
-  <strong>Title:</strong>
-  <li><%= @tip.title %></li>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <li><%= @tip.description %></li>
-</p>
-
-<p>
-  <strong>Code:</strong>
-  <li><%= @tip.code %></li>
-</p>
-
-<p>
-  <strong>Reference:</strong>
-  <li><%= @tip.references %></li>
-</p>
+<%= render "tip_show" %>
+<%= render "bookmark_form" %>
+<%= render "tip_destroy" %>
 
 
-	<%= render "bookmark_form" %>
-
-<%= link_to 'Edit', edit_tip_path(@tip) %> |
 <%= link_to 'Back', tips_path %>

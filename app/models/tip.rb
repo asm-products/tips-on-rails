@@ -6,7 +6,8 @@ class Tip < ActiveRecord::Base
   validates :description, presence: true, length: { maximum: 140 }
   validates :user_id, presence: true
 
-  def bookmarked_by(user)
-	  bookmarks.find_by(user_id: user.id)
+  def bookmarked_by(user=nil)
+	  bookmarks.find_by(user_id: user.id) unless user == nil
 	end
+
 end

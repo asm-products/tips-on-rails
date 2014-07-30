@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    ace-rails-ap (2.0.1)
     actionmailer (4.1.4)
       actionpack (= 4.1.4)
       actionview (= 4.1.4)
@@ -88,6 +89,8 @@ GEM
     faker (1.4.2)
       i18n (~> 0.5)
     ffi (1.9.3)
+    font-awesome-rails (4.1.0.0)
+      railties (>= 3.2, < 5.0)
     formatador (0.2.5)
     guard (2.6.1)
       formatador (>= 0.2.4)
@@ -242,6 +245,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  ace-rails-ap
   better_errors
   binding_of_caller
   bootstrap-sass
@@ -255,6 +259,7 @@ DEPENDENCIES
   exception_notification
   factory_girl_rails
   faker
+  font-awesome-rails
   guard-rspec
   guard-spork
   jbuilder (~> 2.0)
