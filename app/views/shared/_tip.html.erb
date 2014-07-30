@@ -1,6 +1,6 @@
 <div class="tip">
-  <li id="<%= @tip %>">
-      <span class="user"><strong><%= link_to tip.user.name, user %></strong>
+  <li id="<%= tip.id %>">
+      <span class="user"><strong><%= link_to tip.user.name, user_path(tip.user) %></strong>
       </span>
       <span class="content"><%= link_to tip.description, tip_path(tip) %>
       </span>

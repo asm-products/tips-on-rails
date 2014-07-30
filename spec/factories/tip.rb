@@ -1,6 +1,13 @@
 FactoryGirl.define do
 	factory :tip do
-    content "Lorem ipsum"
+		title "Tip"
+    description "Lorem ipsum"
     user
   end
+
+  factory :invalid_tip do
+  		title nil
+  		description nil
+  		user
+  	end
 end

@@ -13,6 +13,8 @@ describe User do
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
 
+  it { should respond_to(:tips) }
+
   it { should be_valid }
 
   describe "when name is not present" do
@@ -90,5 +92,40 @@ describe User do
   describe "when password doesn't match confirmation" do
     before { @user.password_confirmation = "mismatch"}
     it { should_not be_valid}
+  end
+
+   describe "with a password that's too short" do
+    before { @user.password = @user.password_confirmation = "a" * 5 }
+    it { should be_invalid }
+  end
+
+   describe "when password confirmation is nil" do
+    before { @user.password_confirmation = nil }
+    it { should_not be_valid}
+  end
+
+  describe "email address with mixed case" do
+    let(:mixed_case_email) { "Foo@ExAMPle.CoM" }
+
+    it "should be saved as all lower-case" do
+      @user.email = mixed_case_email
+      @user.save
+      expect(@user.reload.email).to eq mixed_case_email.downcase
+    end
+  end
+
+  describe "tips association" do
+
+    before { @user.save }
+    let!(:older_tip) do
+      FactoryGirl.create(:tip, user: @user, created_at: 1.day.ago)
+  end
+    let!(:newer_tip) do
+      FactoryGirl.create(:tip, user: @user, created_at: 1.hour.ago)
+  end
+
+    it "should have the right tip in the right order" do
+      expect(@user.tips).to eq [newer_tip, older_tip]
+    end
   end
 end

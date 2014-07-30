@@ -141,27 +141,6 @@ aside {
   }
 }
 
-.stats {
-  overflow: auto;
-  a {
-    float: left;
-    padding: 0 10px;
-    border-left: 1px solid #eee;
-    color: gray;
-    &:first-child {
-      padding-left: 0;
-      border: 0;
-    }
-    &:hover {
-      text-decoration: none;
-      color: #049cdb;
-    }
-  }
-  strong {
-    display: block;
-  }
-}
-
 .user_avatars {
   overflow: auto;
   margin-top: 10px;
@@ -201,24 +180,9 @@ input {
   @extend .error;
  }
 
- /* users index */
+/* tips */
 
-.users {
-  list-style: none;
-  margin: 0;
-  li {
-    overflow: auto;
-    padding: 10px 0;
-    border-top: 1px solid #eee;
-    &:last-child {
-      border-bottom: 1px solid #eee;
-    }
-  }
-}
-
-/* microposts */
-
-.microposts {
+.tips {
   list-style: none;
   margin: 10px 0 0 0;
 
@@ -227,9 +191,14 @@ input {
     border-top: 1px solid #e8e8e8;
   }
 }
-.content {
+.description {
   display: block;
 }
+
+.view {
+  display: description;
+}
+
 .timestamp {
   color: #555;
 }
@@ -239,8 +208,15 @@ input {
 }
 aside {
   textarea {
+    width: 50%;
     height: 100px;
     margin-bottom: 5px;
   }
+}
+
+/* Bookmark */
+
+#bookmark_form {
+  width: 10%;
 }
 

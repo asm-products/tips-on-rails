@@ -1,14 +1,28 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, "The Tip") %>
+<%=  %>
 
 <p>
   <strong>Title:</strong>
-  <%= @tip.title %>
+  <li><%= @tip.title %></li>
 </p>
 
 <p>
   <strong>Description:</strong>
-  <%= @tip.description %>
+  <li><%= @tip.description %></li>
 </p>
+
+<p>
+  <strong>Code:</strong>
+  <li><%= @tip.code %></li>
+</p>
+
+<p>
+  <strong>Reference:</strong>
+  <li><%= @tip.references %></li>
+</p>
+
+
+	<%= render "bookmark_form" %>
 
 <%= link_to 'Edit', edit_tip_path(@tip) %> |
 <%= link_to 'Back', tips_path %>

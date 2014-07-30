@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140722180440) do
+ActiveRecord::Schema.define(version: 20140728152552) do
+
+  create_table "bookmarks", force: true do |t|
+    t.integer  "tip_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "tips", force: true do |t|
     t.text     "title"
@@ -19,6 +26,9 @@ ActiveRecord::Schema.define(version: 20140722180440) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "code"
+    t.string   "references"
+    t.integer  "tip_id"
   end
 
   add_index "tips", ["user_id", "created_at"], name: "index_tips_on_user_id_and_created_at", using: :btree
