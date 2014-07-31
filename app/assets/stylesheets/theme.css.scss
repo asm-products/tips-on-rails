@@ -1,5 +1,6 @@
 /* LAYOUT ELEMENTS */
 
+
 body {
   padding: 70px 0 30px 0;
 }
@@ -76,7 +77,7 @@ ul.devise-links {
 
 p.help-block {
   font-size: $font-size-small;
-  font-style: italic;
+  
 }
 
 /* miscellaneous */
@@ -95,3 +96,16 @@ p.help-block {
   }
 }
 
+pre {
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.428571429;
+  word-break: break-all;
+  word-wrap: break-word;
+  color: grey-Dark;
+  background-color: whitesmoke;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+}

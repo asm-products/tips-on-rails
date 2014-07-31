@@ -1,3 +1,4 @@
+
 <p>
   <strong>Title:</strong>
   <li><%= @tip.title %></li>
@@ -10,7 +11,7 @@
 
 <p>
   <strong>Code:</strong>
-  <%= raw Pygments.highlight(@tip.code, lexer: 'ruby') %>
+  <%= @tip.code_cached.html_safe %>
 </p>
 
 <p>

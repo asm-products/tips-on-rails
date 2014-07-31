@@ -32,7 +32,6 @@ gem 'draper'
 gem 'exception_notification'
 #Authorization
 gem 'cancancan', '~> 1.8'
-gem 'font-awesome-rails'
 gem 'pygments.rb'
 
 # Use ActiveModel has_secure_password
