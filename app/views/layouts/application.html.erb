@@ -1,21 +1,13 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title><%= full_title(yield(:title)) %></title>
-  <%= stylesheet_link_tag    "application", media: "all",
-                                            "data-turbolinks-track" => true %>
+<html lang="en">
+  <%= render partial: 'layouts/head' %>
+<body>
+  <%= render partial: 'layouts/header' %>
 
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-  <%= render 'layouts/shim' %>
- </head>
-  <body>
-    <%= render 'layouts/header' %>
-    <div class="container">
-    	 <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
-      <%= yield %>
-      <%= render 'layouts/footer' %>
-    </div>
-  </body>
+  <div class="container">
+    <%= render partial: 'layouts/notice_alert' %>
+    <%= yield %>
+    <%= render 'layouts/footer' %>
+  </div>
+</body>
 </html>
