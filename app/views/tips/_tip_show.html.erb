@@ -10,7 +10,7 @@
 
 <p>
   <strong>Code:</strong>
-  <li><%= @tip.code %></li>
+  <%= raw Pygments.highlight(@tip.code, lexer: 'ruby') %>
 </p>
 
 <p>

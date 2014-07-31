@@ -32,41 +32,40 @@ gem 'draper'
 gem 'exception_notification'
 #Authorization
 gem 'cancancan', '~> 1.8'
-gem "font-awesome-rails"
-
-gem 'ace-rails-ap'
+gem 'font-awesome-rails'
+gem 'pygments.rb'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
 group :doc do
-	# bundle exec rake doc:rails generates the API under doc/api.
-	gem 'sdoc', require: false
+  # bundle exec rake doc:rails generates the API under doc/api.
+  gem 'sdoc', require: false
 end
 
 group :development do
-	# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-	gem 'spring'
-	gem 'thin'
-	#preview email in the browser instead of sending it.
-	gem 'letter_opener'
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
+  gem 'thin'
+  #preview email in the browser instead of sending it.
+  gem 'letter_opener'
  #Better Errors replaces the standard Rails error page with a much better and more useful error page.
-	gem 'better_errors'
-	gem 'binding_of_caller'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
-	group :development, :test do
-	  gem 'rspec-rails'
-	  gem 'capybara'
-	  gem 'guard-rspec'
-	  gem 'spork-rails'
-	  gem 'guard-spork'
-	  gem 'childprocess'
-	  gem 'factory_girl_rails'
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'guard-rspec'
+  gem 'spork-rails'
+  gem 'guard-spork'
+  gem 'childprocess'
+  gem 'factory_girl_rails'
 end
 
 group :test do
-	gem 'faker'
+  gem 'faker'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', require: false
 end
