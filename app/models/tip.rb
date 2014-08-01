@@ -1,10 +1,11 @@
 class Tip < ActiveRecord::Base
-	belongs_to :user
+	belongs_to :user, counter_cache: true
 	has_many :bookmarks
 	before_save :pygmentize_and_cached_code
 
 	
 	default_scope -> { order('created_at DESC') }
+	validates :title, presence: true, length: {maximum: 50}
   validates :description, presence: true, length: { maximum: 140 }
   validates :user_id, presence: true
 

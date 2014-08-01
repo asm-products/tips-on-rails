@@ -1,5 +1,5 @@
 class TipsController < ApplicationController
-	before_filter :authenticate_user!, :except => [:show, :index]
+	before_filter :authenticate_user!, :except => [:show, :index, :create]
 	
 	def index
 		@tips = Tip.all

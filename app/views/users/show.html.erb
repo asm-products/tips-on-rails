@@ -2,14 +2,14 @@
 <div class="row">
   <div class="col-sm-7 col-md-8">
     <% if @user.tips.any? %>
-      <h3><i class="fa fa-comment"></i> <%= @user.first_name %>'s tips (<%= @user.tips.count %>)</h3>
+      <h3><i class="fa fa-comment"></i> <%= @user.first_name %>'s tips (<%= @user.tips_count %>)</h3>
       <ol class="tips">
         <%= render partial: 'shared/tip', collection: @user.tips %>
       </ol>
     <% end %>
     <hr>
     <% if @user.bookmarks.any? %>
-      <h3><i class="fa fa-bookmark"></i> <%= @user.first_name %>'s bookmarks (<%= @user.bookmarks.count %>)</h3>
+      <h3><i class="fa fa-bookmark"></i> <%= @user.first_name %>'s bookmarks (<%= @user.bookmarks_count %>)</h3>
       <ol class="tips">
         <%= render partial: 'shared/bookmark', collection: @user.bookmarks %>
       </ol>
