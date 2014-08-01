@@ -165,6 +165,7 @@ GEM
       ffi (>= 0.5.0)
     rdoc (4.1.1)
       json (~> 1.4)
+    redcarpet (3.1.2)
     request_store (1.0.6)
     rspec (3.0.0)
       rspec-core (~> 3.0.0)
@@ -268,6 +269,7 @@ DEPENDENCIES
   mysql2
   pygments.rb
   rails (= 4.1.4)
+  redcarpet
   rspec-rails
   sass-rails (~> 4.0.3)
   sdoc

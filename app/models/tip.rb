@@ -2,6 +2,7 @@ class Tip < ActiveRecord::Base
 	belongs_to :user
 	has_many :bookmarks
 	before_save :pygmentize_code
+
 	
 	default_scope -> { order('created_at DESC') }
   validates :description, presence: true, length: { maximum: 140 }
@@ -12,6 +13,9 @@ class Tip < ActiveRecord::Base
 	end
 
 	def pygmentize_code
-		self.code_cached = Pygments.highlight(code, lexer: 'ruby')
+		MarkDownRenderer.new.render_down
 	end
 end
+
+
+

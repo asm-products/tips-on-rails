@@ -33,7 +33,7 @@ gem 'exception_notification'
 #Authorization
 gem 'cancancan', '~> 1.8'
 gem 'pygments.rb'
-
+gem 'redcarpet'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

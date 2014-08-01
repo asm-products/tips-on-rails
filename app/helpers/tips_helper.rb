@@ -1,2 +1,3 @@
 module TipsHelper
+	
 end
