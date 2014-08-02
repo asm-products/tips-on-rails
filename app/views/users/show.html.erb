@@ -1,6 +1,7 @@
 <% provide(:title, @user.name) %>
 <div class="row">
   <div class="col-sm-7 col-md-8">
+     <h3>Times <%=@user.name %> has been bookmarked: <%=  @tip_bookmarked %></h3>
     <% if @user.tips.any? %>
       <h3><i class="fa fa-comment"></i> <%= @user.first_name %>'s tips (<%= @user.tips_count %>)</h3>
       <ol class="tips">

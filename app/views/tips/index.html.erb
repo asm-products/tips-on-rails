@@ -1,8 +1,7 @@
 <% provide(:title, "Tip") %>
 <h1>Tips</h1>
-<ul class="tips">
-
-<%= render @tips %> 
-
+	<ul class="tips">
+		<%= render @tips %> 
 </ul>
-<%= link_to 'New Tip', help_path %>
+
+<%= link_to 'New Tip', help_path unless current_user == nil %>

@@ -21,4 +21,8 @@ class User < ActiveRecord::Base
   def name 
 		[first_name, last_name].compact.join(' ')
 	end
+
+	def bookmarked_tips
+		tips.sum(:bookmarks_count, :group => :user_id)
+	end
 end

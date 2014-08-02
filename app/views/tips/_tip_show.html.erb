@@ -1,4 +1,7 @@
-<h4><%= @tip.user.name %></h4>
+<h2><%= @tip.user.name %></h2>
+<h4>Bookmarked by</h4>
+<p><%= pluralize(@tip.bookmarks_count, "user") %></p>
+
 <p>
   <strong>Title:</strong>
   <li><%= @tip.title %></li>
