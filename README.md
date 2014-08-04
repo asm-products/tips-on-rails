@@ -44,7 +44,11 @@ If the Terminal tells you that it can't find it, you'll have to get it. Go to ht
 
     localhost:5100/ (use the port number you specified in the .env file)
 
-##Generating Faker data
+## Generating Faker data
 
-**To generate Faker data
+**To generate Faker data**
+    
+We have developed fake data for the database, so you can see in real time what the site would like with users. To access this fake data, you need to run:
+
+    foreman run rake db:populate
     
