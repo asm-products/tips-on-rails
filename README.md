@@ -43,3 +43,8 @@ If the Terminal tells you that it can't find it, you'll have to get it. Go to ht
 **Go to:**
 
     localhost:5100/ (use the port number you specified in the .env file)
+
+##Generating Faker data
+
+**To generate Faker data
+    
