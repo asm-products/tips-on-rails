@@ -20,6 +20,9 @@ ActiveRecord::Schema.define(version: 20140801182907) do
     t.datetime "updated_at"
   end
 
+  add_index "bookmarks", ["tip_id"], name: "index_bookmarks_on_tip_id", using: :btree
+  add_index "bookmarks", ["user_id"], name: "index_bookmarks_on_user_id", using: :btree
+
   create_table "tips", force: true do |t|
     t.string   "title"
     t.text     "description"
@@ -28,7 +31,6 @@ ActiveRecord::Schema.define(version: 20140801182907) do
     t.datetime "updated_at"
     t.text     "code"
     t.string   "references"
-    t.integer  "tip_id"
     t.text     "code_cached"
     t.integer  "bookmarks_count", default: 0, null: false
   end
