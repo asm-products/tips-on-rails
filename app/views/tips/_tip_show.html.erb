@@ -1,4 +1,4 @@
-<h2><%= @tip.user.name %></h2>
+<h2><%= link_to @tip.user.name, user_path(@tip.user) %></h2>
 <h4><%= @tip.title %> has been bookmarked by</h4>
 <p><%= pluralize(@tip.bookmarks_count, "user") %></p>
 

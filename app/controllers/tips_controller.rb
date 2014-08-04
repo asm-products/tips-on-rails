@@ -2,7 +2,11 @@ class TipsController < ApplicationController
 	before_filter :authenticate_user!, :except => [:show, :index, :create]
 	
 	def index
-		@tips = Tip.all
+		@tips = Tip.paginate(:page => params[:page], :per_page => 30)
+		 respond_to do |format|
+    	format.html
+    	format.json { render json: @tips }
+  	end
 	end
 
 	def show
