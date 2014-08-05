@@ -1,0 +1,19 @@
+<% provide(:title, 'Home') %>
+
+<div class="jumbotron">
+  <h2>Welcome to Tips on Rails</h2>
+  <hr>
+  <p class="lead">View tips from your fellow conductors.</p>
+  <p><%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-primary btn-lg', role: 'button' %></p>
+</div>
+
+<div class="row">
+  <div class="col-sm-6">
+    <h3>Most recent tips</h3>
+    <%= render partial: 'tips/tip', collection: @most_recent_tips, as: :tip %>
+  </div>
+  <div class="col-sm-6">
+    <h3>Top bookmarked tips</h3>
+    <%= render partial: 'tips/tip', collection: @top_bookmarked_tips, as: :tip %>
+  </div>
+</div>

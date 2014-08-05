@@ -80,6 +80,16 @@ p.help-block {
   
 }
 
+// Tips
+
+.tip {
+  small {
+    text-transform: uppercase;
+    color: $gray-light;
+    font-size: $font-size-small;
+  }
+}
+
 /* miscellaneous */
 
 .debug_dump {
