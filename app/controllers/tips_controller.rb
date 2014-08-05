@@ -1,5 +1,5 @@
 class TipsController < ApplicationController
-	before_filter :authenticate_user!, except: [:show, :index, :create]
+	before_filter :authenticate_user!, except: [:show, :index]
 	
 	def index
 		@tips = Tip.includes(:user).paginate(page: params[:page], per_page: 30)
@@ -55,7 +55,7 @@ private
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tip_params
-      params.require(:tip).permit(:title, :description, :code, :references)
+      params.require(:tip).permit(:title, :description, :body)
     end
 
     def correct_user
