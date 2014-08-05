@@ -9,8 +9,7 @@ describe Tip do
 
   it { should respond_to(:title) }
   it { should respond_to(:description) }
-  it { should respond_to(:code) }
-  it { should respond_to(:references) }
+  it { should respond_to(:body) }
   it { should respond_to(:user_id) }
   it { should respond_to(:user) }
   
@@ -37,7 +36,7 @@ describe Tip do
   end
 
   describe "with content that is too long" do
-    before { @tip.description = "a" * 141 }
+    before { @tip.description = "a" * 251 }
     it { should_not be_valid }
   end
 end
