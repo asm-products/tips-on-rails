@@ -1,18 +1,21 @@
-<div class="tip">
-<li id="<%= @tip %>">
-  <span class="user"><strong><%= link_to tip.user.name, user_path(tip.user) %></strong></span>
-  <span class="description"><%= link_to tip.description, tip_path(tip) %></span>
-  <span class="timestamp">Posted <%= time_ago_in_words(tip.created_at) %> ago.</span>
-
-  <span class="hidden">
-    <% if can? :destroy, @tip %>
-    <%= link_to "Delete", tip, method: :delete,
-                                     data: { confirm: "If you delete this, it's not coming back. Maybe, you would rather edit this tip." },
-                                    title: tip.description %>
+<%= div_for tip do %>
+  <div class="controls">
+    <% if can? :destroy, tip %>
+      <%= link_to tip, method: :delete, class: 'btn btn-danger btn-xs', data: { confirm: "If you delete this, it's not coming back. Maybe, you would rather edit this tip." }, title: tip.description do %>
+        <i class="fa fa-times"></i>
+      <% end %>
     <% end %>
-    <% if can? :update, @tip %>
-    <%= link_to "Edit", edit_tip_path(tip) %>
-  <% end %> 
-</span>
-</li>
-</div>
+    <% if can? :update, tip %>
+      <%= link_to edit_tip_path(tip), class: 'btn btn-primary btn-xs' do %>
+        <i class="fa fa-pencil"></i>
+      <% end %>
+    <% end %>
+  </div>
+  <h4>
+    <% if tip.bookmarks_count > 0 %>
+      <span class="label label-default"><%= tip.bookmarks_count %></span>
+    <% end %>
+    <%= link_to tip.title, tip_path(tip) %>
+  </h4>
+  <p><small><%= time_ago_in_words(tip.created_at) %> ago.</small> <%= tip.description %></p>
+<% end %>
