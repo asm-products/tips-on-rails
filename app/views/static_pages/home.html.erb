@@ -9,11 +9,19 @@
 
 <div class="row">
   <div class="col-sm-6">
-    <h3>Most recent tips</h3>
+    <h3>
+      <i class="fa fa-clock-o"></i>
+      Most recent tips
+    </h3>
+    <hr>
     <%= render partial: 'tips/tip', collection: @most_recent_tips, as: :tip %>
   </div>
   <div class="col-sm-6">
-    <h3>Top bookmarked tips</h3>
+    <h3>
+      <i class="fa fa-bookmark"></i>
+      Most bookmarked tips
+    </h3>
+    <hr>
     <%= render partial: 'tips/tip', collection: @top_bookmarked_tips, as: :tip %>
   </div>
 </div>
