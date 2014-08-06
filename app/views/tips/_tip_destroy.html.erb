@@ -1,8 +1,0 @@
-<% if can? :destroy, @tip %>
-  <%= link_to "Delete", @tip, method: :delete,
-                                     data: { confirm: "If you delete this, it's not coming back. Maybe, you would rather edit this tip." },
-                                    title: @tip.description %>
-   <% end %>
-   <% if can? :update, @tip %>
-   <%= link_to "Edit", edit_tip_path(@tip) %>
- <% end %> 

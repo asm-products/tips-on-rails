@@ -108,6 +108,13 @@ p.help-block {
     float:left;
     margin-right: 1em;
   }
+  h4 {
+    margin: 0 0 5px 0;
+    padding: 0;
+  }
+  p {
+    margin-bottom: 3px;
+  }
 }
 
 pre {
@@ -122,20 +129,4 @@ pre {
   background-color: whitesmoke;
   border: 1px solid #cccccc;
   border-radius: 4px;
-}
-
-
-#tip_title {
-  width: 400px;
-  height: 30px;
-}
-
-#tip_code {
-  width: 632px;
-  height: 188px;
-}
-
-#tip_description {
-  width: 600px;
-  height: 150px;
 }

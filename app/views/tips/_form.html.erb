@@ -1,16 +1,16 @@
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div id="one" class="field_code">
-    <%= f.label :body %><br>
-    <%= f.text_area :body %>
-  </div>
-  
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<div class="form-group">
+  <%= f.text_field :title, class: 'form-control input-lg', placeholder: 'Tip title' %>
+  <p class="help-block">Max. length 50 characters.</p>
+</div>
+
+<div class="form-group">
+  <%= f.text_area :description, class: 'form-control', placeholder: 'Short tip description' %>
+  <p class="help-block">Max. length 250 characters.</p>
+</div>
+
+<div class="form-group">
+  <%= f.text_area :body, rows: 12, class: 'form-control', placeholder: 'Detailed tip content and code' %>  
+</div>
+
+
+<%= f.submit class: 'btn btn-success' %>

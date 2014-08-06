@@ -1,8 +1,26 @@
-<% provide(:title, "The Tip") %>
+<% provide(:title, @tip.title) %>
 
-<%= render "tip_show" %>
-<%= render "bookmark_form" %>
-<%= render "tip_destroy" %>
+<div class="row">
+  <div class="col-sm-7 col-md-8 tip">
 
+    <div class="page-header">
+      <h2>
+        <%= render partial: 'tip_controls' %>
+        <%= @tip.title %>
+      </h2>
+    </div>
+    
+    <p><%= @tip.description %></p>
 
-<%= link_to 'Back', tips_path %>
+    <%= @tip.body_cached.html_safe %>
+
+  </div>
+  <div class="col-sm-5 col-md-4">
+    <%= render partial: 'users/user_badge', object: @tip.user, as: :user %>
+    
+    <p>This tip has been bookmarked <%= pluralize(@tip.bookmarks_count, "time") %></p>
+
+    <%= render "bookmark_form" %>
+
+  </div>
+</div>

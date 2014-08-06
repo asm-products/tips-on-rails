@@ -14,6 +14,16 @@
       
       <div class="navbar-collapse collapse" id="bs-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
+          <% if signed_in? %>
+            <li>
+              <form action="<%= new_tip_path %>" method="get">
+                <%= button_tag class: 'btn btn-default navbar-btn btn-sm' do %>
+                  <i class="fa fa-plus"></i>
+                  New Tip
+                <% end %>
+              </form>
+            </li>
+          <% end %>
           <li>
             <%= link_to root_path do %>
               <i class="fa fa-home"></i> Home
