@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+	extend FriendlyId
+	friendly_id :last_name
+
 	has_many :tips
 	has_many :bookmarks
 

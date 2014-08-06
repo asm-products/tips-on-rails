@@ -1,5 +1,6 @@
 class TipsController < ApplicationController
 	before_filter :authenticate_user!, except: [:show, :index]
+
 	
 	def index
 		@tips = Tip.includes(:user).paginate(page: params[:page], per_page: 30)
@@ -10,11 +11,14 @@ class TipsController < ApplicationController
 	end
 
 	def show
-		@tip = Tip.find(params[:id])
+		@tip = Tip.friendly.find(params[:id])
+		if request.path != tip_path(@tip)
+			redirect_to @tip, status: :moved_permanently
 		#place this here because you are showing a tip and need to know whether the user
 		#has bookmarked a tip.
 		@bookmark = @tip.bookmarked_by(current_user)
 	end
+end
 
 	def new
 		@tip = Tip.new
@@ -37,12 +41,12 @@ class TipsController < ApplicationController
 	end
 
 	def edit
-		@tip = Tip.find(params[:id])
+		@tip = Tip.friendly.find(params[:id])
 		
 	end
 
 	def update
-		@tip = Tip.find(params[:id])
+		@tip = Tip.friendly.find(params[:id])
 		if @tip.update_attributes(tip_params)
 			flash[:notice] = "Successfully updated your tip."
 			redirect_to @tip
