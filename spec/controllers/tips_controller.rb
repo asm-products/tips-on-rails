@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe TipsController do
 	let(:tip) do
-		create(:tip, title: "Tip", description: "Lorem Epsum")
+		create(:tip, title: "Tip", description: "Lorem Epsum", body: "here is a body of code")
 	end
 
 		describe 'GET #index' do
