@@ -1,13 +1,14 @@
 <% provide(:title, 'New Tip') %>
-<h1>New Tip</h1>
 
-	<div class="row">
-	  <div class="span6 offset3">
-	    <%= form_for(@tip) do |f| %>
-	    	<%= render 'shared/form_errors', object: f.object %>
-	      <%= render 'form', f: f %>
-	    <% end %>
-	  </div>
-	</div>
+<div class="page-header">
+  <h2>Add New Tip</h2>
+</div>
 
-	<%= link_to 'Back', tips_path %>
+<div class="row">
+  <div class="col-xs-12">
+    <%= form_for(@tip) do |f| %>
+      <%= render 'shared/form_errors', object: f.object %>
+      <%= render 'form', f: f %>
+    <% end %>
+  </div>
+</div>

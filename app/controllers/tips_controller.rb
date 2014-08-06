@@ -30,7 +30,7 @@ end
       flash[:success] = "Tip created!"
       redirect_to @tip
     else
-      render new
+      render :new
     end
   end
 

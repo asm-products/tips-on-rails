@@ -17,14 +17,9 @@
     <% end %>
   </div>
   <div class="col-sm-5 col-md-4">
-    <div class="well well-sm" id="user-badge">
-      <%= gravatar_for @user %>
-      <h4><%= @user.name %></h4>
-        <div id="profile"><a href="">Show profile</a></h6>
-      <div class="clearfix"></div>
-    </div>
+    <%= render partial: 'user_badge', object: @user, as: :user %>
   </div>
-    <div id="bio"
+    <div id="bio">
     <div class="col-sm-5 col-md-4">
       <div class="well well-sm" id="user-badge">
         <h4>Bio:</h4>
