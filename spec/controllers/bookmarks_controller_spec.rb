@@ -5,7 +5,7 @@ require 'rails_helper'
 		describe "POST#create" do
 			it "creates a new bookmark" do
 				expect {
-					post :create, bookmark: attributes_for(:bookmark)
+					patch :create, bookmark: attributes_for(:bookmark)
 				}.to change(Bookmark, :count).by(1)
 		end
 	end
