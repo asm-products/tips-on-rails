@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-	extend FriendlyId
-	friendly_id :last_name
 
 	has_many :tips, dependent: :destroy
 	has_many :bookmarks
@@ -16,7 +14,6 @@ class User < ActiveRecord::Base
 	
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
-  validates :bio, presence: true
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

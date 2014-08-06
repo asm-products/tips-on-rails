@@ -10,14 +10,9 @@ class TipsController < ApplicationController
 	end
 
 	def show
-		@tip = Tip.friendly.find(params[:id])
+		@tip = Tip.find(params[:id])
 		
 		@bookmark = @tip.bookmarked_by(current_user)
-		if request.path != tip_path(@tip)
-			redirect_to @tip, status: :moved_permanently
-		#place this here because you are showing a tip and need to know whether the user
-		#has bookmarked a tip.
-	end
 end
 
 	def new
@@ -41,12 +36,12 @@ end
 	end
 
 	def edit
-		@tip = Tip.friendly.find(params[:id])
+		@tip = Tip.find(params[:id])
 		
 	end
 
 	def update
-		@tip = Tip.friendly.find(params[:id])
+		@tip = Tip.find(params[:id])
 		if @tip.update_attributes(tip_params)
 			flash[:notice] = "Successfully updated your tip."
 			redirect_to @tip

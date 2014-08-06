@@ -3,7 +3,7 @@ require 'rails_helper'
 describe User do
   
   before { @user = User.new(first_name: "Example", last_name: "User", email: "user@example.com", 
-                            password: "foobar123", password_confirmation: "foobar123", bio: "some things here") }
+                            password: "foobar123", password_confirmation: "foobar123" ) }
 
   subject { @user }
 
@@ -13,7 +13,7 @@ describe User do
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:tips) }
-  it { should respond_to(:bio) }
+
 
   it { should be_valid }
 
@@ -112,11 +112,6 @@ describe User do
       @user.save
       expect(@user.reload.email).to eq mixed_case_email.downcase
     end
-  end
-
-  describe "when bio is not present" do
-    before { @user.bio = " " }
-    it { should_not be_valid }
   end
 
   describe "tips association" do

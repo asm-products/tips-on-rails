@@ -1,6 +1,5 @@
 class Tip < ActiveRecord::Base
-	extend FriendlyId
-	friendly_id :title, use: [:slugged, :history]
+	
 	belongs_to :user, counter_cache: true
 	has_many :bookmarks
 	before_save :pygmentize_and_cache_body
@@ -19,8 +18,4 @@ class Tip < ActiveRecord::Base
 	def pygmentize_and_cache_body
 		self.body_cached = MarkDownRenderer.new.pygmentize_and_render(body)
 	end
-	
-	#def should_generate_new_friendly_id?
-	#	new_record?
-	#end
 end
