@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140805175332) do
+ActiveRecord::Schema.define(version: 20140805204113) do
 
   create_table "bookmarks", force: true do |t|
     t.integer  "tip_id"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20140805175332) do
     t.string   "password_confirmation"
     t.integer  "bookmarks_count",        default: 0,  null: false
     t.integer  "tips_count",             default: 0,  null: false
+    t.string   "bio"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
