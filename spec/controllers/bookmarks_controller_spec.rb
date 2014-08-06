@@ -15,10 +15,5 @@ require 'rails_helper'
           delete :destroy, id: bookmark
         }.to change(Bookmark, :count).by(-1)
       end
-
-      it "redirects to contacts#index" do
-        delete :destroy, id: Bookmark
-        expect(response).to redirect_to tip_path(bookmarks.tip)
-      end
     end
   end

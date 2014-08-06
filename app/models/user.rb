@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-	extend FriendlyId
-	friendly_id :last_name
 
 	has_many :tips, dependent: :destroy
 	has_many :bookmarks
