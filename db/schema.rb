@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140805204113) do
+ActiveRecord::Schema.define(version: 20140805135256) do
 
   create_table "bookmarks", force: true do |t|
     t.integer  "tip_id"
@@ -20,18 +20,8 @@ ActiveRecord::Schema.define(version: 20140805204113) do
     t.datetime "updated_at"
   end
 
-  create_table "friendly_id_slugs", force: true do |t|
-    t.string   "slug",                      null: false
-    t.integer  "sluggable_id",              null: false
-    t.string   "sluggable_type", limit: 50
-    t.string   "scope"
-    t.datetime "created_at"
-  end
-
-  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
-  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
-  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
-  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+  add_index "bookmarks", ["tip_id"], name: "index_bookmarks_on_tip_id", using: :btree
+  add_index "bookmarks", ["user_id"], name: "index_bookmarks_on_user_id", using: :btree
 
   create_table "tips", force: true do |t|
     t.string   "title"
@@ -40,13 +30,9 @@ ActiveRecord::Schema.define(version: 20140805204113) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "body"
-    t.integer  "tip_id"
     t.text     "body_cached"
     t.integer  "bookmarks_count", default: 0, null: false
-    t.string   "slug"
   end
-
-  add_index "tips", ["slug"], name: "index_tips_on_slug", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name"
@@ -71,7 +57,6 @@ ActiveRecord::Schema.define(version: 20140805204113) do
     t.string   "password_confirmation"
     t.integer  "bookmarks_count",        default: 0,  null: false
     t.integer  "tips_count",             default: 0,  null: false
-    t.string   "bio"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
