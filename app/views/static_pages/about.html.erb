@@ -1,10 +1,27 @@
 <% provide(:title, 'About') %>
-  <h1>About Tips on Rails</h1>
-
+  
+  <div class="container">
   	<div class="col-sm-7 col-md-8">
   		<div class="about-page">
+        <h1>About Tips on Rails</h1>
   			<p>Tips on Rails was created so Rails enthusiasts could share their tips about everything Rails. It's built and run by you. With your help, we're working together to build a library of detailed tips about every aspect of Rails development.
   			<p>You have tips. We have tips. Let's bring our ideas together.</p>
-  		</div>
+        <h1>Great tips</h1>
+          <p>Great tips should be:</p>
+            <h3>Useful</h3>
+              <p>By useful, we mean that you're tip should have some value to another reader whom is also working in the rails community.</p>
+            <h3>Relevant</h3>
+              <p>When posting tips, please do adequate research as to your tips relevance to current users.</p>
+            <h3>Specific</h3>
+              <p>Specificity is key when building a library of useful and relevant tips. When posting tips, please be concise so that other readers may .</p>
+      </div>
+    </div>
+
+
+  	<div class="col-sm-3 col-md-4">
+  		<%= mail_to "mailto:michael.r.bukowski@gmail.com", class: 'btn btn-primary btn-md', role: 'button' do %>
+  				<i class="fa fa-envelope-o"></i> Contact
+  		<% end %>
   	</div>
+  </div>
   	

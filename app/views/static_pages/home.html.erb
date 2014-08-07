@@ -1,11 +1,13 @@
 <% provide(:title, 'Home') %>
 
-<div class="jumbotron">
-  <h2>Welcome to Tips on Rails</h2>
-  <hr>
-  <p class="lead">View tips from your fellow conductors.</p>
-  <p><%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-primary btn-lg', role: 'button' %></p>
-</div>
+<% unless current_user %>
+  <div class="jumbotron">
+    <h2>Welcome to Tips on Rails</h2>
+    <hr>
+    <p class="lead">View tips from your fellow conductors.</p>
+    <p><%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-primary btn-lg', role: 'button' %></p>
+  </div>
+<% end %>
 
 <div class="row">
   <div class="col-sm-6">
