@@ -54,6 +54,17 @@ footer {
   }
 }
 
+// Jumbotron
+
+.jumbotron {
+  h2 {
+    margin-top: 0;
+  }
+  hr {
+    border-color: #ddd;
+  }
+}
+
 // Devise
 
 ul.devise-links {

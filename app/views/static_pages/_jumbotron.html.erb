@@ -1,0 +1,30 @@
+<div class="jumbotron">
+  <div class="row">
+    <div class="col-sm-6">
+      <h2>Tips on Rails</h2>
+      <p>View and bookmark tips from your fellow Rails and Ruby enthusiasts. You can also share a tip or two.</p>
+      <hr>
+      <p>
+        <%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-primary btn-lg', role: 'button' %>
+        <small>
+          &nbsp;or&nbsp;
+          <%= link_to 'Learn more', about_path %>
+        </small>
+      </p>
+    </div>
+    <div class="col-sm-6 hidden-xs">
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">TipsOnRails</span>
+  <span class="kp">attr_accessor</span> <span class="ss">:tips</span><span class="p">,</span> <span class="ss">:bookmarks</span>
+
+  <span class="k">def</span> <span class="nf">view_and_learn</span>
+    <span class="n">tips</span> <span class="o">+</span> <span class="n">bookmarks</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">post_tip</span><span class="p">(</span><span class="n">tip</span><span class="p">)</span>
+    <span class="n">tips</span> <span class="o">&lt;&lt;</span> <span class="n">tip</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+    </div>
+  </div>
+</div>
