@@ -1,10 +1,31 @@
 <% provide(:title, 'About') %>
-  <h1>About Tips on Rails</h1>
 
-  	<div class="col-sm-7 col-md-8">
-  		<div class="about-page">
-  			<p>Tips on Rails was created so Rails enthusiasts could share their tips about everything Rails. It's built and run by you. With your help, we're working together to build a library of detailed tips about every aspect of Rails development.
-  			<p>You have tips. We have tips. Let's bring our ideas together.</p>
-  		</div>
-  	</div>
-  	
+<div class="page-header">
+  <h2>About Tips on Rails</h2>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <%= mail_to "mailto:michael.r.bukowski@gmail.com", class: 'btn btn-primary btn-md pull-right', role: 'button' do %>
+      <i class="fa fa-envelope-o"></i> Contact
+    <% end %>
+    <p>We created Tips on Rails for Rails enthusiasts to share their tips about everything Rails (and Ruby). It's built and run by you. With your help, we're working together to build a library of detailed tips about every aspect of Rails (and Ruby) development.</p>
+    <p>You have tips. We have tips. Let's bring our ideas together.</p>
+    <h3>Great tips shoud be...</h3>
+    <div class="row">
+      <div class="col-sm-4">
+        <h4>Useful</h4>
+        <p>By useful, we mean that your tip should have some value to another reader whom is also working in the rails community.</p>    
+      </div>
+      <div class="col-sm-4">
+        <h4>Relevant</h4>
+        <p>When posting tips, please do adequate research as to your tips relevance to current users.</p>    
+      </div>
+      <div class="col-sm-4">
+        <h4>Specific</h4>
+        <p>Specificity is key when building a library of useful and relevant tips. When posting tips, please be as concise as possible.</p>
+      </div>
+    </div>
+  </div>
+</div>
+    

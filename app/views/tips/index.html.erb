@@ -1,11 +1,14 @@
 <% provide(:title, "Tip") %>
-<h1>Tips</h1>
+	
+<div class="page-header">
+  <h2>All Tips</h2>
+</div>
 
-
-	<ul class="tips">
-		<%= render @tips %>
+<div class="row">
+  <div class="col-xs-12">
+    <ul class="tips">
+		<div><%= render @tips %></div>
 		<%= will_paginate @tips %> 
   </ul>
-	
-
-<%= link_to 'New Tip', help_path unless current_user == nil %>
+  </div>
+</div>

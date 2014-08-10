@@ -1,6 +1,6 @@
 <div class="controls">
   <% if can? :destroy, @tip %>
-    <%= link_to @tip, method: :delete, class: 'btn btn-danger btn-xs', data: { confirm: "If you delete this, it's not coming back. Maybe, you would rather edit this tip." }, title: @tip.description do %>
+    <%= link_to @tip, method: :delete, class: 'btn btn-danger btn-xs', data: { confirm: "If you delete this, it's not coming back. Maybe, you would rather edit this tip." }, title: @tip.title do %>
       <i class="fa fa-times"></i>
     <% end %>
   <% end %>

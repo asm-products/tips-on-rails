@@ -6,10 +6,11 @@
   <div class="col-sm-6">
     <h3>
       <i class="fa fa-clock-o"></i>
-      Most recent tips
+      Most recent tips 
     </h3>
     <hr>
     <%= render partial: 'tips/tip', collection: @most_recent_tips, as: :tip %>
+    <%= link_to 'View all tips', tips_path %>
   </div>
   <div class="col-sm-6">
     <h3>

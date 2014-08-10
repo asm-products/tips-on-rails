@@ -1,48 +1,74 @@
 <% provide(:title, 'Help') %>
-	<div class="container">
-		<div class="subheader">
-  		<h1>How to Ask</h1>
-  	</div>
-  	<div class="col-sm-7 col-md-8">
-  		<div class="content-page">
-  			<p>Welcome to Tips on Rails!</p>
-  			<p>
-  				Great to see you! Here are some guidelines to help you post your tips! To make your tips as readable as possible, please:</p>
-  			<h2>Specificity</h2>
-  				<p>Please be as specific as possible when posting to Tips on Rails, as you are only able to post 140 characters.</p>
-  				<p>Write as you would to a former loved one whom you're breaking up with, very to the point! naw mean?.</p>
-  			<h2>Syntax Highlighting</h2>
-  				<p>To highlight your code, please add:
-  						<h4><strong>```(your language of choice)
-  								<h4>---code---</h4>
-  						<h4>```<h4>
-  					</strong></h4>
-  				</p>	
-  				<p>
-  					To separate the languages of your code, please add:
-  						<h4><strong>## (language) code
-  							<h4>```ruby</h4>
-  							<h4>---code---</h4>
-  							<h4>``</h4>
-  					</strong></h4>
-  					To the top of the post.
-  				</p>
-  			<h2>Make your tips relevant to others</h2>
-  				<p>These tips are supposed to provide a gateway to unfound knowledge. So, please don't post shit.</p>
-  			<h2>Keep an open mind</h2>
-  				<p>Your tips may not always recieve the feedback you expected, get over it. Learn something new and keep moving forward.</p>
-  		</div>
-  	</div>
-  	<div class="col-sm-5 col-md-4">
-  		<div class="well well-sm" id="user-badge">
-  			<h4>Linked</h4>
-  			<p>This text was adapted from StackOverFlow</p>
-  		</div>
-  	</div>
+
+<div class="page-header">
+  <h2>Help with Posting Tips</h2>
 </div>
 
-<%= form_tag new_tip_path, method: :get do %> 
-  <%= submit_tag "Post Tip", class: "btn btn-large btn-primary" %>
-<% end %>
+<div class="row">
+  <div class="col-xs-12">   
+    <h3>Syntax Highlighting</h3>
+    <p>You can easily provide code that will be automatiacally highlighted.</p>
+    <div class="row">
+      <div class="col-sm-6">
+        <p>If you type this:</p>
+<pre>
+```ruby
+class TipsOnRails
+  attr_accessor :tips, :bookmarks
 
+  def view_and_learn
+    tips + bookmarks
+  end
 
+  def post_tip(tip)
+    tips << tip
+  end
+end
+```
+
+```html
+&lt;div id="tip" class="selected"&gt;
+  &lt;p&gt;&lt;strong&gt;&lt;%= user.name %&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+```
+
+```css
+#tip.selected {
+  color: blue;
+  font-weight: bold;
+  text-decoration: none;
+}
+```
+</pre>        
+      </div>
+      <div class="col-sm-6">
+        <p>You will get this:</p>
+
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">TipsOnRails</span>
+  <span class="kp">attr_accessor</span> <span class="ss">:tips</span><span class="p">,</span> <span class="ss">:bookmarks</span>
+
+  <span class="k">def</span> <span class="nf">view_and_learn</span>
+    <span class="n">tips</span> <span class="o">+</span> <span class="n">bookmarks</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">post_tip</span><span class="p">(</span><span class="n">tip</span><span class="p">)</span>
+    <span class="n">tips</span> <span class="o">&lt;&lt;</span> <span class="n">tip</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+<div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"tip"</span> <span class="na">class=</span><span class="s">"selected"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;p&gt;&lt;strong&gt;</span><span class="err">&lt;</span>%= user.name %&gt;<span class="nt">&lt;/strong&gt;&lt;/p&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre></div>
+
+<div class="highlight"><pre><span class="nf">#tip</span><span class="nc">.selected</span> <span class="p">{</span>
+  <span class="k">color</span><span class="o">:</span> <span class="nb">blue</span><span class="p">;</span>
+  <span class="k">font-weight</span><span class="o">:</span> <span class="k">bold</span><span class="p">;</span>
+  <span class="k">text-decoration</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+      </div>
+    </div>
+  </div>
+</div>
