@@ -1,22 +1,40 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-  <div class="col-sm-7 col-md-8">
-     <h3>Times <%=@user.name %> has been bookmarked: <%=  @tip_bookmarked %></h3>
+  <div class="col-sm-5 col-sm-push-7 col-md-4 col-md-push-8">
+    <%= render partial: 'user_badge', object: @user, as: :user %>
+  </div>
+  <div class="col-sm-7 col-sm-pull-5 col-md-8 col-md-pull-4">
+    <div class="alert alert-info">
+      <%=@user.first_name %>'s tips have been bookmarked <strong><%=  @user.bookmarked_tips %> times</strong>
+    </div>
     <% if @user.tips.any? %>
-      <h3><i class="fa fa-comment"></i> <%= @user.first_name %>'s tips (<%= @user.tips_count %>)</h3>
-      <ol class="tips">
-        <%= render partial: 'shared/tip', collection: @user.tips %>
-      </ol>
+      <h3><i class="fa fa-code"></i> <%= @user.first_name %>'s <%= @user.tips_count %> tips</h3>
+      <table id="tips" class="table">
+        <%= render partial: 'tip', collection: @user.tips %>
+      </table>
+    <% else %>
+      <h3><i class="fa fa-code"></i> <%= @user.first_name %>'s tips</h3>
+      <p class="text-muted">No tips yet.
+        <% if current_user %>
+          <% if @user.id == current_user.id %>
+          Go ahead and <%= link_to 'create new tip', new_tip_path %> now.
+          <% else %>
+            Hopefully there will be some very soon.
+          <% end %>
+        <% else %>
+          Hopefully there will be some very soon.
+        <% end %>
+      </p>
     <% end %>
     <hr>
     <% if @user.bookmarks.any? %>
-      <h3><i class="fa fa-bookmark"></i> <%= @user.first_name %>'s bookmarks (<%= @user.bookmarks_count %>)</h3>
-      <ol class="tips">
-        <%= render partial: 'shared/bookmark', collection: @user.bookmarks %>
-      </ol>
+      <h3><i class="fa fa-bookmark"></i> <%= @user.first_name %>'s <%= @user.bookmarks_count %> bookmarks</h3>
+      <table id="bookmarks" class="table">
+        <%= render partial: 'bookmark', collection: @user.bookmarks %>
+      </table>
+    <% else %>
+      <h3><i class="fa fa-bookmark"></i> <%= @user.first_name %>'s bookmarks</h3>
+      <p class="text-muted">No bookmarks yet. Hopefully there will be some very soon.</p>
     <% end %>
-  </div>
-  <div class="col-sm-5 col-md-4">
-    <%= render partial: 'user_badge', object: @user, as: :user %>
   </div>
 </div>

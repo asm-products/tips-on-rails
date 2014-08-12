@@ -1,16 +1,18 @@
-<span class="user"><strong><%= link_to tip.user.name, user_path(tip.user) %></strong>
-</span>
-<span class="description"><%= link_to tip.title, tip_path(tip) %>
-</span>
-<span class="timestamp">Posted <%= time_ago_in_words(tip.created_at) %> ago.
-</span>
-
-  <% if can? :destroy, tip %>
-  	<%= link_to "Delete", method: :delete,
-                                   			data: { confirm: "If you delete this, it's not coming back. Maybe, you would rather edit this tip." },
-                                  			title: tip.description %>
-  <% end %>
-  <% if can? :update, tip %>
-    <%= link_to "Edit", edit_tip_path(tip) %>
-  <% end %> 
-  
+<%= content_tag_for :tr, tip do %>
+  <th>
+    <%= time_ago_in_words(tip.created_at) %> ago
+  </th>
+  <td class="bookmarks">
+    <% if tip.bookmarks_count > 0 %>
+      <i class="fa fa-bookmark"></i>
+      <%= tip.bookmarks_count %>
+    <% else %>
+      <span class="text-muted">
+        <i class="fa fa-bookmark"></i> 0
+      </span>
+    <% end %>
+  </td>
+  <td>
+    <%= link_to tip.title, tip_path(tip) %>
+  </td>
+<% end %>

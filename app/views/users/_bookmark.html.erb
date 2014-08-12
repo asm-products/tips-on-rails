@@ -1,10 +1,8 @@
-<div class="tip">
-  <li id="<%= bookmark.id %>">
-      <span class="user"><strong><%= link_to bookmark.tip.user.name, user_path(bookmark.tip.user) %></strong>
-      </span>
-      <span class="description"><%= link_to bookmark.tip.description, tip_path(bookmark.tip) %>
-      </span>
-
-      
-  </li>
-</div>
+<%= content_tag_for :tr, bookmark do %>
+  <th>
+    <%= time_ago_in_words(bookmark.tip.created_at) %> ago
+  </th>
+  <td>
+    <%= link_to bookmark.tip.title, tip_path(bookmark.tip) %>
+  </td>
+<% end %>

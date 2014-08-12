@@ -105,6 +105,29 @@ p.help-block {
   }
 }
 
+// User profile
+
+table#tips, table#bookmarks {
+  margin-left: 1.75em;
+  width: auto;
+  th {
+    color: $gray-light;
+    font-weight: normal;
+    text-transform: uppercase;
+    font-size: $font-size-small;
+    border-top: none;
+    white-space: nowrap;
+  }
+  td {
+    padding: 4px;
+    border-top: none;
+    &.bookmarks {
+      text-align: center;
+      white-space: nowrap;
+    }
+  }
+}
+
 /* miscellaneous */
 
 .debug_dump {
