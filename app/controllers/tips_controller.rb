@@ -2,7 +2,7 @@ class TipsController < ApplicationController
 	before_filter :authenticate_user!, except: [:show, :index]
 
 	def index
-		@tips = Tip.includes(:user).paginate(page: params[:page], per_page: 30)
+		@tips = Tip.includes(:user).paginate(page: params[:page], per_page: 10)
 		 respond_to do |format|
     	format.html
     	format.json { render json: @tips }
@@ -13,7 +13,7 @@ class TipsController < ApplicationController
 		@tip = Tip.find(params[:id])
 		
 		@bookmark = @tip.bookmarked_by(current_user)
-end
+	end
 
 	def new
 		@tip = Tip.new
@@ -31,13 +31,17 @@ end
 
 	def destroy
 		@tip = Tip.find(params[:id])
-		@tip.destroy
-		redirect_to tips_path
+
 	end
+
+  def email
+  	@tip = Tip.find(params[:id])
+    @delete = DeleteMailer.reason_to_delete(@tip).deliver
+    redirect_to tips_path, notice: 'Thanks for your input!'
+  end
 
 	def edit
 		@tip = Tip.find(params[:id])
-		
 	end
 
 	def update

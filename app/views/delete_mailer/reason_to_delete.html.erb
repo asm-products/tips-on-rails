@@ -1,0 +1,9 @@
+<h1><%= @tip.user.name %> reasons why he/she wants to delete their tip.</h1>
+    <p>
+      Tip to user wants deleted: <%= @tip.body %>
+    </p>
+
+    
+    <p>
+      To view their tip, go to <%= link_to "tips", user_path(@tip) %> .
+    </p>

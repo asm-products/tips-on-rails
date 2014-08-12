@@ -3,7 +3,7 @@ require 'rails_helper'
 describe Tip do
 
   let(:user) { FactoryGirl.create(:user) }
-  before { @tip = user.tips.build(title: "Tip", description: "Lorem ipsum") }
+  before { @tip = user.tips.build(title: "Tip", body: "some things", description: "Lorem ipsum") }
 
   subject { @tip }
 
@@ -14,6 +14,7 @@ describe Tip do
   it { should respond_to(:user) }
   
   it { should be_valid }
+
 
   describe "when user_id is not present" do
   	before { @tip.user_id = nil }
@@ -37,6 +38,15 @@ describe Tip do
 
   describe "with content that is too long" do
     before { @tip.description = "a" * 251 }
+    it { should_not be_valid }
+  end
+   describe "with blank content" do
+    before { @tip.body = " "}
+    it { should_not be_valid }
+  end
+
+  describe "with content that is too long" do
+    before { @tip.body = "a" * 251 }
     it { should_not be_valid }
   end
 end

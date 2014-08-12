@@ -8,8 +8,8 @@ class BookmarksController < ApplicationController
 
  	def destroy
  		#I want to unbookmark a current bookmarked item.
-    bookmark = Bookmark.find(params[:id])
-   	bookmark.destroy
-    redirect_to tip_path(bookmark.tip)
+    @bookmark = Bookmark.find(params[:id])
+   	@bookmark.destroy
+    redirect_to tip_path(@bookmark.tip)
   end
 end

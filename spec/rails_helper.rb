@@ -4,10 +4,11 @@ require 'spork'
 ENV["RAILS_ENV"] ||= 'test'
 require 'spec_helper'
 require File.expand_path("../../config/environment", __FILE__)
+require 'shoulda/matchers'
 require 'rspec/rails'
 require 'capybara/rails'
 require 'capybara/rspec'
-require 'shoulda/matchers'
+
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -43,10 +44,11 @@ RSpec.configure do |config|
   #
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
+  config.include Devise::TestHelpers, type: :controller
   config.infer_spec_type_from_file_location!
   config.include Capybara::DSL
   config.include FactoryGirl::Syntax::Methods
-  config.include Devise::TestHelpers, type: :controller
+  
 end
 Spork.each_run do
   end
