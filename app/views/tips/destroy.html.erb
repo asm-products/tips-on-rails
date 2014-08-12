@@ -4,18 +4,15 @@
   <h1>Why do you want to derail this tip?</h1>
 </div>
 
-<p>We thought long and hard and could not come to a conclusion on whether deleting tips is a good idea. So, we decided to include you in the decision process.</p>
-
-
 <div class="row">
   <div class="col-xs-12">
-    <%= form_tag( action: :email, controller: :tips, method: :post) do %>
-    <div class="form-group">
-      <%= text_area_tag :message, nil, :placeholder => 'Why you wanna say bye-bye...', :size => "90x10" %>
+    <p>We thought long and hard and could not come to a conclusion on whether deleting tips is a good idea. So, we decided to include you in the decision process.</p>
+    
+    <%= form_tag send_destroy_email_tip_path, method: :post do %>
+      <div class="form-group">
+        <%= text_area_tag :message, '', class: 'form-control', placeholder: 'Why you wanna say bye-bye...', rows: 5 %>
      </div>
       <%= submit_tag "Submit", class: "btn btn-large btn-primary" %>
-      <% end %>
+    <% end %>
   </div>
 </div>
-
-

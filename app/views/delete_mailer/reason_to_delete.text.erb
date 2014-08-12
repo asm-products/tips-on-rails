@@ -1,3 +1,8 @@
-DeleteMailer#reason_to_delete
+<%= @tip.user.name %> wants to delete their tip.
+-------------------------------------------------
 
-<%= @greeting %>, find me in app/views/delete_mailer/reason_to_delete.text.erb
+Tip the user wants to delete: <%= @tip.title %> [<%= tip_url(@tip) %>]
+
+Reason to delete the tip:
+
+<%= @message %>

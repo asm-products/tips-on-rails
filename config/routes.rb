@@ -4,9 +4,11 @@ Rails.application.routes.draw do
   devise_for :users
   
   get '/users/:id', to: 'users#show', as: :user
-  post '/tips/:id/email_tips', to: 'tips#email', as: :email
 
-  resources :tips
+  resources :tips do
+    post 'send_destroy_email', on: :member
+  end
+
   resources :bookmarks
 
   get '/new_user_registration', to: "users#new"
