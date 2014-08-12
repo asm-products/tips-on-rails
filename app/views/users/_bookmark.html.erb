@@ -1,0 +1,8 @@
+<%= content_tag_for :tr, bookmark do %>
+  <th>
+    <%= time_ago_in_words(bookmark.tip.created_at) %> ago
+  </th>
+  <td>
+    <%= link_to bookmark.tip.title, tip_path(bookmark.tip) %>
+  </td>
+<% end %>
