@@ -1,15 +1,20 @@
-<h1>Why do you want to delete this tip?</h1>
+<% provide(:title, 'Delete Tip') %>
 
-<p>At this point in time, we aren't sure whether we want our users to be able to delete their tips. Please tell us why you would want to delete your tip.</p>
+<div class="page-header">
+  <h1>Why do you want to derail this tip?</h1>
+</div>
 
-<p>
+<p>We thought long and hard and could not come to a conclusion on whether deleting tips is a good idea. So, we decided to include you in the decision process.</p>
+
 
 <div class="row">
   <div class="col-xs-12">
-    <%= form_for @tip, url: {action: "email"} do |f| %>
-      <%= render 'shared/form_errors', object: f.object %>
-      <%= render 'destroy_form', f: f %>
-    <% end %>
+    <%= form_tag( action: :email, controller: :tips, method: :post) do %>
+    <div class="form-group">
+      <%= text_area_tag :message, nil, :placeholder => 'Why you wanna say bye-bye...', :size => "90x10" %>
+     </div>
+      <%= submit_tag "Submit", class: "btn btn-large btn-primary" %>
+      <% end %>
   </div>
 </div>
 

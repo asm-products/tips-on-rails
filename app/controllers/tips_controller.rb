@@ -11,7 +11,6 @@ class TipsController < ApplicationController
 
 	def show
 		@tip = Tip.find(params[:id])
-		
 		@bookmark = @tip.bookmarked_by(current_user)
 	end
 
@@ -36,7 +35,7 @@ class TipsController < ApplicationController
 
   def email
   	@tip = Tip.find(params[:id])
-    @delete = DeleteMailer.reason_to_delete(@tip).deliver
+    @delete = DeleteMailer.reason_to_delete(@tip, params[:message]).deliver
     redirect_to tips_path, notice: 'Thanks for your input!'
   end
 
