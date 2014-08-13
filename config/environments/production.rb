@@ -79,4 +79,15 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Make sure that Devise generates appropriate links in the emails
+  config.action_mailer.default_url_options = { :host => 'www.tipsonrails.com' }
+
+  # Configure the ExecptionNotification to send emails
+  config.middleware.use ExceptionNotification::Rack,
+    :email => {
+      :email_prefix => "[TOR Error] ",
+      :sender_address => %{"TOR Production" <mail@nlcnet.net>},
+      :exception_recipients => %w{ohlincik@gmail.com}
+    }
 end
