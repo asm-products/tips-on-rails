@@ -19,4 +19,15 @@
       </div>
     </div>
   <% end %>
+
+  <% if defined? resource %>
+    <% unless resource.errors.empty? %>
+      <div class="col-xs-12">
+        <div class="alert alert-danger">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <%= resource.errors.full_messages.map { |msg| msg }.join('<br>') %>  
+        </div>
+      </div>
+    <% end %>
+  <% end %>
 </div>
