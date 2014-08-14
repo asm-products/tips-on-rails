@@ -25,6 +25,7 @@ class TipsController < ApplicationController
   end
 
   def edit
+    redirect_to tip_path(@tip), alert: "That's not yours to edit!" unless can? :update, @tip
   end
 
   def update
@@ -38,6 +39,7 @@ class TipsController < ApplicationController
   end
 
   def destroy
+    redirect_to tip_path(@tip), alert: "That's not yours to delete!" unless can? :destroy, @tip
   end
 
   def send_destroy_email
