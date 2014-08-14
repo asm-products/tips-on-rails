@@ -18,7 +18,7 @@ namespace :db do
       password: "password",
       password_confirmation: "password"
     )
-    99.times do |n|
+    29.times do |n|
       first_name = Faker::Name.first_name
       last_name = Faker::Name.last_name
       email = "examples-#{n+1}@tips.com"
@@ -35,11 +35,15 @@ namespace :db do
     
     puts ">>> * Seeding Tips"
     users = User.all
-    20.times do
-      title = Faker::Lorem.sentence(rand(3..6)).chomp('.')
-      description = Faker::Lorem.paragraph(rand(1..4))
-      body = Faker::Lorem.paragraphs(rand(2..6)).join("\n\n")
-      users.each { |user| user.tips.create(title: title, description: description, body: body) }
+    users.each do |user|
+      this_many = rand(5..20)
+      puts "---- Creating #{this_many} tips for #{user.name}"
+      this_many.times do
+        title = Faker::Lorem.words(rand(3..5)).join(' ').capitalize
+        description = Faker::Lorem.paragraph(rand(1..3))
+        body = Faker::Lorem.paragraphs(rand(2..6)).join("\n\n")
+        user.tips.create(title: title, description: description, body: body)
+      end
     end
     puts ">>> * Done! Seeded #{Tip.count} tips."
 
