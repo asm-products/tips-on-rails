@@ -15,4 +15,7 @@ Rails.application.routes.draw do
   get '/help', to: "static_pages#help"
   get '/about', to: "static_pages#about"
 
+  # use this to test that the execptions are being properly emailed
+  get 'test_exception_notifier', to: 'application#test_exception_notifier'
+
 end
