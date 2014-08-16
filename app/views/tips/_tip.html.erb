@@ -11,10 +11,7 @@
       <% end %>
     <% end %>
   </div>
-  <div class="bookmarks-label <%= 'none' if tip.bookmarks_count == 0 %>">
-    <i class="fa fa-bookmark"></i>
-    <%= tip.bookmarks_count %>
-  </div>
+  <%= bookmark_button(@tip) %>
   <h4>
     <%= link_to tip.title, tip_path(tip) %>
   </h4>

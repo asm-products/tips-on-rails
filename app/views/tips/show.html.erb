@@ -5,15 +5,12 @@
 
     <div class="page-header">
       <%= render partial: 'tip_controls' %>
-      <div class="bookmarks-label <%= 'none' if @tip.bookmarks_count == 0 %>">
-        <i class="fa fa-bookmark"></i>
-        <%= @tip.bookmarks_count %>
-      </div>
+      <%= bookmark_button(@tip) %>
       <h2>
         <%= @tip.title %>
       </h2>
     </div>
-    
+
     <p><%= @tip.description %></p>
 
     <%= @tip.body_cached.html_safe %>
@@ -23,6 +20,5 @@
     <%= render partial: 'users/user_badge', object: @tip.user, as: :user %>
 
     <%= render "bookmark_form" %>
-
   </div>
 </div>

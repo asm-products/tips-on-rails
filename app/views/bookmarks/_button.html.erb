@@ -1,0 +1,4 @@
+<div class="bookmarks-label <%= 'none' unless current_user.has_bookmarked?(tip) %>">
+  <i class="fa fa-bookmark"></i>
+  <%= tip.bookmarks_count %>
+</div>
