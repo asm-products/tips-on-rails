@@ -120,9 +120,13 @@ p.help-block {
     }
   }
   .page-header {
+    margin-top: 0;
     .bookmarks-label {
       float:none !important;
       display: inline-block;
+    }
+    h2 {
+      margin-top: 10px;
     }
   }
 }
