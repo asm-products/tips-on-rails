@@ -2,15 +2,9 @@
   <th>
     <%= time_ago_in_words(tip.created_at) %> ago
   </th>
-  <td class="bookmarks">
-    <% if tip.bookmarks_count > 0 %>
-      <i class="fa fa-bookmark"></i>
-      <%= tip.bookmarks_count %>
-    <% else %>
-      <span class="text-muted">
-        <i class="fa fa-bookmark"></i> 0
-      </span>
-    <% end %>
+  <td class="bookmarks <%= 'none' if tip.bookmarks_count == 0 %>">
+    <i class="fa fa-bookmark"></i>
+    <%= tip.bookmarks_count %>
   </td>
   <td>
     <%= link_to tip.title, tip_path(tip) %>
