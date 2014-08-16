@@ -14,9 +14,11 @@
       </h2>
     </div>
     
-    <p><%= @tip.description %></p>
+    <p class="lead"><%= @tip.description %></p>
 
-    <%= @tip.body_cached.html_safe %>
+    <div class="body">
+      <%= @tip.body_cached.html_safe %>
+    </div>
 
   </div>
   <div class="col-sm-5 col-md-4">
