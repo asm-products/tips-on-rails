@@ -26,5 +26,8 @@ class User < ActiveRecord::Base
   def bookmarked_tips
     tips.sum(:bookmarks_count, :group => :user_id)
   end
-  
+
+  def has_bookmarked?(tip)
+    tips.include? tip
+  end
 end
