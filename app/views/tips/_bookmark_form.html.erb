@@ -1,10 +1,10 @@
 <% if current_user %>
   <% unless @tip.user == current_user %>
-    <div id="bookmark_form">
+    <div id="bookmark-form">
     <% if @bookmark %>
       <%= form_tag bookmark_path(@bookmark), method: :delete do %>
-        <%= button_tag class: "btn btn-large btn-danger" do %>
-          <i class="fa fa-bookmark"></i> Unbookmark
+        <%= button_tag class: "btn btn-sm btn-default" do %>
+          <i class="fa fa-bookmark text-danger"></i>
         <% end %>
       <% end %>
     
@@ -12,8 +12,8 @@
 
       <%= form_tag bookmarks_path, method: :post do %> 
         <div><%= hidden_field_tag :tip_id, @tip.id %></div>
-        <%= button_tag class: "btn btn-large btn-success" do %>
-          <i class="fa fa-bookmark"></i> Bookmark
+        <%= button_tag class: "btn btn-sm btn-default" do %>
+          <i class="fa fa-bookmark text-success"></i>
         <% end %>
       <% end %>
     <% end %>

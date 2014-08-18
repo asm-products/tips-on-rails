@@ -124,6 +124,13 @@ p.help-block {
     .bookmarks-label {
       float:none !important;
       display: inline-block;
+      margin-right: 0.2em;
+      font-weight: bold;
+      padding: 0.5em 0.6em 0.6em 0.8em;
+    }
+    #bookmark-form {
+      margin-right: 0.5em;
+      display: inline-block;
     }
     h2 {
       margin-top: 10px;

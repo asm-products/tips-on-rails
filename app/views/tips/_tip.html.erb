@@ -11,7 +11,7 @@
       <% end %>
     <% end %>
   </div>
-  <%= bookmark_button(tip) %>
+  <%= render partial: 'bookmarks/label', locals: { tip: tip, user: current_user } %>
   <h4>
     <%= link_to tip.title, tip_path(tip) %>
   </h4>

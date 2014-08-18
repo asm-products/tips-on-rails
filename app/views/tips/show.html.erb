@@ -5,7 +5,8 @@
 
     <div class="page-header">
       <%= render partial: 'tip_controls' %>
-      <%= bookmark_button(@tip) %>
+      <%= render partial: 'bookmarks/label', locals: { tip: @tip, user: current_user } %>
+      <%= render "bookmark_form" %>
       <h2>
         <%= @tip.title %>
       </h2>
@@ -20,7 +21,5 @@
   </div>
   <div class="col-sm-5 col-md-4">
     <%= render partial: 'users/user_badge', object: @tip.user, as: :user %>
-
-    <%= render "bookmark_form" %>
   </div>
 </div>
