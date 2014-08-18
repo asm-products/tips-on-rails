@@ -150,6 +150,10 @@ p.help-block {
     h3 + div.highlight {
       margin-top: 1.5em;
     }
+    img {
+      max-width: 100%;
+      height: auto;
+    }
   }
 }
 
