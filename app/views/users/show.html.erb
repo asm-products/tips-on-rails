@@ -8,7 +8,7 @@
       <%=@user.first_name %>'s tips have been bookmarked <strong><%=  @user.bookmarked_tips %> times</strong>
     </div>
     <% if @user.tips.any? %>
-      <h3><i class="fa fa-code"></i> <%= @user.first_name %>'s <%= @user.tips_count %> tips</h3>
+      <h3><i class="fa fa-code icon-color"></i> <%= @user.first_name %>'s <%= @user.tips_count %> tips</h3>
       <table id="tips" class="table">
         <%= render partial: 'tip', collection: @user.tips %>
       </table>
@@ -28,7 +28,7 @@
     <% end %>
     <hr>
     <% if @user.bookmarks.any? %>
-      <h3><i class="fa fa-bookmark"></i> <%= @user.first_name %>'s <%= @user.bookmarks_count %> bookmarks</h3>
+      <h3><i class="fa fa-bookmark icon-color"></i> <%= @user.first_name %>'s <%= @user.bookmarks_count %> bookmarks</h3>
       <table id="bookmarks" class="table">
         <%= render partial: 'bookmark', collection: @user.bookmarks %>
       </table>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%= render partial: 'layouts/head' %>
+<body>
+  <%= render partial: 'layouts/header' %>
+  <%= render partial: 'static_pages/jumbotron' unless current_user %>
+
+  <div class="container">
+    <%= render partial: 'layouts/notice_alert' %>
+    <%= yield %>
+    <%= render 'layouts/footer' %>
+  </div>
+</body>
+</html>
