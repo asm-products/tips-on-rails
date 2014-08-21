@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
   
   get '/users/:id', to: 'users#show', as: :user
+  post '/tips/preview', to: 'tips#preview'
 
   resources :tips do
     post 'send_destroy_email', on: :member

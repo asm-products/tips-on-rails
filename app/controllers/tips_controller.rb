@@ -1,6 +1,6 @@
 class TipsController < ApplicationController
   before_filter :authenticate_user!, except: [:show, :index]
-  before_filter :set_tip, except: [:index, :new, :create]
+  before_filter :set_tip, except: [:index, :new, :create, :preview]
 
   def index
     @tips = Tip.includes(:user).paginate(page: params[:page], per_page: 10)
@@ -22,6 +22,11 @@ class TipsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def preview
+    content = params[:body]
+    @preview = MarkDownRenderer.new.pygmentize_and_render(content).html_safe
   end
 
   def edit
