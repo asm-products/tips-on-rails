@@ -156,10 +156,14 @@ ul.devise-links {
     h1 {
       color: darken($tip-body-headings, 10%);
       font-size: 28px;
+      padding-bottom: 0.3em;
+      border-bottom: solid 1px #eee;
     }
     h2 {
       color: $tip-body-headings;
       font-size: 24px;
+      padding-bottom: 0.3em;
+      border-bottom: solid 1px #eee;
     }
     h3 {
       font-size: 20px;
@@ -177,6 +181,24 @@ ul.devise-links {
       max-width: 100%;
       height: auto;
     }
+    hr {
+      height: 4px;
+      padding: 0;
+      margin: 16px 0;
+      background-color: #e7e7e7;
+      border: 0 none;
+    }
+  }
+}
+
+.tip_body_wrapper {
+  border: solid 1px #ddd;
+  border-top: none;
+  padding: 15px 15px 0;
+  margin-bottom: 2em;
+  #code_preview {
+    max-height: 400px;
+    overflow: scroll;
   }
 }
 

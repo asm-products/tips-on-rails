@@ -16,10 +16,11 @@
   <li class="active"><a href="#" id="write_tab">Write</a></li>
   <li><a href="#" id="code_preview_tab">Preview</a></li>
 </ul>
-<div class="form-group" id="write_input">
-  <%= f.text_area :body, rows: 12, class: 'form-control', placeholder: 'Detailed tip content and code' %>
+<div class="tip_body_wrapper tip">
+  <div class="form-group" id="write_input">
+    <%= f.text_area :body, rows: 12, class: 'form-control', placeholder: 'Detailed tip content and code' %>
+  </div>
+  <div id="code_preview" class="body" style="display:none;"></div>
 </div>
-<div id="code_preview" style="display:none;"></div>
-
 
 <%= f.submit class: 'btn btn-success' %>
