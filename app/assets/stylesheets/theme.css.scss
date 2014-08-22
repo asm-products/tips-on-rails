@@ -100,9 +100,14 @@ ul.devise-links {
 
 // Forms
 
-p.help-block {
+span.help-block {
   font-size: $font-size-small;
   
+}
+span.countdown {
+  font-size: $font-size-small;
+  color: gray;
+
 }
 
 // Tips

@@ -1,11 +1,11 @@
 <div class="form-group">
   <%= f.text_field :title, class: 'form-control input-lg', placeholder: 'Tip title' %>
-  <p class="help-block">Max. length 50 characters.</p>
+  <span class="help-block"></span>
 </div>
 
 <div class="form-group">
-  <%= f.text_area :description, class: 'form-control', placeholder: 'Short tip description' %>
-  <p class="help-block">Max. length 250 characters.</p>
+  <%= f.text_area :description, rows: 4, class: 'form-control', placeholder: 'Short tip description' %>
+  <span class="countdown"></span>
 </div>
 
 <div class="form-group">
