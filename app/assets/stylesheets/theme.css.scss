@@ -186,6 +186,17 @@ span.countdown {
   }
 }
 
+.tip_body_wrapper {
+  border: solid 1px #ddd;
+  border-top: none;
+  padding: 15px 15px 0;
+  margin-bottom: 2em;
+  #code_preview {
+    max-height: 400px;
+    overflow: scroll;
+  }
+}
+
 // User profile
 
 table#tips, table#bookmarks {
