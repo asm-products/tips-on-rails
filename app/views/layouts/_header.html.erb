@@ -36,6 +36,26 @@
               Help
             <% end %>
           </li>
+
+          <% if current_user && current_user.admin? %>
+          <li id="fat-menu" class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Admin<b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+               <li>
+                <%= link_to admin_path do %>
+                  <i class="fa fa-tachometer"></i> Dashboard
+              <% end %>
+            </li>
+              <li>
+                <%= link_to admin_dashboards_index_path do %>
+                  <i class="fa fa-fw fa-user"></i> All users
+              <% end %>
+            </li>
+          </ul>
+          <% end %>
+          
           <% if signed_in? %>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">

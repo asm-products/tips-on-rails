@@ -10,6 +10,12 @@ Rails.application.routes.draw do
     post 'send_destroy_email', on: :member
   end
 
+  get '/admin/dashboards', to: 'admin/dashboards#dashboard', as: :admin
+  get '/admin/dashboards/index', to: 'admin/dashboards#index'
+  namespace :admin do
+    resources :dashboards, only: [:dashboard, :index, :show]
+  end
+
   resources :bookmarks
 
   get '/new_user_registration', to: "users#new"

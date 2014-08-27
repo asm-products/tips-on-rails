@@ -1,0 +1,14 @@
+<% provide(:title, 'Index') %>
+
+<div class = "container">
+	<div class="col-sm-12">
+	 <h3>
+     All Users (<%= @all_users %>)
+   </h3>
+	</div>
+
+	<div class="col-sm-12">
+	   <%= render 'user', collection: @users %>
+	   <%= will_paginate @users %>
+	</div>
+</div>

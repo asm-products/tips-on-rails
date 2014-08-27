@@ -1,0 +1,76 @@
+<% provide(:title, 'Dashboard') %>
+
+  <div class="container">
+    <div class="well well-sm col-sm-4">
+      <h4>The total number of users is:</h4>
+      <p><%= @all_users %></p>
+    </div>
+    <div class="well well-sm col-sm-4">
+      <h4>The total number of tips is:</h4>
+      <p><%= @all_tips %></p>   
+    </div>
+    <div class="well well-sm col-sm-4">
+     <h4>Tips Added <%=Date.today.at_beginning_of_week.strftime('%B %e') %> to <%= (Date.today.at_beginning_of_week + 6.days).strftime('%B %e') %>:</h4>
+      <p><%= @weekly_tips %></p>  
+    </div>
+     
+
+     <div class="col-sm-3">
+      <h3 id="most"><%= link_to "Most Active Users" %></h3> 
+        <p>(30 or more)</p> 
+      <hr>
+      <%= @most_active_users %>
+    </div>
+    <div class="col-sm-3">
+      <h3 id="more"><%= link_to "More Active Users" %></h3>
+        <p>(16 - 29)</p> 
+      <hr>
+      <%= @more_active_users %>
+    </div>
+    <div class="col-sm-3">
+      <h3 id="act"><%= link_to "Active Users" %></h3> 
+        <p>(6 - 15)</p> 
+      <hr>
+      <%= @active_users %>
+    </div>
+    <div class="col-sm-3">
+      <h3 id="least"><%= link_to "Least Active Users" %></h3> 
+        <p>(0 - 5)</p>
+      <hr>
+      <%= @least_active_users %>
+    </div>
+    
+
+    
+   <div class="col-sm-12" id="most-active"  style="display:none">
+      <h3>
+        Most Active 
+      </h3>
+       <%= render 'user', collection: @list_most_active_users %>
+    </div>
+
+    <div class="col-sm-12" id="more-active"   style="display:none">
+      <h3>
+        More Active
+      </h3>
+        <%= render 'user', collection: @list_more_active_users %> 
+    </div>
+     <div class="col-sm-12" id="active"  style="display:none">
+      <h3>
+        Active
+      </h3>
+       <%= render 'user', collection: @list_active_users %>
+    </div>
+
+    <div class="col-sm-12" id="least-active"  style="display:none">
+      <h3>
+        More Active
+      </h3>
+        <%= render 'user', collection: @list_least_active_users %> 
+    </div>
+  </div>
+
+
+
+
+

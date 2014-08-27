@@ -1,0 +1,20 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th><%= sortable "created_at", "Date Joined" %></th>
+      <th><%= sortable "tips_count" %></th>
+    </tr>
+  </thead>
+  <tbody>
+      <% collection.each do |user| %>
+        <tr>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td><%= user.created_at.to_time.strftime('%B %e at %l:%M %p') %></td>
+          <td><%= user.tips_count %></td>
+        </tr>
+      <% end %>
+  </tbody>
+</table>

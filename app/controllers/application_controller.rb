@@ -9,21 +9,16 @@ class ApplicationController < ActionController::Base
   def test_exception_notifier
     raise 'This is just a test to make sure Exception Notifier is working properly.'
   end
-end
 
+  def authenticate_admin!
+    if current_user.try(:admin?)
+    raise "error" unless current_user and current_user.admin?
+  end
+end
 
 private
 
   def configure_permitted_parameters
   	devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:last_name, :first_name, :email, :password, :password_confirmation) }
 	end
-
-  def authenticate_admin!
-    if current_user.try(:admin?)
-    raise "error" unless current_user and current_user.admin?
-  end
-
-  # def authenticate_admin!
-  #   raise "error" unless current_user and current_user.admin?
-  # end
 end
