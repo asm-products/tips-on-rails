@@ -10,11 +10,9 @@ Rails.application.routes.draw do
     post 'send_destroy_email', on: :member
   end
 
-  get '/admin/dashboards', to: 'admin/dashboards#dashboard', as: :admin
+  get '/admin/dashboards', to: 'admin/dashboards#dashboards', as: :admin
   get '/admin/dashboards/index', to: 'admin/dashboards#index'
-  namespace :admin do
-    resources :dashboards, only: [:dashboard, :index, :show]
-  end
+  get '/admin/dashboards/weekly_stats', to: 'admin/dashboards#weekly_stats' 
 
   resources :bookmarks
 

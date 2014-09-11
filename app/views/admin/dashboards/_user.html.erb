@@ -2,7 +2,7 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Email</th>
+      <th><%= sortable "email" %></th>
       <th><%= sortable "created_at", "Date Joined" %></th>
       <th><%= sortable "tips_count" %></th>
     </tr>
@@ -18,3 +18,4 @@
       <% end %>
   </tbody>
 </table>
+
