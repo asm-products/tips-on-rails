@@ -77,7 +77,7 @@
                   </div>
                 </div>
                 <div class="panel-footer">
-                  <span class="pull-left"><%= link_to "View Bookmarks" %></span>
+                  <span class="pull-left"></span>
                   <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                   <div class="clearfix"></div>
                 </div>
@@ -97,20 +97,14 @@
             </div>
            <div class="col-sm-4">
               <h3 id="more"><%=link_to "Tips Added"%></h3>
-              <p><%=(Date.today.at_beginning_of_week - 7.days).strftime('%B %e') %> to <%= (Date.today.at_beginning_of_week).strftime('%B %e') %></p>
+              <p><%=(Date.today.at_beginning_of_week - 7.days).strftime('%B %e') %> to <%= (Date.today.at_beginning_of_week - 1.day).strftime('%B %e') %></p>
               <hr>
               <p><%= @weekly_tips %></p>  
           </div>
           <div class="col-sm-12" id="most-active"  style="display:none">
-              <h3>
-                Most Active 
-              </h3>
               <%= render 'user', collection: @list_most_active_users %>
           </div>
           <div class="col-sm-12" id="more-active"   style="display:none">
-              <h3>
-                More Active
-              </h3>
               <%= render 'user', collection: @list_more_active_users %> 
           </div>
         </div>
