@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get '/admin/dashboards', to: 'admin/dashboards#dashboards', as: :admin
   get '/admin/dashboards/index', to: 'admin/dashboards#index'
  
-  resources :bookmarks
+  resources :bookmarks, only: [:create, :destroy]
 
   get '/new_user_registration', to: "users#new"
   get '/help', to: "static_pages#help"
