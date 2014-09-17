@@ -17,5 +17,4 @@ class Tip < ActiveRecord::Base
   def pygmentize_and_cache_body
     self.body_cached = MarkDownRenderer.new.pygmentize_and_render(body)
   end
-  
 end

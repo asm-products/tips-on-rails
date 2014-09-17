@@ -1,0 +1,20 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Week</th>
+      <th>Tips added</th>
+      <th>Total Tips</th>
+      <th>Change</th>
+    </tr>
+  </thead>
+  <tbody>
+      <% @tips.sort.each do |week, tips| %>
+        <tr>
+          <td><%= week %></td>
+          <td><%= tips.count %></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <% end %>
+  </tbody>
+</table>

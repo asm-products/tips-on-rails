@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   get '/admin/dashboards', to: 'admin/dashboards#dashboards', as: :admin
   get '/admin/dashboards/index', to: 'admin/dashboards#index'
+  get '/admin/dashboards/weekly_stats', to: 'admin/dashboards#weekly_stats'
  
   resources :bookmarks, only: [:create, :destroy]
 
