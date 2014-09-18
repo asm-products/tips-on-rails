@@ -35,18 +35,20 @@ jQuery ->
     event.preventDefault()
     
     unless $("#code_preview_tab").parent().hasClass("active") 
-
+      $("#code_preview_tab").addClass("load").html("loading...")
       url = "/tips/preview"
       body = { body: $("#tip_body").val() }
-      $.post url, body, success: ->
-      $("#code_preview_tab").addClass("load").html("loading...")
-      console.log("success")
+      $.post(url, body).then ->   
+        $("#code_preview_tab").addClass("preview").html("Preview")
+        console.log("success")
+      .fail ->
+        console.log "Oh noes"
 
       $("#write_input").hide()
       $("#code_preview").show()
       $("#code_preview_tab").parent().addClass("active")
       $("#write_tab").parent().removeClass("active")
-      # $("#code_preview_tab").addClass("preview").html("Preview")
+      
 
   # Switch back to tip body input
   $('#write_tab').click (event) ->
