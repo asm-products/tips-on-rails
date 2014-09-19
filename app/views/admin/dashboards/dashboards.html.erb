@@ -96,7 +96,7 @@
               <%= @more_active_users %>
             </div>
            <div class="col-sm-4">
-              <h3 id="more"><%=link_to "Tips Added"%></h3>
+              <h3 id="more"><%=link_to "Weely Stats", admin_dashboards_weekly_stats_path%></h3>
               <p><%=(Date.today.at_beginning_of_week - 7.days).strftime('%B %e') %> to <%= (Date.today.at_beginning_of_week - 1.day).strftime('%B %e') %></p>
               <hr>
               <p><%= @weekly_tips %></p>  

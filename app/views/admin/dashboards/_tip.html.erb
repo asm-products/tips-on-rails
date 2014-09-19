@@ -1,0 +1,18 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Week</th>
+      <th>Tips added</th>
+      <th>Total Tips</th>
+    </tr>
+  </thead>
+  <tbody>
+      <% @tips.each do |week| %>
+        <tr>
+          <td><%= week[:week] %></td>
+          <td><%= week[:weekly_total]%></td>
+          <td><%= week[:running_total]%></td>
+        </tr>
+        <% end %>
+  </tbody>
+</table>

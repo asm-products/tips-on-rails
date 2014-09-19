@@ -27,6 +27,17 @@ class Admin::DashboardsController < ApplicationController
 		@users = User.order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
 	end
 
+	def weekly_stats	
+		sql = "Select date_format(created_at, '%U %b, %Y'), COUNT(*) from tips group by week(created_at) order by week(created_at)"
+		tips_by_week = ActiveRecord::Base.connection.execute(sql)
+		@tips = []
+		total = 0
+		tips_by_week.each do |t|
+			total += t[1]
+			@tips << {week: t[0], weekly_total: t[1], running_total: total }
+		end
+	end
+
 	private
 
 	def sort_column
