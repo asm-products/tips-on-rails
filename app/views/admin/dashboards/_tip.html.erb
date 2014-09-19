@@ -4,16 +4,14 @@
       <th>Week</th>
       <th>Tips added</th>
       <th>Total Tips</th>
-      <th>Change</th>
     </tr>
   </thead>
   <tbody>
-      <% @tips.sort.each do |week, tips| %>
+      <% @tips.each do |week| %>
         <tr>
-          <td><%= week %></td>
-          <td><%= tips.count %></td>
-          <td></td>
-          <td></td>
+          <td><%= week[:week] %></td>
+          <td><%= week[:weekly_total]%></td>
+          <td><%= week[:running_total]%></td>
         </tr>
         <% end %>
   </tbody>
