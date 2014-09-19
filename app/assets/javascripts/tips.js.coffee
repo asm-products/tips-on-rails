@@ -12,7 +12,7 @@ charCount = (selector, limit, counter_display) ->
     $counter_display.removeClass("approaching-limit")
   if (remaining < 0)
     $(selector).parent().addClass('has-error')
-  else
+  else  
     $(selector).parent().removeClass('has-error')
 
 jQuery ->
@@ -33,18 +33,27 @@ jQuery ->
   # Send the tip body to Markdown parser to generate the preview and show preview
   $('#code_preview_tab').click (event) ->
     event.preventDefault()
+    
     unless $("#code_preview_tab").parent().hasClass("active") 
+      $("#code_preview_tab").addClass("load").html("loading...")
       url = "/tips/preview"
       body = { body: $("#tip_body").val() }
-      $.post(url, body)
+      $.post(url, body).then ->   
+        $("#code_preview_tab").addClass("preview").html("Preview")
+        console.log("success")
+      .fail ->
+        console.log "Oh noes"
+
       $("#write_input").hide()
       $("#code_preview").show()
       $("#code_preview_tab").parent().addClass("active")
       $("#write_tab").parent().removeClass("active")
+      
 
   # Switch back to tip body input
   $('#write_tab').click (event) ->
     event.preventDefault()
+    $("#code_preview_tab").html("Preview")
     unless $("#write_tab").parent().hasClass("active")
       $("#write_input").show()
       $("#code_preview").hide()
