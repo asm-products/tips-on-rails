@@ -10,11 +10,6 @@
         <h1 class="page-header">
           Tips on Rails <small>Statistics Overview</small>
         </h1>
-        <ol class="breadcrumb">
-          <li class="active">
-            <i class="fa fa-dashboard"></i> Dashboard
-          </li>
-        </ol>
       </div>
     </div>
 
@@ -65,7 +60,7 @@
         </div>
         <div class="col-lg-4 col-md-6">
           <div class="panel panel-yellow">
-              <div class="panel-heading">
+              <div class="panel-heading" id="yellow">
                   <div class="row">
                     <div class="col-xs-3">
                       <i class="fa fa-bookmark fa-5x"></i>
@@ -76,27 +71,27 @@
                     </div>
                   </div>
                 </div>
-                <div class="panel-footer">
+                <!-- <div class="panel-footer">
                   <span class="pull-left"></span>
-                  <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                  <div class="clearfix"></div>
-                </div>
+                    <span class="pull-right">&nbsp;</span>
+                      <div class="clearfix"></div>
+                </div> -->
               </div>
             </div>  
-            <div class="col-sm-4">
+            <div class="col-lg-4 col-md-4">
               <h3 id="most"><%= link_to "Most Active Users" %></h3> 
               <p>(30 or more)</p> 
               <hr>
               <%= @most_active_users %>
             </div>
-            <div class="col-sm-4">
+            <div class="col-lg-4 col-md-4">
               <h3 id="more"><%= link_to "More Active Users" %></h3>
                 <p>(1 - 29)</p> 
               <hr>
               <%= @more_active_users %>
             </div>
-           <div class="col-sm-4">
-              <h3 id="more"><%=link_to "Weely Stats", admin_dashboards_weekly_stats_path%></h3>
+           <div class="col-lg-4 col-md-4">
+              <h3 id="more"><%=link_to "Weekly Stats", admin_dashboards_weekly_stats_path%></h3>
               <p><%=(Date.today.at_beginning_of_week - 7.days).strftime('%B %e') %> to <%= (Date.today.at_beginning_of_week - 1.day).strftime('%B %e') %></p>
               <hr>
               <p><%= @weekly_tips %></p>  
