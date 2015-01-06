@@ -39,6 +39,8 @@ gem 'redcarpet'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
+gem 'sitemap_generator'
+gem 'whenever', :require => false
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
