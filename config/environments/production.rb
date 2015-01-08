@@ -82,6 +82,17 @@ Rails.application.configure do
 
   # Make sure that Devise generates appropriate links in the emails
   config.action_mailer.default_url_options = { :host => 'www.tipsonrails.com' }
+  config.action_mailer.delivery_method = :smtp
+  # Specify ActionMailer sending defaults to use Sendgrid
+  ActionMailer::Base.smtp_settings = {
+    :user_name => ENV['MAIL_USERNAME'],
+    :password => ENV['MAIL_PASSWORD'],
+    :domain => "tipsonrails.com",
+    :address => "smtp.sendgrid.net",
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
 
   # Configure the ExecptionNotification to send emails
   config.middleware.use ExceptionNotification::Rack,
