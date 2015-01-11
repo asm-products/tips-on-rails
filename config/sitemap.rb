@@ -15,13 +15,15 @@ SitemapGenerator::Sitemap.create do
   #
   # Examples:
   #
-  # Add '/articles'
+  # Add '/tips'
   #
-  #   add articles_path, :priority => 0.7, :changefreq => 'daily'
+  add tips_path, :priority => 0.7, :changefreq => 'daily'
+  add help_path, :priority => 0.7, :changefreq => 'daily'
+  add about_path, :priority => 0.7, :changefreq => 'daily'
   #
   # Add all articles:
   #
-  #   Article.find_each do |article|
-  #     add article_path(article), :lastmod => article.updated_at
-  #   end
+    Tip.find_each do |tip|
+      add tip_path(tip), :lastmod => tip.updated_at
+    end
 end
