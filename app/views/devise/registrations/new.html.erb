@@ -8,23 +8,15 @@
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
         <div class="form-group">
-          <%= f.text_field :first_name, class: 'form-control', placeholder: 'Your first name', autofocus: true %>
+          <%= f.text_field :first_name, class: 'form-control', placeholder: 'Your first name', autofocus: true, value: session["devise.github_data"]["info"]["name"].split(' ')[0] %>
         </div>
 
         <div class="form-group">
-          <%= f.text_field :last_name, class: 'form-control', placeholder: 'Your last name' %>
+          <%= f.text_field :last_name, class: 'form-control', placeholder: 'Your last name', value: session["devise.github_data"]["info"]["name"].split(' ')[1] %>
         </div>
 
         <div class="form-group">
-          <%= f.text_field :email, class: 'form-control', placeholder: 'Your email address' %>
-        </div>
-
-        <div class="form-group">
-          <%= f.password_field :password, class: 'form-control', placeholder: 'Your desired password', autocomplete: 'off' %>
-        </div>
-
-        <div class="form-group">
-          <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'Confirm your desired password', autocomplete: 'off' %>
+          <%= f.text_field :email, class: 'form-control', placeholder: 'Your email address', value: session["devise.github_data"]["info"]["email"] %>
         </div>
 
         <%= f.button 'Sign up', class: 'btn btn-success pull-right', data: { disable_with: 'Please wait...' } %>
@@ -34,5 +26,8 @@
       <%= render "devise/shared/links" %>
 
     </div>
+    <pre>
+        <%= simple_format session["devise.github_data"].to_yaml %>
+      </pre>
   </div>
 </div>

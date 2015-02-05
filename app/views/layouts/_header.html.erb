@@ -85,6 +85,7 @@
               <%= link_to new_user_session_path do %>
                 <i class="fa fa-sign-in"></i> Sign in
               <% end %>
+              <%= link_to "Sign in with GitHub", user_omniauth_authorize_path(:github) %>
             </li>
           <% end %>
         </ul>

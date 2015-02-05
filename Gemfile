@@ -14,7 +14,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
-#Devise
+# Oauth gem for GitHub
+gem 'omniauth-github', '~> 1.1.2'
+# Devise
 gem 'devise'
 gem 'devise_invitable' 
 # Use jquery as the JavaScript library
