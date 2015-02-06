@@ -278,8 +278,11 @@ table#tips, table#bookmarks {
     margin-right: 1em;
   }
   h4 {
-    margin: 0 0 5px 0;
+    margin: 0;
     padding: 0;
+  }
+  .username {
+    color: $gray-light;
   }
   p {
     margin-bottom: 3px;

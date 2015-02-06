@@ -1,6 +1,7 @@
 <div class="well well-sm" id="user-badge">
   <%= link_to gravatar_for(user), user_path(user) %>
   <h4><%= user.name %></h4>
+  <p class="username"><%= user.username %></p>
   <p>
     <span class="label label-primary">
       <i class="fa fa-code"></i> <%= user.tips_count %>  
@@ -9,7 +10,8 @@
     <span class="label label-info">
       <i class="fa fa-bookmark"></i> <%= user.bookmarks_count %>  
     </span>
+    &nbsp;
+    <small><%= link_to 'Profile', user_path(user) %></small>
   </p>
-  <p><small><%= link_to 'Profile', user_path(user) %></small></p>
   <div class="clearfix"></div>
 </div>
