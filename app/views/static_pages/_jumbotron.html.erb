@@ -8,7 +8,9 @@
         <p>View and bookmark tips from your fellow Rails and Ruby enthusiasts. You can also share a tip or two.</p>
         <hr>
         <p>
-          <%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-primary btn-lg', role: 'button' %>
+          <%= link_to user_omniauth_authorize_path(:github), class: 'btn btn-primary btn-lg', role: 'button' do %>
+            <i class="fa fa-github"></i> Sign in with GitHub
+          <% end %>
           <small>
             &nbsp;or&nbsp;
             <%= link_to 'Learn more', about_path %>
