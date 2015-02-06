@@ -28,11 +28,11 @@ class User < ActiveRecord::Base
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      puts "----- I was in the first_or_create block."
       user.email = auth.info.email
+      user.username = auth.info.nickname
       user.password = Devise.friendly_token[0,20]
-      user.first_name = auth.info.name.split(' ')[0] if user.first_name.blank?
-      user.last_name = auth.info.name.split(' ')[1] if user.last_name.blank?
+      user.first_name = auth.info.name.split(' ').first if user.first_name.blank?
+      user.last_name = auth.info.name.split(' ').last if user.last_name.blank?
     end
   end
 
