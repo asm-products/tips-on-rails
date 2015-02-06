@@ -16,7 +16,7 @@ Tips on Rails is ran on the Thin web server using environment variables. You'll 
     RACK_ENV=development
     DB_DATABASE=TipsonRails_development
     DB_USERNAME=localdev
-    DB_PASSWORD=password 
+    DB_PASSWORD=password
 
 **Create file _Procfile.dev_, with the following information:**
 
@@ -36,7 +36,7 @@ If the Terminal tells you that it can't find it, you'll have to get it. Go to ht
 **Get your development and test databases ready:**
 
     foreman run rake db:setup
-    foreman run rake db:migrate RAILS_ENV=test
+    foreman run rake db:create db:migrate RAILS_ENV=test
 
 **Start the application:**
 

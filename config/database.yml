@@ -20,6 +20,8 @@ default: &default
 development:
   <<: *default
   database: <%= ENV['DB_DATABASE'] %>
+  host: localhost
+  socket: <%= ENV['DB_SOCKET'] || '/tmp/mysql.sock' %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -27,3 +29,5 @@ development:
 test:
   <<: *default
   database: TipsonRails_test
+  host: localhost
+  socket: <%= ENV['DB_SOCKET'] || '/tmp/mysql.sock' %>
