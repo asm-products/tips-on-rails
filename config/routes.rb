@@ -9,7 +9,9 @@ Rails.application.routes.draw do
 
   get '/new_user_registration', to: "users#new"
 
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update] do
+    get 'welcome', on: :member
+  end
   
   post '/tips/preview', to: 'tips#preview'
 

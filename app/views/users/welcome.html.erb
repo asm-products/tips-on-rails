@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="page-header">
+      <h2>Welcome to Tips on Rails</h2>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <p class="lead">Thank you for signing in to Tips on Rails (ToR) using your GitHub credentials. We're very excited to have you. Now you have the ability to post your own tips and build up your tips library by bookmarking the best tips from other developers.</p>
+    <p>
+      <strong class="text-info">Quick note:</strong><br>
+      We copied your basic GitHub account info for your ToR profile. Feel free to update it below.
+    </p>
+  </div>
+</div>
+
+<hr>
+
+<%= form_for(@user, html: { role: 'form' }) do |f| %>
+
+<div class="row">
+  <div class="col-xs-12">
+    <%= render 'shared/form_errors', object: f.object %>
+  </div>
+</div>
+
+<%= render 'form', f: f %>
+
+<% end %>

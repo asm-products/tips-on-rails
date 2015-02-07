@@ -73,9 +73,6 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
-    devise_invitable (1.4.0)
-      actionmailer (>= 3.2.6, < 5)
-      devise (>= 3.2.0)
     diff-lcs (1.2.5)
     draper (1.4.0)
       actionpack (>= 3.0)
@@ -309,7 +306,6 @@ DEPENDENCIES
   childprocess
   coffee-rails (~> 4.0.0)
   devise
-  devise_invitable
   draper
   exception_notification
   factory_girl_rails
