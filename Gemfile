@@ -41,6 +41,8 @@ gem 'redcarpet'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'sitemap_generator'
+# Makes sending HTML emails a little less painful by inlining stylesheets and rewriting relative URLs
+gem 'roadie-rails', '~> 1.0.4'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

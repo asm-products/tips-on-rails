@@ -5,6 +5,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if @user.new_record?
       @user.save!
       sign_in @user
+      UserMailer.welcome_email(@user).deliver
       redirect_to welcome_user_path(@user)
     elsif @user.persisted?
       sign_in_and_redirect @user

@@ -36,6 +36,8 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
   config.action_mailer.default_url_options = { host: 'localhost', port: ENV['PORT'] }
+  # Specify the default From email address
+  config.action_mailer.default_options = { from: 'Tips on Rails <notifier@tipsonrails.com>' }
 
   # User Letter Opener to preview emails in the browser instead of sending them via SMTP
   config.action_mailer.delivery_method = :letter_opener
