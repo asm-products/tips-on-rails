@@ -6,7 +6,7 @@
   margin: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   box-sizing: border-box;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 img {
@@ -67,7 +67,7 @@ body {
 }
 
 .content-block {
-  padding: 0 0 20px;
+  padding: 0 0 10px;
 }
 
 .header {
@@ -86,6 +86,7 @@ body {
 }
 .footer p, .footer a, .footer unsubscribe, .footer td {
   font-size: 12px;
+  padding: 0px;
 }
 
 /* -------------------------------------
@@ -139,7 +140,7 @@ a {
   color: #FFF;
   background-color: #348eda;
   border: solid #348eda;
-  border-width: 10px 20px;
+  border-width: 5px 10px;
   line-height: 2;
   font-weight: bold;
   text-align: center;
@@ -174,6 +175,11 @@ a {
 
 .clear {
   clear: both;
+}
+
+.logo {
+  text-align: center;
+  padding-top: 10px;
 }
 
 /* -------------------------------------
