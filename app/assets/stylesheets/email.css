@@ -137,9 +137,10 @@ a {
 
 .btn-primary {
   text-decoration: none;
+  font-size: 14px;
   color: #FFF;
-  background-color: #348eda;
-  border: solid #348eda;
+  background-color: #b42930;
+  border: solid #b42930;
   border-width: 5px 10px;
   line-height: 2;
   font-weight: bold;
@@ -148,6 +149,8 @@ a {
   display: inline-block;
   border-radius: 5px;
   text-transform: capitalize;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 /* -------------------------------------
@@ -179,7 +182,8 @@ a {
 
 .logo {
   text-align: center;
-  padding-top: 10px;
+  padding-top: 20px;
+  padding-bottom: 30px;
 }
 
 /* -------------------------------------
