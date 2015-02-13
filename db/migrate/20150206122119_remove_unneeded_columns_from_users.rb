@@ -11,7 +11,6 @@ class RemoveUnneededColumnsFromUsers < ActiveRecord::Migration
       t.remove :password_confirmation
       t.string :username, null: false
       t.index :username
-      t.remove_index :reset_password_token
     end
   end
 
@@ -29,8 +28,6 @@ class RemoveUnneededColumnsFromUsers < ActiveRecord::Migration
       t.string :unconfirmed_email
 
       t.string :password_confirmation
-
-      t.index :reset_password_token, unique: true
     end
   end
 end
