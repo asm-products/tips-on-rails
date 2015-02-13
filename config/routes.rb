@@ -1,9 +1,18 @@
 Rails.application.routes.draw do
 
   root to: 'static_pages#home'
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+
+  devise_scope :user do
+    delete 'sign_out', to: 'devise/sessions#destroy', as: :destroy_user_session
+  end
+
+  get '/new_user_registration', to: "users#new"
+
+  resources :users, only: [:show, :edit, :update] do
+    get 'welcome', on: :member
+  end
   
-  get '/users/:id', to: 'users#show', as: :user
   post '/tips/preview', to: 'tips#preview'
 
   resources :tips do
@@ -16,7 +25,6 @@ Rails.application.routes.draw do
  
   resources :bookmarks, only: [:create, :destroy]
 
-  get '/new_user_registration', to: "users#new"
   get '/help', to: "static_pages#help"
   get '/about', to: "static_pages#about"
 

@@ -14,9 +14,10 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
-#Devise
+# Oauth gem for GitHub
+gem 'omniauth-github', '~> 1.1.2'
+# Devise
 gem 'devise'
-gem 'devise_invitable' 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -40,6 +41,8 @@ gem 'redcarpet'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'sitemap_generator'
+# Makes sending HTML emails a little less painful by inlining stylesheets and rewriting relative URLs
+gem 'roadie-rails', '~> 1.0.4'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

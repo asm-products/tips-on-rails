@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="page-header">
+      <h2>Edit your profile settings</h2>
+    </div>
+  </div>
+</div>
+
+<%= form_for(@user, html: { role: 'form' }) do |f| %>
+
+<div class="row">
+  <div class="col-xs-12">
+    <%= render 'shared/form_errors', object: f.object %>
+  </div>
+</div>
+
+<%= render 'form', f: f %>
+
+<% end %>

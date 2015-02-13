@@ -54,7 +54,7 @@ Rails.application.configure do
   # config.cache_store = :mem_cache_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  # config.action_controller.asset_host = "http://assets.example.com"
+  # config.action_controller.asset_host = "http://tipsonrails.com"
 
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
@@ -83,8 +83,11 @@ Rails.application.configure do
   # Make sure that Devise generates appropriate links in the emails
   config.action_mailer.default_url_options = { :host => 'www.tipsonrails.com' }
   config.action_mailer.delivery_method = :smtp
+  # Specify the default From email address
+  config.action_mailer.default_options = { from: 'Tips on Rails <notifier@tipsonrails.com>' }
+
   # Specify ActionMailer sending defaults to use Sendgrid
-  ActionMailer::Base.smtp_settings = {
+  config.action_mailer.smtp_settings = {
     :user_name => ENV['MAIL_USERNAME'],
     :password => ENV['MAIL_PASSWORD'],
     :domain => "tipsonrails.com",

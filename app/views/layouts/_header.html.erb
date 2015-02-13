@@ -68,7 +68,7 @@
                   <% end %>
                 </li>
                 <li>
-                  <%= link_to edit_user_registration_path do %>
+                  <%= link_to edit_user_path(current_user) do %>
                     <i class="fa fa-fw fa-cog"></i> Settings
                   <% end %>
                 </li>
@@ -82,8 +82,8 @@
             </li>
           <% else %>
             <li>
-              <%= link_to new_user_session_path do %>
-                <i class="fa fa-sign-in"></i> Sign in
+              <%= link_to user_omniauth_authorize_path(:github) do %>
+                <i class="fa fa-github"></i> Sign in
               <% end %>
             </li>
           <% end %>
