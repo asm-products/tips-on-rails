@@ -12,6 +12,7 @@ class UsersController < ApplicationController
   def update
     if @user.update_attributes(user_params)
       flash[:success] = 'Profile updated'
+      UserMailer.welcome_email(@user).deliver
       redirect_to @user
     else
       render :edit

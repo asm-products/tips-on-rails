@@ -6,7 +6,7 @@
   margin: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   box-sizing: border-box;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 img {
@@ -67,7 +67,7 @@ body {
 }
 
 .content-block {
-  padding: 0 0 20px;
+  padding: 0 0 10px;
 }
 
 .header {
@@ -86,6 +86,7 @@ body {
 }
 .footer p, .footer a, .footer unsubscribe, .footer td {
   font-size: 12px;
+  padding: 0px;
 }
 
 /* -------------------------------------
@@ -136,10 +137,11 @@ a {
 
 .btn-primary {
   text-decoration: none;
+  font-size: 14px;
   color: #FFF;
-  background-color: #348eda;
-  border: solid #348eda;
-  border-width: 10px 20px;
+  background-color: #b42930;
+  border: solid #b42930;
+  border-width: 5px 10px;
   line-height: 2;
   font-weight: bold;
   text-align: center;
@@ -147,6 +149,8 @@ a {
   display: inline-block;
   border-radius: 5px;
   text-transform: capitalize;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 /* -------------------------------------
@@ -174,6 +178,12 @@ a {
 
 .clear {
   clear: both;
+}
+
+.logo {
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 30px;
 }
 
 /* -------------------------------------
