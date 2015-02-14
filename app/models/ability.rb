@@ -4,7 +4,7 @@ class Ability
   def initialize(user)
     return unless user
     can :manage, Tip do |tip|
-        user.tips.include? tip
+      user.tips.include? tip
     end
     # Define abilities for the passed in user here. For example:
     #

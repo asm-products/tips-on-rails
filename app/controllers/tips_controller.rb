@@ -15,10 +15,9 @@ class TipsController < ApplicationController
   end
 
   def create
-   @tip = current_user.tips.build(tip_params)
+    @tip = current_user.tips.build(tip_params)
     if @tip.save
-      flash[:success] = "Tip created!"
-      redirect_to @tip
+      redirect_to @tip, notice: 'Tip created!'
     else
       render :new
     end
@@ -36,8 +35,7 @@ class TipsController < ApplicationController
   def update
     @tip = Tip.find(params[:id])
     if @tip.update_attributes(tip_params)
-      flash[:notice] = "Successfully updated your tip."
-      redirect_to @tip
+      redirect_to @tip, notice: 'Successfully updated your tip.'
     else
       render :edit
     end
@@ -52,7 +50,7 @@ class TipsController < ApplicationController
     redirect_to tips_path, notice: 'Thanks for your input!'
   end
 
-private
+  private
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def tip_params

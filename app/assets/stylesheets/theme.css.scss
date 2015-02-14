@@ -1,40 +1,45 @@
-/* FONTS */
+// FONTS
 @import url(http://fonts.googleapis.com/css?family=Scada:400,700);
 
-/* LAYOUT ELEMENTS */
+
+
+
+
+// LAYOUT ELEMENTS
 
 body {
-  padding: 70px 0 30px 0;
+  padding: 70px 0 30px;
 }
 
 #logo {
-  margin-top: -16px;
   margin-bottom: -14px;
+  margin-top: -16px;
 }
 
 .navbar-nav > li > a.nav-btn {
-  display: inline-block;
   background-color: lighten($brand-background, 8%);
-  padding: 4px 11px;
-  margin: 10px;
   border: solid 1px transparent;
   border-radius: 4px;
+  display: inline-block;
+  margin: 10px;
+  padding: 4px 11px;
+  
   &:hover {
-    border: solid 1px lighten($brand-background, 40%);;
+    border: solid 1px lighten($brand-background, 40%);
   }
 }
 
-/* typography */
 
-h1, h2, h3, h4, h5, h6 {
 
-}
+
+
+// TYPOGRAPHY
 
 .page-header {
   h2 {
+    color: $brand-primary;
     font-family: 'Scada', sans-serif;
     font-weight: 700;
-    color: $brand-primary;
   }
 }
 
@@ -43,24 +48,32 @@ p {
   line-height: 1.7em;
 }
 
-/* footer */
+
+
+
+
+// FOOTER
 
 footer {
-  margin-top: 45px;
-  padding-top: 5px;
   border-top: 1px solid $gray-light;
   color: $gray-light;
+  margin-top: 45px;
+  padding-top: 5px;
+  
   a {
     &:hover { 
       color: #222;
     }
-  }  
-  small { 
-    float: left; 
   }
+
+  small {
+    float: left;
+  }
+
   ul {
     float: right;
     list-style: none;
+
     li {
       float: left;
       margin-left: 10px;
@@ -68,301 +81,339 @@ footer {
   }
 }
 
-// Jumbotron
+
+
+
+
+// JUMBOTRON
 
 .jumbotron {
+
   h2 {
     margin-top: 0;
   }
+
   hr {
     border-color: #ddd;
   }
-}
 
-// Devise
+  &.home-page {
+    background-color: $brand-background;
+    margin-top: -19px;
+    padding-top: 10px;
 
-ul.devise-links {
-  font-size: $font-size-small;
-  margin: 30px 0 0;
-  padding: 0;
-  clear: both;
-  list-style: none;
-  li {
-    display: inline;
-    &:after {
-      content: " | ";
+    p {
+      color: lighten($brand-background, 40%);
+      margin-top: 1.5em;
     }
-    &:last-child:after {
-      content: "";
+
+    hr {
+      border-color: $brand-primary;
+    }
+
+    .btn-primary {
+      background-color: lighten($brand-background, 8%);
+      border-color: lighten($brand-background, 40%);
+      color: #fff;
+      text-decoration: none;
+
+      &:hover {
+        background-color: #fff;
+        color: $brand-background;
+      }
+    }
+
+    a {
+      color: lighten($brand-background, 40%);
+      text-decoration: underline;
+
+      &:hover {
+        color: #fff;
+      }
     }
   }
 }
 
-// Forms
 
-.approaching-limit {
-  color: red;
+
+
+
+// DEVISE
+
+ul.devise-links {
+  clear: both;
+  font-size: $font-size-small;
+  list-style: none;
+  margin: 30px 0 0;
+  padding: 0;
+
+  li {
+    display: inline;
+
+    &:after {
+      content: ' | ';
+    }
+
+    &:last-child:after {
+      content: '';
+    }
+  }
 }
 
-// Tips
+
+
+
+
+// FORMS
+
+.approaching-limit {
+  color: #f00;
+}
+
+
+
+
+
+// TIPS
 
 .tip {
   small {
-    text-transform: uppercase;
     color: $gray-light;
     font-size: $font-size-small;
+    text-transform: uppercase;
   }
+
   .controls {
     float: left !important;
-    margin-right: 0.5em;
+    margin-right: .5em;
   }
+
   .bookmarks-label {
-    float: left !important;
-    margin-right: 0.5em;
-    padding: 0.25em 0.4em 0.3em 0.6em;
-    line-height: 1;
     background-color: lighten($brand-success, 30%);
-    color: green;
+    border-radius: .25em;
+    color: #080;
+    float: left !important;
+    line-height: 1;
+    margin-right: .5em;
+    padding: .25em .4em .3em .6em;
     text-align: center;
-    white-space: nowrap;
     vertical-align: baseline;
-    border-radius: 0.25em;
+    white-space: nowrap;
+
     &.none {
       background-color: #ddd;
       color: #999;
     }
   }
+
   .page-header {
     margin-top: 0;
+
     .bookmarks-label {
-      float:none !important;
       display: inline-block;
-      margin-right: 0.2em;
+      float: none !important;
       font-weight: bold;
-      padding: 0.5em 0.6em 0.6em 0.8em;
+      margin-right: .2em;
+      padding: .5em .6em .6em .8em;
     }
+
     #bookmark-form {
-      margin-right: 0.5em;
       display: inline-block;
+      margin-right: .5em;
     }
+
     h1 {
-      font-family: 'Scada', sans-serif;
-      // font-weight: 700;
       color: $brand-primary;
+      font-family: 'Scada', sans-serif;
       margin-top: 10px;
     }
   }
+
   .body {
     h1 {
+      border-bottom: solid 1px #eee;
       color: darken($tip-body-headings, 10%);
       font-size: 28px;
-      padding-bottom: 0.3em;
-      border-bottom: solid 1px #eee;
+      padding-bottom: .3em;
     }
+
     h2 {
+      border-bottom: solid 1px #eee;
       color: $tip-body-headings;
       font-size: 24px;
-      padding-bottom: 0.3em;
-      border-bottom: solid 1px #eee;
+      padding-bottom: .3em;
     }
+
     h3 {
-      font-size: 20px;
       color: lighten($tip-body-headings, 10%);
+      font-size: 20px;
     }
+
     h4 {
       color: lighten($tip-body-headings, 20%);
     }
+
     h1 + div.highlight,
     h2 + div.highlight,
     h3 + div.highlight {
       margin-top: 1.5em;
     }
+
     img {
-      max-width: 100%;
       height: auto;
+      max-width: 100%;
     }
+
     hr {
-      height: 4px;
-      padding: 0;
-      margin: 16px 0;
       background-color: #e7e7e7;
-      border: 0 none;
+      border: 0;
+      height: 4px;
+      margin: 16px 0;
+      padding: 0;
     }
   }
 }
 
 .tip-body-wrapper {
   border: solid 1px #ddd;
-  border-top: none;
-  padding: 15px 15px 0;
+  border-top: 0;
   margin-bottom: 2em;
+  padding: 15px 15px 0;
+
   #code-preview {
     max-height: 400px;
     overflow: scroll;
   }
+
   .cheatsheet {
     color: lighten($gray-base, 60%);
     font-size: 12px;
+
     a {
-      font-weight: bold;
       color: lighten($link-color, 20%);
       cursor: pointer;
+      font-weight: bold;
     }
   }
 }
 
-// .tip-body-wrapper p {
-  
-//   font-size: 14px !important;
-//   margin: 5px 0 0;
-//   line-height: 1.3;
-//   padding-bottom: 10px;
-// }
 
-// .tip-body-wrapper p a {
-//   font-weight: bold;
-//   color: #991a20;
-//   cursor: pointer; 
-//   cursor: hand;
-// }
 
-// User profile
 
-table#tips, table#bookmarks {
+
+// USER PROFILE
+
+table#tips,
+table#bookmarks {
   margin-left: 1.75em;
   width: auto;
+
   th {
+    border-top: 0;
     color: $gray-light;
+    font-size: $font-size-small;
     font-weight: normal;
     text-transform: uppercase;
-    font-size: $font-size-small;
-    border-top: none;
     white-space: nowrap;
   }
+
   td {
+    border-top: 0;
     padding: 4px;
-    border-top: none;
+
     &.bookmarks {
+      color: #080;
       text-align: center;
       white-space: nowrap;
-      color: green;
-      &.none {
-        color: #999;
-      }
+    }
+
+    &.none {
+      color: #999;
     }
   }
 }
 
-/* miscellaneous */
+
+
+
+
+// MISCELLANEOUS
 
 .icon-color {
   color: $brand-icon-color;
 }
 
-.jumbotron.home-page {
-  background-color: $brand-background;
-  margin-top: -19px;
-  padding-top: 10px;
-  p {
-    margin-top: 1.5em;
-    color: lighten($brand-background, 40%);
-  }
-  hr {
-    border-color: $brand-primary;
-  }
-  .btn-primary {
-    background-color: lighten($brand-background, 8%);
-    border-color: lighten($brand-background, 40%);
-    color: white;
-    text-decoration: none;
-    &:hover {
-      background-color: white;
-      color: $brand-background;
-    }
-  }
-  a {
-    color: lighten($brand-background, 40%);
-    text-decoration: underline;
-    &:hover {
-      color: white;
-    }
-  }
-}
-
-.debug_dump {
-  clear: both;
-  float: left;
-  width: 100%;
-  margin-top: 45px;
-}
-
 #user-badge {
   img {
-    float:left;
+    float: left;
     margin-right: 1em;
   }
+
   h4 {
     margin: 0;
     padding: 0;
   }
+
   .username {
     color: $gray-light;
   }
+
   p {
     margin-bottom: 3px;
   }
 }
 
 pre {
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: grey-Dark;
   display: block;
-  padding: 9.5px;
-  margin: 0 0 10px;
   font-size: 13px;
   line-height: 1.428571429;
+  margin: 0 0 10px;
+  padding: 9.5px;
   word-break: break-all;
   word-wrap: break-word;
-  color: grey-Dark;
-  background-color: whitesmoke;
-  border: 1px solid #cccccc;
-  border-radius: 4px;
+  
+  
+  
 }
 
-/* modal */
+
+
+
+
+// MODAL
 
 .modal-content {
-  background: white;
-  padding: 10px 15px;
-  margin-bottom: 10px;
-  position: relative;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
+  background: #fff;
   background-clip: padding-box;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  -webkit-box-shadow: 0 1px 0 0 rgba(0,0,0,0.1);
-  -moz-box-shadow: 0 1px 0 0 rgba(0,0,0,0.1);
-  box-shadow: 0 1px 0 0 rgba(0,0,0,0.1);
+  border-radius: 5px;
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, .1);
+  margin-bottom: 10px;
+  padding: 10px 15px;
+  position: relative;
 }
 
 .modal-header {
-  position: relative;
   padding-bottom: 15px;
+  position: relative;
 }
 
 .modal-body p {
-  font-size: 14px !important;
   color: #8d9aa5 !important;
+  font-size: 14px !important;
   line-height: 1.5;
   margin-bottom: 15px;
 }
 
 .modal pre {
-  font-size: 13px;
   color: #8d9aa5 !important;
-  line-height: 1.5;
   display: block;
   font-family: monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 1em 0;
   white-space: pre;
-  margin: 1em 0px;
 }
