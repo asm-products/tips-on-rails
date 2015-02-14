@@ -191,12 +191,12 @@ ul.devise-links {
   }
 }
 
-.tip_body_wrapper {
+.tip-body-wrapper {
   border: solid 1px #ddd;
   border-top: none;
   padding: 15px 15px 0;
   margin-bottom: 2em;
-  #code_preview {
+  #code-preview {
     max-height: 400px;
     overflow: scroll;
   }
@@ -326,7 +326,7 @@ pre {
   padding-bottom: 15px;
 }
 
-.tip_body_wrapper p {
+.tip-body-wrapper p {
   
   font-size: 14px !important;
   margin: 5px 0 0;
@@ -334,7 +334,7 @@ pre {
   padding-bottom: 10px;
 }
 
-.tip_body_wrapper p a {
+.tip-body-wrapper p a {
   font-weight: bold;
   color: #991a20;
   cursor: pointer; 

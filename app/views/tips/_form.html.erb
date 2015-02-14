@@ -1,27 +1,29 @@
 <div class="form-group">
-  <%= f.text_field :title, class: 'form-control input-lg', placeholder: 'Tip title' %>
+  <%= f.text_field :title, id: 'tip-title', class: 'form-control input-lg', placeholder: 'Tip title' %>
   <p class="help-block">
   	<span class="tip-title-countdown"></span>
   </p>
 </div>
 
 <div class="form-group">
-  <%= f.text_area :description, rows: 4, class: 'form-control', placeholder: 'Short tip description' %>
+  <%= f.text_area :description, rows: 4,id: 'tip-description', class: 'form-control', placeholder: 'Short tip description' %>
   <p class="help-block">
   	<span class="tip-description-countdown"></span>
   </p>
 </div>
 
 <ul class="nav nav-tabs" role="tablist">
-  <li class="active"><a href="#" id="write_tab">Write</a></li>
-  <li><a href="#" id="code_preview_tab">Preview</a></li>
+  <li class="active"><a href="#" id="write-tab">Write</a></li>
+  <li><a href="#" id="code-preview-tab">Preview</a></li>
 </ul>
-<div class="tip_body_wrapper tip">
-  <div class="form-group" id="write_input">
+<div class="tip-body-wrapper tip">
+  <div class="form-group" id="write-input">
     <%= f.text_area :body, rows: 12, class: 'form-control', placeholder: 'Detailed tip content and code' %>
   </div>
-  <div id="code_preview" class="body" style="display:none;"></div>
-  <p> Reference this <a data-toggle="modal" data-target="#myModal">Markdown Cheatsheet</a> for syntax examples for formatting your post.</p>
+  <div id="code-preview" class="body" style="display:none;"></div>
+  
+  <p class="cheatsheet">Reference this <a data-toggle="modal" data-target="#myModal">Markdown Cheatsheet</a> for syntax examples for formatting your post.</p>
+  
   <%= render 'modal', f: f %>
 </div>
 
