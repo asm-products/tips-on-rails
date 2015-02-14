@@ -45,6 +45,7 @@ jQuery ->
         console.log "Oh noes"
 
       $("#write-input").hide()
+      $('.cheatsheet').hide()
       $("#code-preview").show()
       $("#code-preview-tab").parent().addClass("active")
       $("#write-tab").parent().removeClass("active")
@@ -56,6 +57,7 @@ jQuery ->
     $("#code-preview-tab").html("Preview")
     unless $("#write-tab").parent().hasClass("active")
       $("#write-input").show()
+      $('.cheatsheet').show()
       $("#code-preview").hide()
       $("#code-preview-tab").parent().removeClass("active")
       $("#write-tab").parent().addClass("active")
