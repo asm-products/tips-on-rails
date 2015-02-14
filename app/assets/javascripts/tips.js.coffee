@@ -17,45 +17,47 @@ charCount = (selector, limit, counter_display) ->
 
 jQuery ->
   # Initialize the counters for Title and Description
-  charCount "#tip_title", 50, ".tip-title-countdown"
-  charCount "#tip_description", 250, ".tip-description-countdown"
+  charCount "#tip-title", 50, ".tip-title-countdown"
+  charCount "#tip-description", 250, ".tip-description-countdown"
   
   # Monitor the changes for Title and Description
-  $("#tip_title, #tip_description").change ->
-    charCount "#tip_title", 50, ".tip-title-countdown"
-    charCount  "#tip_description", 250, ".tip-description-countdown"
+  $("#tip-title, #tip-description").change ->
+    charCount "#tip-title", 50, ".tip-title-countdown"
+    charCount  "#tip-description", 250, ".tip-description-countdown"
   
   # Monitor typing with the Title and Description
-  $("#tip_title, #tip_description").keyup ->
-    charCount "#tip_title", 50, ".tip-title-countdown"
-    charCount  "#tip_description", 250, ".tip-description-countdown"
+  $("#tip-title, #tip-description").keyup ->
+    charCount "#tip-title", 50, ".tip-title-countdown"
+    charCount  "#tip-description", 250, ".tip-description-countdown"
 
   # Send the tip body to Markdown parser to generate the preview and show preview
-  $('#code_preview_tab').click (event) ->
+  $('#code-preview-tab').click (event) ->
     event.preventDefault()
     
-    unless $("#code_preview_tab").parent().hasClass("active") 
-      $("#code_preview_tab").addClass("load").html("loading...")
+    unless $("#code-preview-tab").parent().hasClass("active") 
+      $("#code-preview-tab").addClass("load").html("loading...")
       url = "/tips/preview"
       body = { body: $("#tip_body").val() }
       $.post(url, body).then ->   
-        $("#code_preview_tab").addClass("preview").html("Preview")
+        $("#code-preview-tab").addClass("preview").html("Preview")
         console.log("success")
       .fail ->
         console.log "Oh noes"
 
-      $("#write_input").hide()
-      $("#code_preview").show()
-      $("#code_preview_tab").parent().addClass("active")
-      $("#write_tab").parent().removeClass("active")
+      $("#write-input").hide()
+      $('.cheatsheet').hide()
+      $("#code-preview").show()
+      $("#code-preview-tab").parent().addClass("active")
+      $("#write-tab").parent().removeClass("active")
       
 
   # Switch back to tip body input
-  $('#write_tab').click (event) ->
+  $('#write-tab').click (event) ->
     event.preventDefault()
-    $("#code_preview_tab").html("Preview")
-    unless $("#write_tab").parent().hasClass("active")
-      $("#write_input").show()
-      $("#code_preview").hide()
-      $("#code_preview_tab").parent().removeClass("active")
-      $("#write_tab").parent().addClass("active")
+    $("#code-preview-tab").html("Preview")
+    unless $("#write-tab").parent().hasClass("active")
+      $("#write-input").show()
+      $('.cheatsheet').show()
+      $("#code-preview").hide()
+      $("#code-preview-tab").parent().removeClass("active")
+      $("#write-tab").parent().addClass("active")
