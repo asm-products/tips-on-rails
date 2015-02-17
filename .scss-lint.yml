@@ -1,0 +1,11 @@
+# https://github.com/causes/scss-lint
+linters:
+  # Avoid using id selectors
+  # Example: #my-id { }
+  IdSelector:
+    enabled: false
+
+  # Avoid qualifying class selectors with an element
+  # Example: ul > li > a
+  QualifyingElement:
+    enabled: false

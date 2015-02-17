@@ -1,0 +1,16 @@
+# https://github.com/bbatsov/rubocop
+AllCops:
+  # Run Rails related cops
+  RunRailsCops: true
+
+Style/AlignHash:
+  # Align the elements of a hash literal if they span more than one line.
+  Enabled: false
+
+Style/Documentation:
+  # Document classes and non-namespace modules.
+  Enabled: false
+
+Metrics/LineLength:
+  # Limit lines to 80 characters.
+  Enabled: false

@@ -1,4 +1,4 @@
-$brand-primary: #DA262E;
+$brand-primary: #da262e;
 $tip-body-headings: #428bca;
 $brand-background: darken($brand-primary, 15%);
 $brand-icon-color: $brand-primary;
@@ -8,8 +8,8 @@ $brand-icon-color: $brand-primary;
 $navbar-default-bg: $brand-background;
 $navbar-default-border: $brand-background;
 $navbar-default-link-color: lighten($brand-background, 40%);
-$navbar-default-link-hover-color: white;
-$navbar-default-link-active-color: white;
+$navbar-default-link-hover-color: #fff;
+$navbar-default-link-active-color: #fff;
 $navbar-default-link-active-bg: lighten($brand-background, 8%);
 
 $navbar-default-toggle-hover-bg: lighten($brand-background, 8%);

@@ -1,4 +1,4 @@
-v id="table-of-contents">
+<div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
@@ -10,13 +10,14 @@ v id="table-of-contents">
 <li><a href="#sec-1-2-1">1.2.1. Existing specs as example</a></li>
 </ul>
 </li>
-<li><a href="#sec-1-3">1.3. Good pull-request titles</a></li>
-<li><a href="#sec-1-4">1.4. Integrating with bounties on Assembly using WIP numbers</a></li>
-<li><a href="#sec-1-5">1.5. Good descriptions</a></li>
-<li><a href="#sec-1-6">1.6. Squashing branch commit history</a></li>
-<li><a href="#sec-1-7">1.7. Updating your Pull Request after changes are made</a></li>
-<li><a href="#sec-1-8">1.8. Simple vs Complex</a></li>
-<li><a href="#sec-1-9">1.9. When your Pull Request contains unwanted commits</a></li>
+<li><a href="#sec-1-3">1.3. Run linters to cleanup your code</a></li>
+<li><a href="#sec-1-4">1.4. Good pull-request titles</a></li>
+<li><a href="#sec-1-5">1.5. Integrating with bounties on Assembly using WIP numbers</a></li>
+<li><a href="#sec-1-6">1.6. Good descriptions</a></li>
+<li><a href="#sec-1-7">1.7. Squashing branch commit history</a></li>
+<li><a href="#sec-1-8">1.8. Updating your Pull Request after changes are made</a></li>
+<li><a href="#sec-1-9">1.9. Simple vs Complex</a></li>
+<li><a href="#sec-1-10">1.10. When your Pull Request contains unwanted commits</a></li>
 </ul>
 </li>
 </ul>
@@ -74,7 +75,18 @@ Look inside the `spec` folder to see the current test
 coverage, you will need to add your specs to this suite.
 examples. Our test coverage is limited and we are open to discussing testing in more detail.
 
-## Good pull-request titles<a id="sec-1-3" name="sec-1-3"></a>
+## Run linters to cleanup your code<a id="sec-1-3" name="sec-1-3"></a>
+
+Run the following linters regularly to make sure the code is kept clean, well organized and
+consistent.
+
+* [rubocop](https://github.com/bbatsov/rubocop) - for ruby
+* [coffeelint](http://www.coffeelint.org) - for coffee script
+* [scss-lint](https://github.com/causes/scss-lint) - for scss
+
+The config files for rubocop and scss-lint are included in the root.
+
+## Good pull-request titles<a id="sec-1-4" name="sec-1-4"></a>
 
 Naming things is exceptionally important, so keep
 it short, keep it descriptive, keep it simple.
@@ -88,7 +100,7 @@ Always append the bounty number to the end of the pull
 request name, use the format **#123** (if you were working on
 bounty 123)
 
-## Good descriptions<a id="sec-1-5" name="sec-1-5"></a>
+## Good descriptions<a id="sec-1-6" name="sec-1-6"></a>
 
 Descriptions are also quite difficult to get right. As with
 the pull request name, keep it short and sweet.
@@ -96,7 +108,7 @@ the pull request name, keep it short and sweet.
 -   Important details should be written out as bullet points
 -   like this very important pair of points
 
-## Squashing branch commit history<a id="sec-1-6" name="sec-1-6"></a>
+## Squashing branch commit history<a id="sec-1-7" name="sec-1-7"></a>
 
 Many bounties you work on will be expected as a single
 commit, or in some cases a few very specific commits.
@@ -152,7 +164,7 @@ is configured for use with git, see [associating text editors with git](https://
 8.  If you're squashing after initiating the pull request, you will
     need to `git push --force` when pushing the commit back to github.
 
-## Updating your Pull Request after changes are made<a id="sec-1-7" name="sec-1-7"></a>
+## Updating your Pull Request after changes are made<a id="sec-1-8" name="sec-1-8"></a>
 
 You can make changes after your pull request is submitted,
 effectively it is still private branch. If it's necessary to
@@ -168,7 +180,7 @@ and then squash them before pushing the changes up to github
 When you push your amended (or newly squashed) commits, you
 must use the `--force` switch. ie. `git push --force`
 
-## Simple vs Complex<a id="sec-1-8" name="sec-1-8"></a>
+## Simple vs Complex<a id="sec-1-9" name="sec-1-9"></a>
 
 If the piece of work you are submitting is complex, and
 touches many parts of the system, you should separate the
@@ -186,7 +198,7 @@ You can check this before squashing, by running the test
 suite on the last commit in a set.  Never send a broken
 commit in your pull requests.
 
-## When your Pull Request contains unwanted commits<a id="sec-1-9" name="sec-1-9"></a>
+## When your Pull Request contains unwanted commits<a id="sec-1-10" name="sec-1-10"></a>
 
 If your pull-request has commits that are unwanted, you can
 either squash them out, or simply start a new branch, and

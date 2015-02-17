@@ -1,6 +1,4 @@
 class MarkDownRenderer
-  
-
   def pygmentize_and_render(text)
     renderer = HTMLwithPygments.new(hard_wrap: true, filter_html: true)
     options = {
@@ -11,7 +9,7 @@ class MarkDownRenderer
       strikethrough: true,
       superscript: true
     }
-   Redcarpet::Markdown.new(renderer, options).render(text)
+    Redcarpet::Markdown.new(renderer, options).render(text)
   end
 end
 

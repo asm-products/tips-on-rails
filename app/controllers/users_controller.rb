@@ -11,8 +11,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(user_params)
-      flash[:success] = 'Profile updated'
-      redirect_to @user
+      redirect_to @user, notice: 'Profile updated'
     else
       render :edit
     end
@@ -20,12 +19,10 @@ class UsersController < ApplicationController
 
   private
 
+  attr_writer :current_user
+
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email)
-  end
-
-  def current_user=(user)
-    @current_user = user
   end
 
   def set_user
