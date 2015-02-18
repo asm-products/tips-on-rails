@@ -98,6 +98,8 @@ GEM
       multipart-post (>= 1.2, < 3)
     ffi (1.9.6)
     formatador (0.2.5)
+    friendly_id (5.1.0)
+      activerecord (>= 4.0.0)
     guard (2.11.1)
       formatador (>= 0.2.4)
       listen (~> 2.7)
@@ -318,6 +320,7 @@ DEPENDENCIES
   exception_notification
   factory_girl_rails
   faker
+  friendly_id (~> 5.1.0)
   guard-rspec
   guard-spork
   jbuilder (~> 2.0)
