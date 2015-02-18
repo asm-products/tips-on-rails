@@ -1,4 +1,7 @@
 class Tip < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :title_and_username, use: :slugged
+
   belongs_to :user, counter_cache: true
   has_many :bookmarks, dependent: :destroy
   before_save :pygmentize_and_cache_body
@@ -15,5 +18,13 @@ class Tip < ActiveRecord::Base
 
   def pygmentize_and_cache_body
     self.body_cached = MarkDownRenderer.new.pygmentize_and_render(body)
+  end
+
+  def title_and_username
+    "#{title} by #{user.username}"
+  end
+
+  def should_generate_new_friendly_id?
+    new_record? || slug.blank?
   end
 end
