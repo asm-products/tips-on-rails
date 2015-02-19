@@ -24,7 +24,7 @@
   
   <p class="cheatsheet">Reference this <a data-toggle="modal" data-target="#myModal">Markdown Cheatsheet</a> for syntax examples for formatting your post.</p>
   
-  <%= render 'modal', f: f %>
+  <%= render partial: 'shared/modal', locals: { content_partial: 'static_pages/markdown_cheatsheet', modal_title: 'Markdown Cheat Sheet' } %>
 </div>
 
 
