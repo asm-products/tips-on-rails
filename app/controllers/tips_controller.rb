@@ -19,6 +19,7 @@ class TipsController < ApplicationController
     if @tip.save
       redirect_to @tip, notice: 'Tip created!'
     else
+      flash.now[:alert] = 'You already created this tip!'
       render :new
     end
   end

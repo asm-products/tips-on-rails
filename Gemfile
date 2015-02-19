@@ -44,6 +44,7 @@ gem 'sitemap_generator'
 # Makes sending HTML emails a little less painful by inlining stylesheets and rewriting relative URLs
 gem 'roadie-rails', '~> 1.0.4'
 
+# FriendlyId is the "Swiss Army bulldozer" of slugging and permalink plugins for Active Record.
 gem 'friendly_id', '~> 5.1.0'
 
 group :doc do

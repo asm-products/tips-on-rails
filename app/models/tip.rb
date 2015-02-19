@@ -5,6 +5,7 @@ class Tip < ActiveRecord::Base
   belongs_to :user, counter_cache: true
   has_many :bookmarks, dependent: :destroy
   before_save :pygmentize_and_cache_body
+  before_save :check_tip_slugs
 
   default_scope -> { order('created_at DESC') }
   validates :title, presence: true, length: { maximum: 50 }
@@ -26,5 +27,19 @@ class Tip < ActiveRecord::Base
 
   def should_generate_new_friendly_id?
     new_record? || slug.blank?
+  end
+
+  def check_tip_slugs
+    @user = user
+    user_tips = Tip.where(:user_id => @user.id)
+
+    test_slug = title.parameterize
+    tip_title = test_slug + ("-by-#{@user.username}").downcase
+
+    user_tips.each do |tip|
+      if tip_title == tip.slug
+        return false
+      end
+    end
   end
 end
