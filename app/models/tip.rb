@@ -27,7 +27,7 @@ class Tip < ActiveRecord::Base
 
   def should_generate_new_friendly_id?
     if persisted?
-      created_at < 1.day.ago
+      created_at > 1.day.ago
     else
       super
     end
