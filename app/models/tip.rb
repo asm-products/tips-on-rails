@@ -26,7 +26,11 @@ class Tip < ActiveRecord::Base
   end
 
   def should_generate_new_friendly_id?
-    created_at < 1.day.ago
+    if persisted?
+      created_at < 1.day.ago
+    else
+      super
+    end
   end
 
   def title_must_be_unique_for_user
