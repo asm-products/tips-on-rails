@@ -5,10 +5,10 @@ class Tip < ActiveRecord::Base
   belongs_to :user, counter_cache: true
   has_many :bookmarks, dependent: :destroy
   before_save :pygmentize_and_cache_body
-  before_save :check_tip_slugs
 
   default_scope -> { order('created_at DESC') }
   validates :title, presence: true, length: { maximum: 50 }
+  validate :title_must_be_unique_for_user, on: :create
   validates :description, presence: true, length: { maximum: 250 }
   validates :body, presence: true
   validates :user_id, presence: true
@@ -26,20 +26,12 @@ class Tip < ActiveRecord::Base
   end
 
   def should_generate_new_friendly_id?
-    new_record? || slug.blank?
+    created_at < 1.day.ago
   end
 
-  def check_tip_slugs
-    @user = user
-    user_tips = Tip.where(:user_id => @user.id)
-
-    test_slug = title.parameterize
-    tip_title = test_slug + ("-by-#{@user.username}").downcase
-
-    user_tips.each do |tip|
-      if tip_title == tip.slug
-        return false
-      end
+  def title_must_be_unique_for_user
+    if Tip.exists?(slug: title_and_username.parameterize)
+      errors.add(:title, "already exsits. Please change it")
     end
   end
 end

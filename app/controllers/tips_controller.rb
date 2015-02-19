@@ -19,7 +19,6 @@ class TipsController < ApplicationController
     if @tip.save
       redirect_to @tip, notice: 'Tip created!'
     else
-      flash.now[:alert] = 'You already created this tip!'
       render :new
     end
   end
@@ -34,7 +33,6 @@ class TipsController < ApplicationController
   end
 
   def update
-    @tip = Tip.find(params[:id])
     if @tip.update_attributes(tip_params)
       redirect_to @tip, notice: 'Successfully updated your tip.'
     else
