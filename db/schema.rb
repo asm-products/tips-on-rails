@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 20150218025117) do
     t.string   "slug"
   end
 
+  add_index "tips", ["slug"], name: "index_tips_on_slug", using: :btree
+
   create_table "users", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -56,6 +58,7 @@ ActiveRecord::Schema.define(version: 20150218025117) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["slug"], name: "index_users_on_slug", using: :btree
   add_index "users", ["username"], name: "index_users_on_username", using: :btree
 
 end
