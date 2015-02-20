@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150206122119) do
+ActiveRecord::Schema.define(version: 20150218025117) do
 
   create_table "bookmarks", force: true do |t|
     t.integer  "tip_id"
@@ -30,7 +30,10 @@ ActiveRecord::Schema.define(version: 20150206122119) do
     t.integer  "tip_id"
     t.text     "body_cached"
     t.integer  "bookmarks_count", default: 0, null: false
+    t.string   "slug"
   end
+
+  add_index "tips", ["slug"], name: "index_tips_on_slug", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name"
@@ -51,9 +54,11 @@ ActiveRecord::Schema.define(version: 20150206122119) do
     t.string   "username",                           null: false
     t.string   "provider"
     t.string   "uid"
+    t.string   "slug"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["slug"], name: "index_users_on_slug", using: :btree
   add_index "users", ["username"], name: "index_users_on_username", using: :btree
 
 end

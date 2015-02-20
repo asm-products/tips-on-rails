@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable, :database_authenticatable, :registerable,
   # :recoverable, :rememberable, :validatable, :confirmable
+  extend FriendlyId
+  friendly_id :username, use: :slugged
+
   devise :trackable, :omniauthable, omniauth_providers: [:github]
 
   has_many :tips, dependent: :destroy

@@ -33,7 +33,6 @@ class TipsController < ApplicationController
   end
 
   def update
-    @tip = Tip.find(params[:id])
     if @tip.update_attributes(tip_params)
       redirect_to @tip, notice: 'Successfully updated your tip.'
     else
@@ -58,6 +57,6 @@ class TipsController < ApplicationController
   end
 
   def set_tip
-    @tip = Tip.find(params[:id])
+    @tip = Tip.friendly.find(params[:id])
   end
 end
