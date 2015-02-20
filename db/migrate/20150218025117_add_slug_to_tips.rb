@@ -5,7 +5,10 @@ class AddSlugToTips < ActiveRecord::Migration
 
     # Generate the slugs for the existing tips
     p 'Generating slugs for the existing tips'
-    Tip.find_each(&:save)
+    Tip.find_each do |tip|
+      tip.slug = tip.title_and_username.parameterize
+      tip.save
+    end
   end
 
   def down
