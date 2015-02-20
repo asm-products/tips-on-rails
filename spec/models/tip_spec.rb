@@ -2,23 +2,26 @@ require 'rails_helper'
 
 describe Tip do
 
-  let(:user) { FactoryGirl.create(:user) }
-  before { @tip = user.tips.build(title: "Tip", body: "some things", description: "Lorem ipsum") }
+  let(:user) { @user = User.new(first_name: "Example", last_name: "User", email: "user@example.com", 
+                            username: "example") }
+  before { user.save}
+  before { @tip = user.tips.create(title: "Tip", body: "some things", description: "Lorem ipsum", slug: "tip-by-example") }
 
   subject { @tip }
 
   it { should respond_to(:title) }
-  it { should respond_to(:description) }
   it { should respond_to(:body) }
+  it { should respond_to(:description) }
   it { should respond_to(:user_id) }
+  it { should respond_to(:slug) }
   it { should respond_to(:user) }
   
   it { should be_valid }
 
 
   describe "when user_id is not present" do
-  	before { @tip.user_id = nil }
-  	it { should_not be_valid }
+    before { @tip.user_id = nil }
+    it { should_not be_valid }
   end
 
   describe "with blank title" do
@@ -40,13 +43,67 @@ describe Tip do
     before { @tip.description = "a" * 251 }
     it { should_not be_valid }
   end
-   describe "with blank content" do
+  
+  describe "with blank content" do
     before { @tip.body = " "}
     it { should_not be_valid }
   end
 
-  describe "with content that is too long" do
-    before { @tip.body = "a" * 251 }
-    it { should_not be_valid }
+  describe "#title_and_username" do
+    context "slug has title and username" do
+      before { @tip.slug == "tip-by-example" }
+      it { should be_valid}
+    end
+  end
+
+  describe "#should_generate_friendly_id?" do
+    context "created_at is greater than a day ago" do
+      before { @tip.created_at > 1.day.ago}
+      it { should be_valid }
+    end
+
+    context "created_at is less than a day ago" do
+
+      let(:user) { @user = User.new(first_name: "Example", last_name: "User", email: "user@example.com", 
+                            username: "example") }
+      before { user.save}
+      before { @tip = user.tips.create( created_at: 25.hours.ago ) }
+
+      subject { @tip }
+
+      before { @tip.created_at < 1.day.ago}
+      it { should_not be_valid }
+    end
+
+    context "created_at is nil" do
+      let(:user) { @user = User.new(first_name: "Example", last_name: "User", email: "user@example.com", 
+                            username: "example") }
+      before { user.save}
+      before { @tip = user.tips.create() }
+
+      subject { @tip }
+
+      before { @tip.created_at = nil }
+      it { should_not be_valid }
+    end
+  end
+
+  describe "#title_must_be_unique_for_user" do
+    context "slug doesn't exist" do
+      before { Tip.exists? != true}
+      it { should be_valid }
+    end
+    
+    context "slug exists" do
+      let(:user) { @user = User.new(first_name: "Example", last_name: "User", email: "user@example.com", 
+                              username: "example") }
+      before { user.save}
+      before { @tip = user.tips.create(title: "Tip", body: "some things", description: "Lorem ipsum", slug: "tip-by-example") }
+
+      subject { @tip }
+
+      before { Tip.exists? == true}
+      it { should_not be_valid }
+    end
   end
 end
