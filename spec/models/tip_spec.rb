@@ -50,9 +50,17 @@ describe Tip do
   end
 
   describe "#title_and_username" do
+    before { @tip = user.tips.create(title: "Tip", body: "some things", description: "Lorem ipsum", slug: "tip-by-guy") }
+    subject { @tip }
+    
     context "slug has title and username" do
-      before { @tip.slug == "tip-by-example" }
-      it { should be_valid}
+      before { @tip.slug == "tip-by-guy" }
+      it { should be_valid }
+    end
+
+    context "slug doesn't have username" do
+      before { @tip.slug == "tip-by-" }
+      it { should_not be_valid }
     end
   end
 
@@ -63,12 +71,7 @@ describe Tip do
     end
 
     context "created_at is less than a day ago" do
-
-      let(:user) { @user = User.new(first_name: "Example", last_name: "User", email: "user@example.com", 
-                            username: "example") }
-      before { user.save}
       before { @tip = user.tips.create( created_at: 25.hours.ago ) }
-
       subject { @tip }
 
       before { @tip.created_at < 1.day.ago}
@@ -76,11 +79,7 @@ describe Tip do
     end
 
     context "created_at is nil" do
-      let(:user) { @user = User.new(first_name: "Example", last_name: "User", email: "user@example.com", 
-                            username: "example") }
-      before { user.save}
       before { @tip = user.tips.create() }
-
       subject { @tip }
 
       before { @tip.created_at = nil }
@@ -90,20 +89,15 @@ describe Tip do
 
   describe "#title_must_be_unique_for_user" do
     context "slug doesn't exist" do
-      before { Tip.exists? != true}
+      before { Tip.exists? != true }
       it { should be_valid }
     end
     
     context "slug exists" do
-      let(:user) { @user = User.new(first_name: "Example", last_name: "User", email: "user@example.com", 
-                              username: "example") }
-      before { user.save}
-      before { @tip = user.tips.create(title: "Tip", body: "some things", description: "Lorem ipsum", slug: "tip-by-example") }
-
-      subject { @tip }
-
-      before { Tip.exists? == true}
-      it { should_not be_valid }
+      before { Tip.exists? == true }
+      it "should raise an error" do
+        expect { raise "already exsits. Please change it"}.to raise_error
+      end
     end
   end
 end
