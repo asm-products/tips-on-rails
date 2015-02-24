@@ -54,13 +54,11 @@ describe Tip do
     subject { @tip }
     
     context "slug has title and username" do
-      before { @tip.slug == "tip-by-guy" }
-      it { should be_valid }
+      specify { expect(@tip.slug).to eq("tip-by-guy")}
     end
 
     context "slug doesn't have username" do
-      before { @tip.slug == "tip-by-" }
-      it { should_not be_valid }
+      specify { expect(@tip.slug).to_not eq("tip-by-")}
     end
   end
 
