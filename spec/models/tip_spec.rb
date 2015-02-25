@@ -110,9 +110,11 @@ describe Tip do
       end
       it "adds correct error message" do
         @tip = user.tips.create
-        if Tip.exists?
-          expect(@tip.errors[:title]).to_not be_empty
-          #still need to test that it's adding the correct error message to the [:title] array
+        tip = Tip.all
+        tip.each do |tip|
+          if tip.slug == @tip.slug
+            expect(tip.errors[:title]).to eq("already exists. Please change it")
+          end
         end
       end       
     end            
