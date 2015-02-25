@@ -87,15 +87,34 @@ describe Tip do
 
   describe "#title_must_be_unique_for_user" do
     context "slug doesn't exist" do
-      before { Tip.exists? != true }
-      it { should be_valid }
+      it "should be valid" do  
+        @tip = Tip.all
+        @tip.each do |tip|
+          expect("this-by-mofucker").to_not eq(tip.slug)
+        end
+      end
     end
     
     context "slug exists" do
-      before { Tip.exists? == true }
-      it "should raise an error" do
-        expect { raise "already exsits. Please change it"}.to raise_error
+      it "should be invalid" do
+        @tip = Tip.all
+        @tip.each do |tip|
+          expect("tip-by-example").to eq(tip.slug)
+        end
       end
-    end
+      it "should raise an error" do
+        tip = user.tips.create(slug: "tip-by-example")
+        tip.valid?
+        expect(tip.errors[:title].size).to be >= 1
+        # tip.errors.should include("already exsits. Please change it")
+      end
+      it "adds correct error message" do
+        @tip = user.tips.create
+        if Tip.exists?
+          expect(@tip.errors[:title]).to_not be_empty
+          #still need to test that it's adding the correct error message to the [:title] array
+        end
+      end       
+    end            
   end
 end
