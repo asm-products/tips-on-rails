@@ -46,8 +46,8 @@ namespace :db do
     puts ">>> * Seeding Bookmarks"
     10.times do
       users = User.all.limit(10).order("RAND()")
-        users.each do |user|
-      tips = Tip.all.limit(10).order("RAND()")
+      users.each do |user|
+        tips = Tip.all.limit(10).order("RAND()")
         tips.each do |tip|
           Bookmark.create(user_id: user.id, tip_id: tip.id) unless tip.bookmarked_by(user)
         end

@@ -12,11 +12,15 @@ Tips on Rails is ran on the Thin web server using environment variables. You'll 
 
 **Create _.env_ file, with the following information:**
 
-    PORT=5100 (your port number could be any four-digits)
+    PORT=5300 (this specific port is needed to work with GitHub oauth)
     RACK_ENV=development
     DB_DATABASE=TipsonRails_development
     DB_USERNAME=localdev
-    DB_PASSWORD=password 
+    DB_PASSWORD=password
+    GITHUB_KEY=
+    GITHUB_SECRET=
+
+Send email to ohlincik [at] gmail [dot] com and request the GitHub credentials for testing in Development.
 
 **Create file _Procfile.dev_, with the following information:**
 
@@ -44,15 +48,22 @@ If the Terminal tells you that it can't find it, you'll have to get it. Go to ht
 
 **Go to:**
 
-    localhost:5100/ (use the port number you specified in the .env file)
+    http://localhost:5300/
 
-## Generating Faker data
+## Load fake data for Development
 
-**To generate Faker data**
+We prepared some fake data you can load immediately to start playing around with the app. To get this loaded just run the following:
 
-We have developed fake data for the database, so you can see in real time what the site would like with users. To access this fake data, you need to run:
+    foreman run rake db:load_fake_data
 
-    foreman run rake db:populate
+This will do the following:
+
+* Delete all bookmarks (if any exist already)
+* Delete all tips (if any exist already)
+* Delete all users (if any exist already)
+* Create 30 randomly named users
+* Create random number of tips (5..20) for each user
+* Create random number of bookmarks for random tips for random users
 
 ## Professional network for Rails developers
 
@@ -62,4 +73,4 @@ This is a product being built by the Assembly community. You can help push this 
 
 Assembly products are like open-source and made with contributions from the community. Assembly handles the boring stuff like hosting, support, financing, legal, etc. Once the product launches we collect the revenue and split the profits amongst the contributors.
 
-Visit [https://assembly.com](https://assembly.com) to learn more.
+Visit [https://assembly.com](https://assembly.com) to learn more.
