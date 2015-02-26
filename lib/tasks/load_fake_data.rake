@@ -2,33 +2,29 @@ require 'faker' unless Rails.env.production?
 
 namespace :db do
   desc "Fill database with sample data"
-  task populate: :environment do
+  task load_fake_data: :environment do
     puts ">>> * Deleting all Bookmarks"
     Bookmark.delete_all
+
     puts ">>> * Deleting all Tips"
     Tip.delete_all
+    
     puts ">>> * Deleting all Users"
     User.delete_all
 
     puts ">>> * Seeding Users"
-    User.create!(
-      first_name: "Example",
-      last_name: "User",
-      email: "user@example.com",
-      password: "password",
-      password_confirmation: "password"
-    )
-    29.times do |n|
+    30.times do |n|
       first_name = Faker::Name.first_name
       last_name = Faker::Name.last_name
       email = "examples-#{n+1}@tips.com"
       password = "password"
+      username = "username_#{n}"
       User.create!(
         first_name: first_name,
         last_name: last_name,
         email: email,
         password: password,
-        password_confirmation: password
+        username: username
       )
     end
     puts ">>> * Done! Seeded #{User.count} users."
