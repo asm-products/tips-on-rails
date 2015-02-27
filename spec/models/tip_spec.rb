@@ -2,10 +2,10 @@ require 'rails_helper'
 
 describe Tip do
 
-  let(:user) { @user = User.new(first_name: "Example", last_name: "User", email: "user@example.com", 
-                            username: "example") }
-  before { user.save}
-  before { @tip = user.tips.create(title: "Tip", body: "some things", description: "Lorem ipsum", slug: "tip-by-example") }
+  let(:user) { @user = User.create(first_name: "Example", last_name: "User", email: "example@example.com", username: "example") }
+  before { user.save }
+
+  before { @tip = user.tips.create!(title: "Tip", body: "some things", description: "Lorem ipsum", slug: "tip-by-example") }
 
   subject { @tip }
 
@@ -18,6 +18,11 @@ describe Tip do
   
   it { should be_valid }
 
+  it { should belong_to(:user) }
+  it { should belong_to(:user).counter_cache(true) }
+
+  it { should have_many(:bookmarks) }
+  it { should have_many(:bookmarks).dependent(:destroy) }
 
   describe "when user_id is not present" do
     before { @tip.user_id = nil }
@@ -50,38 +55,41 @@ describe Tip do
   end
 
   describe "#title_and_username" do
-    before { @tip = user.tips.create(title: "Tip", body: "some things", description: "Lorem ipsum", slug: "tip-by-guy") }
-    subject { @tip }
     
-    context "slug has title and username" do
-      specify { expect(@tip.slug).to eq("tip-by-guy")}
-    end
-
-    context "slug doesn't have username" do
-      specify { expect(@tip.slug).to_not eq("tip-by-")}
+    context "has title and username" do
+      specify { expect(@tip.title_and_username).to eq("Tip by example")}
     end
   end
 
   describe "#should_generate_friendly_id?" do
-    context "created_at is greater than a day ago" do
-      before { @tip.created_at > 1.day.ago}
-      it { should be_valid }
+    let(:user) { User.create(first_name: "Example", last_name: "User", email: "newuser@example.com", 
+                              username: "example") }
+
+    context "tip is persisted and has existed for greater than a day" do
+      it "should be false" do
+        persisted_tip_can_change = user.tips.build(title: "Tips", body: "other tip", description: "tips here", created_at: 1.day.ago)
+        
+        if persisted_tip_can_change.created_at > 1.day.ago
+          expect(persisted_tip_can_change.should_generate_new_friendly_id?).to be_falsy
+        end
+      end
     end
 
-    context "created_at is less than a day ago" do
-      before { @tip = user.tips.create( created_at: 25.hours.ago ) }
-      subject { @tip }
-
-      before { @tip.created_at < 1.day.ago}
-      it { should_not be_valid }
+    context "tip is persisted, but less than a day ago" do
+      it "should be true" do
+        persisted_tip_cant_change = user.tips.build(title: "Tips", body: "other tip", description: "tips here", created_at: Time.now)
+        
+        if persisted_tip_cant_change.created_at > 1.day.ago
+          expect(persisted_tip_cant_change.should_generate_new_friendly_id?).to be_truthy
+        end
+      end
     end
 
-    context "created_at is nil" do
-      before { @tip = user.tips.create() }
-      subject { @tip }
-
-      before { @tip.created_at = nil }
-      it { should_not be_valid }
+    context "doesn't exist in the database yet" do
+      it "should be true" do
+        not_persisted_tip = user.tips.build(title: "Tips", body: "other tip", description: "tips here")        
+        expect(not_persisted_tip.should_generate_new_friendly_id?).to be_truthy
+      end
     end
   end
 
@@ -109,7 +117,7 @@ describe Tip do
         # tip.errors.should include("already exsits. Please change it")
       end
       it "adds correct error message" do
-        @tip = user.tips.create
+        @tip = user.tips.create()
         tip = Tip.all
         tip.each do |tip|
           if tip.slug == @tip.slug
