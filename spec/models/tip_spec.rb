@@ -18,11 +18,11 @@ describe Tip do
   
   it { should be_valid }
 
-  it { should belong_to(:user) }
-  it { should belong_to(:user).counter_cache(true) }
+  describe "associations" do
+    it { should belong_to(:user).counter_cache(true) }
 
-  it { should have_many(:bookmarks) }
-  it { should have_many(:bookmarks).dependent(:destroy) }
+    it { should have_many(:bookmarks).dependent(:destroy) }
+  end
 
   describe "when user_id is not present" do
     before { @tip.user_id = nil }
