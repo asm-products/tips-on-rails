@@ -1,131 +1,127 @@
 require 'rails_helper'
 
 describe User do
-  
-  before { @user = User.new(first_name: "Example", last_name: "User", email: "user@example.com", 
-                            password: "foobar123", password_confirmation: "foobar123" ) }
-
-  subject { @user }
+  let(:user) { FactoryGirl.build_stubbed(:user) }
+  subject { user }
 
   it { should respond_to(:first_name) }
   it { should respond_to(:last_name) }
   it { should respond_to(:email) }
-  it { should respond_to(:password) }
-  it { should respond_to(:password_confirmation) }
+  it { should respond_to(:username) }
   it { should respond_to(:tips) }
+  it { should respond_to(:bookmarks) }
 
-
-  it { should be_valid }
-
-  describe "when name is not present" do
-    before { @user.first_name = " " }
-    it { should_not be_valid }
+  describe 'when all validations are satisfied' do
+    it { should be_valid }
   end
 
-  describe "when name is not present" do
-    before { @user.last_name = " " }
-    it { should_not be_valid }
+  it { should validate_presence_of(:email) }
+
+  describe 'validation on update' do
+    it { should_not allow_value(' ').for(:first_name).on(:update) }
+    it { should_not allow_value(' ').for(:last_name).on(:update) }
+    it { should validate_length_of(:first_name).is_at_most(50).on(:update) }
+    it { should validate_length_of(:last_name).is_at_most(50).on(:update) }
   end
 
-  describe "when email is not present" do
-    before { @user.email = " " }
-    it { should_not be_valid }
-  end
-
-  describe "when name is too long" do
-    before { @user.first_name = "a" * 51 }
-    it { should_not be_valid }
-  end
-
-  describe "when name is too long" do
-    before { @user.last_name = "a" * 51 }
-    it { should_not be_valid }
-  end
-
-   describe "when email format is invalid" do
-    it "should be invalid" do
-      addresses = %w[user@foo,com user_at_foo.org example.user@foo.
-                     foo@bar_baz.com foo@bar+baz.com]
-      addresses.each do |invalid_address|
-        @user.email = invalid_address
-        expect(@user).not_to be_valid
-      end
+  describe 'validation' do
+    it do
+      should_not allow_value(
+        'user@foo,com', 'user_at_foo.org', 'example.user@foo.', 'foo@bar_baz.com',
+        'foo@bar+baz.com'
+      ).for(:email)
     end
   end
 
-   describe "when email format is valid" do
-    it "should be valid" do
-      addresses = %w[user@foo.COM A_US-ER@f.b.org frst.lst@foo.jp a+b@baz.cn]
-      addresses.each do |valid_address|
-        @user.email = valid_address
-        expect(@user).to be_valid
-      end
+  describe 'validation' do
+    it do
+      should allow_value(
+        'user@foo.COM', 'A_US-ER@f.b.org', 'frst.lst@foo.jp', 'a+b@baz.cn'
+      ).for(:email)
     end
   end
 
-   describe "when email address is already taken" do
+  describe 'when email is mixed case' do
     before do
-      user_with_same_email = @user.dup
+      user.email = 'USER@example.COM'
+      user.save!
+    end
+
+    it 'should be downcased' do
+      expect(user.email).to eq('user@example.com')
+    end
+  end
+
+  describe 'when email address is already taken' do
+    before do
+      user_with_same_email = user.dup
       user_with_same_email.save
     end
 
     it { should_not be_valid }
   end
 
-  describe "when email address is already taken" do
+  describe 'when first name is Example and last name is User then #name' do
     before do
-      user_with_same_email = @user.dup
-      user_with_same_email.email = @user.email.upcase
-      user_with_same_email.save
+      user.first_name = 'Example'
+      user.last_name = 'User'
     end
 
-    it { should_not be_valid }
+    it { expect(user.name).to eq('Example User') }
   end
 
-  describe "when password is not present" do
-    before do 
-      @user = User.new(first_name: "Example", last_name: "User", email: "user@example.com", password: " ", password_confirmation: " ")
+  describe '#bookmarked_tips' do
+    before do
+      (0..3).each do |bookmarks_count|
+        FactoryGirl.create(:tip, user: user, bookmarks_count: bookmarks_count)
+      end
     end
-    it { should_not be_valid }
-  end
-
-  describe "when password doesn't match confirmation" do
-    before { @user.password_confirmation = "mismatch"}
-    it { should_not be_valid}
-  end
-
-   describe "with a password that's too short" do
-    before { @user.password = @user.password_confirmation = "a" * 5 }
-    it { should be_invalid }
-  end
-
-   describe "when password confirmation is nil" do
-    before { @user.password_confirmation = nil }
-    it { should_not be_valid}
-  end
-
-  describe "email address with mixed case" do
-    let(:mixed_case_email) { "Foo@ExAMPle.CoM" }
-
-    it "should be saved as all lower-case" do
-      @user.email = mixed_case_email
-      @user.save
-      expect(@user.reload.email).to eq mixed_case_email.downcase
+    it 'should return how many times the user\'s tips have been bookmarked' do
+      expect(user.bookmarked_tips).to eq(0 + 1 + 2 + 3)
     end
   end
 
-  describe "tips association" do
+  describe 'when authenticating with GitHub through OmniAuth' do
+    Info = Struct.new(:email, :nickname, :name)
+    Auth = Struct.new(:provider, :uid, :info)
+    auth = Auth.new('github', '12345', Info.new('user@example.com', 'username', 'Fname Lname'))
+    let(:new_user) { User.from_omniauth(auth) }
 
-    before { @user.save }
-    let!(:older_tip) do
-      FactoryGirl.create(:tip, user: @user, created_at: 1.day.ago)
-  end
-    let!(:newer_tip) do
-      FactoryGirl.create(:tip, user: @user, created_at: 1.hour.ago)
+    describe 'without an existing account' do
+      it 'should initialize a new user account' do
+        expect(new_user).to be_a_new_record
+        expect(new_user.provider).to eq('github')
+        expect(new_user.uid).to eq('12345')
+        expect(new_user.email).to eq('user@example.com')
+        expect(new_user.username).to eq('username')
+        expect(new_user.password).not_to be_empty
+        expect(new_user.first_name).to eq('Fname')
+        expect(new_user.last_name).to eq('Lname')
+      end
+    end
+
+    describe 'with an existing account' do
+      before do
+        FactoryGirl.create(:user, provider: 'github', uid: '12345', username: 'existing_username')
+      end
+
+      let(:existing_user) { User.from_omniauth(auth) }
+
+      it 'should return the existing user account' do
+        expect(existing_user).to be_persisted
+        expect(existing_user.username).to eq('existing_username')
+      end
+    end
   end
 
-    it "should have the right tip in the right order" do
-      expect(@user.tips).to eq [newer_tip, older_tip]
+  describe 'tips association' do
+    before do
+      FactoryGirl.create(:tip, title: 'Older tip title', created_at: 1.day.ago, user: user)
+      FactoryGirl.create(:tip, title: 'Newer tip title', created_at: 1.hour.ago, user: user)
+    end
+
+    it 'should have the newer_tip first and older_tip second' do
+      expect(user.tips.map(&:title)).to eq(['Newer tip title', 'Older tip title'])
     end
   end
 end

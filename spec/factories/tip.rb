@@ -1,8 +1,8 @@
 FactoryGirl.define do
-	factory :tip do
-		title "Tip"
-    body "some things"
-    description "Lorem ipsum"
+  factory :tip do
+    sequence(:title)  { |n| "Tip title #{n}" }
+    description 'Standard tip description'
+    body 'Standard tip body'
     user
   end
 end
