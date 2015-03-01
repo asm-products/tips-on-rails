@@ -2,12 +2,10 @@ require 'rails_helper'
 
 describe Tip do
 
-  let(:user) { @user = User.create(first_name: "Example", last_name: "User", email: "example@example.com", username: "example") }
-  before { user.save }
+  let(:user) { FactoryGirl.build_stubbed(:user) }
+  let(:tip) { FactoryGirl.build_stubbed(:tip) }
 
-  before { @tip = user.tips.create!(title: "Tip", body: "some things", description: "Lorem ipsum", slug: "tip-by-example") }
-
-  subject { @tip }
+  subject { tip }
 
   it { should respond_to(:title) }
   it { should respond_to(:body) }
@@ -16,48 +14,48 @@ describe Tip do
   it { should respond_to(:slug) }
   it { should respond_to(:user) }
   
-  it { should be_valid }
+  describe 'when all validations are satisfied' do
+    it { should be_valid }
+  end
 
   describe "associations" do
     it { should belong_to(:user).counter_cache(true) }
-
     it { should have_many(:bookmarks).dependent(:destroy) }
   end
 
-  describe "when user_id is not present" do
-    before { @tip.user_id = nil }
-    it { should_not be_valid }
-  end
-
   describe "with blank title" do
-    before { @tip.title = " "}
+    before { tip.title = " "}
     it { should_not be_valid }
   end
 
   describe "with title that is too long" do
-    before { @tip.title = "a" * 51 }
+    before { tip.title = "a" * 51 }
     it { should_not be_valid }
   end
 
   describe "with blank content" do
-    before { @tip.description = " "}
+    before { tip.description = " "}
     it { should_not be_valid }
   end
 
   describe "with content that is too long" do
-    before { @tip.description = "a" * 251 }
+    before { tip.description = "a" * 251 }
     it { should_not be_valid }
   end
   
   describe "with blank content" do
-    before { @tip.body = " "}
+    before { tip.body = " "}
     it { should_not be_valid }
   end
 
-  describe "#title_and_username" do
-    
+  describe "#title_and_username" do 
     context "has title and username" do
-      specify { expect(@tip.title_and_username).to eq("Tip by example")}
+      it "should be equal" do
+        user = User.all
+        user.each do |user|
+          specify { expect(tip.title_and_username).to eq("#{tip.title} by #{user.username}")}
+        end
+      end
     end
   end
 
@@ -67,7 +65,7 @@ describe Tip do
 
     context "tip is persisted and has existed for greater than a day" do
       it "should be false" do
-        persisted_tip_can_change = user.tips.build(title: "Tips", body: "other tip", description: "tips here", created_at: 1.day.ago)
+        persisted_tip_can_change = user.tips.build(title: "Tips", body: "other tip", description: "tips here", created_at: 2.days.ago)
         
         if persisted_tip_can_change.created_at > 1.day.ago
           expect(persisted_tip_can_change.should_generate_new_friendly_id?).to be_falsy
@@ -77,10 +75,10 @@ describe Tip do
 
     context "tip is persisted, but less than a day ago" do
       it "should be true" do
-        persisted_tip_cant_change = user.tips.build(title: "Tips", body: "other tip", description: "tips here", created_at: Time.now)
+        persisted_tip_slug_cant_change = user.tips.build(title: "Tips", body: "other tip", description: "tips here", created_at: Time.now)
         
-        if persisted_tip_cant_change.created_at > 1.day.ago
-          expect(persisted_tip_cant_change.should_generate_new_friendly_id?).to be_truthy
+        if persisted_tip_slug_cant_change.created_at > 1.day.ago
+          expect(persisted_tip_slug_cant_change.should_generate_new_friendly_id?).to be_truthy
         end
       end
     end
@@ -92,7 +90,7 @@ describe Tip do
       end
     end
   end
-
+           
   describe "#title_must_be_unique_for_user" do
     context "slug doesn't exist" do
       it "should be valid" do  
@@ -114,7 +112,6 @@ describe Tip do
         tip = user.tips.create(slug: "tip-by-example")
         tip.valid?
         expect(tip.errors[:title].size).to be >= 1
-        # tip.errors.should include("already exsits. Please change it")
       end
       it "adds correct error message" do
         @tip = user.tips.create()
@@ -125,6 +122,18 @@ describe Tip do
           end
         end
       end       
-    end            
+    end 
+  end
+
+  describe "tips association" do
+    
+    before do
+      FactoryGirl.create(:tip, title: 'Older tip title', created_at: 1.day.ago, user: user)
+      FactoryGirl.create(:tip, title: 'Newer tip title', created_at: 1.hour.ago, user: user)
+    end
+
+    it 'should have the newer_tip first and older_tip second' do
+      expect(user.tips.map(&:title)).to eq(['Newer tip title', 'Older tip title'])
+    end
   end
 end
