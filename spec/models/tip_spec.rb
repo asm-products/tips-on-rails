@@ -56,7 +56,7 @@ describe Tip do
   end
 
   describe "#title_and_username" do 
-    context "has title and username" do
+    context "method creates string that" do
       it "should be equal" do
         user = User.all
         user.each do |user|
@@ -67,7 +67,11 @@ describe Tip do
   end
 
   describe "#bookmarked_by" do
-
+    context "for user with no bookmarks" do
+      it "should be false" do
+        expect(tip.bookmarked_by(user)).to be_falsy
+      end
+    end
   end
 
   describe "#pygmentize_and_cache_body" do
@@ -100,7 +104,7 @@ describe Tip do
       end
     end
 
-    context "doesn't exist in the database yet" do
+    context "tip doesn't exist in the database yet" do
       it "should be true" do
         not_persisted_tip = user.tips.build(title: "Tips", body: "other tip", description: "tips here")        
         expect(not_persisted_tip.should_generate_new_friendly_id?).to be_truthy
@@ -109,7 +113,7 @@ describe Tip do
   end
            
   describe "#title_must_be_unique_for_user" do
-    context "slug doesn't exist" do
+    context "when slug doesn't exist" do
       it "should be valid" do  
         @tip = Tip.all
         @tip.each do |tip|
@@ -118,7 +122,7 @@ describe Tip do
       end
     end
 
-    context "slug exists" do
+    context "when slug exists" do
       it "should be invalid" do
         @tip = Tip.all
         @tip.each do |tip|
@@ -142,7 +146,7 @@ describe Tip do
     end 
   end
 
-  describe "tips association" do
+  describe "Order of tips" do
     before do
       FactoryGirl.create(:tip, title: 'Older tip title', created_at: 1.day.ago, user: user)
       FactoryGirl.create(:tip, title: 'Newer tip title', created_at: 1.hour.ago, user: user)
