@@ -2,6 +2,8 @@
 
 <a href="https://assembly.com/tips-on-rails/bounties?utm_campaign=assemblage&utm_source=tips-on-rails&utm_medium=repo_badge"><img src="https://asm-badger.herokuapp.com/tips-on-rails/badges/tasks.svg" height="24px" alt="Open Tasks" /></a>
 
+[![Code Climate](https://codeclimate.com/github/asm-products/tips-on-rails/badges/gpa.svg)](https://codeclimate.com/github/asm-products/tips-on-rails)
+
 Ever been in a situation where your just not sure where to start? How to implement a specific part of your rails application? Completely mystified about how to test for a specific behavior?
 
 Tips on Rails was made for people just like you. It's here as a tool to enable Rails users to learn, post, and socialize about the latest and greatest tips out there!
