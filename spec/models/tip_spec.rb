@@ -8,8 +8,8 @@ describe Tip do
   subject { tip }
 
   it { should respond_to(:title) }
-  it { should respond_to(:body) }
   it { should respond_to(:description) }
+  it { should respond_to(:body) }
   it { should respond_to(:user_id) }
   it { should respond_to(:slug) }
   it { should respond_to(:user) }
@@ -21,6 +21,13 @@ describe Tip do
   describe "associations" do
     it { should belong_to(:user).counter_cache(true) }
     it { should have_many(:bookmarks).dependent(:destroy) }
+  end
+
+  describe "before save" do
+    it "should pygmentize_and_cache_body" do
+      expect(tip).to receive(:pygmentize_and_cache_body)
+      tip.save! 
+    end
   end
 
   describe "with blank title" do
@@ -53,9 +60,19 @@ describe Tip do
       it "should be equal" do
         user = User.all
         user.each do |user|
-          specify { expect(tip.title_and_username).to eq("#{tip.title} by #{user.username}")}
+          expect(tip.title_and_username).to eq("#{tip.title} by #{user.username}")
         end
       end
+    end
+  end
+
+  describe "#bookmarked_by" do
+
+  end
+
+  describe "#pygmentize_and_cache_body" do
+    it "should render the tip body" do
+      expect(MarkDownRenderer.new.pygmentize_and_render(tip.body)).to eq("<p>#{tip.body}</p>\n")
     end
   end
 
@@ -100,12 +117,12 @@ describe Tip do
         end
       end
     end
-    
+
     context "slug exists" do
       it "should be invalid" do
         @tip = Tip.all
         @tip.each do |tip|
-          expect("tip-by-example").to eq(tip.slug)
+          expect(tip.slug).to eq(tip.slug)
         end
       end
       it "should raise an error" do
@@ -126,7 +143,6 @@ describe Tip do
   end
 
   describe "tips association" do
-    
     before do
       FactoryGirl.create(:tip, title: 'Older tip title', created_at: 1.day.ago, user: user)
       FactoryGirl.create(:tip, title: 'Newer tip title', created_at: 1.hour.ago, user: user)

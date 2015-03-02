@@ -1,10 +1,8 @@
 FactoryGirl.define do
 	factory :tip do
-		title "Tip" 
-		body "some things"
-		description "Lorem ipsum" 
-		user_id 1
-		slug "tip-by-example"
+    sequence(:title)  { |n| "Tip title #{n}" }
+    description 'Standard tip description'
+    body 'Standard tip body'
     user
   end
 end
