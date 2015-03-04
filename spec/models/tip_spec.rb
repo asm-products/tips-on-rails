@@ -23,6 +23,14 @@ describe Tip do
     it { should have_many(:bookmarks).dependent(:destroy) }
   end
 
+  describe 'validations' do
+    it { should_not allow_value(' ').for(:title) }
+    it { should_not allow_value(' ').for(:description) }
+    it { should_not allow_value(' ').for(:body) }
+    it { should validate_length_of(:title).is_at_most(50) }
+    it { should validate_length_of(:description).is_at_most(250) }
+  end
+
   describe "before save" do
     it "should pygmentize_and_cache_body" do
       expect(tip).to receive(:pygmentize_and_cache_body)
@@ -30,32 +38,7 @@ describe Tip do
     end
   end
 
-  describe "with blank title" do
-    before { tip.title = " "}
-    it { should_not be_valid }
-  end
-
-  describe "with title that is too long" do
-    before { tip.title = "a" * 51 }
-    it { should_not be_valid }
-  end
-
-  describe "with blank content" do
-    before { tip.description = " "}
-    it { should_not be_valid }
-  end
-
-  describe "with content that is too long" do
-    before { tip.description = "a" * 251 }
-    it { should_not be_valid }
-  end
-  
-  describe "with blank content" do
-    before { tip.body = " "}
-    it { should_not be_valid }
-  end
-
-  describe "#title_and_username" do 
+  describe "#title_and_username" do    
     context "method creates string that" do
       it "should be equal" do
         user = User.all
@@ -76,37 +59,45 @@ describe Tip do
 
   describe "#pygmentize_and_cache_body" do
     it "should render the tip body" do
-      expect(MarkDownRenderer.new.pygmentize_and_render(tip.body)).to eq("<p>#{tip.body}</p>\n")
+      expect(tip.pygmentize_and_cache_body).to eq("<p>#{tip.body}</p>\n")
     end
   end
 
   describe "#should_generate_friendly_id?" do
     let(:user) { User.create(first_name: "Example", last_name: "User", email: "newuser@example.com", 
                               username: "example") }
-
-    context "tip is persisted and has existed for greater than a day" do
-      it "should be false" do
-        persisted_tip_can_change = user.tips.build(title: "Tips", body: "other tip", description: "tips here", created_at: 2.days.ago)
-        
-        if persisted_tip_can_change.created_at > 1.day.ago
-          expect(persisted_tip_can_change.should_generate_new_friendly_id?).to be_falsy
-        end
+    
+    context "tip is persisted" do
+      it "should be true if tip isn't a new record or been destroyed" do
+        tip_is = user.tips.create(title: "Tips", body: "other tip", description: "tips here", created_at: 1.hour.ago)
+        expect(tip_is.persisted?).to be_truthy
       end
     end
 
-    context "tip is persisted, but less than a day ago" do
+    context "tip is persisted" do
+      it "should be false if tip is a new record" do
+        tip = user.tips.build(title: "Tips", body: "other tip", description: "tips here")
+        expect(tip.persisted?).to be_falsy
+      end
+    end
+
+    context "has existed for greater than a day" do
+      it "should be false" do
+        persisted_tip_cant_change = user.tips.create(title: "Tips", body: "other tip", description: "tips here", created_at: 2.days.ago)
+        expect(persisted_tip_cant_change.should_generate_new_friendly_id?).to be_falsy
+      end
+    end
+
+    context "has existed less than a day ago" do
       it "should be true" do
-        persisted_tip_slug_cant_change = user.tips.build(title: "Tips", body: "other tip", description: "tips here", created_at: Time.now)
-        
-        if persisted_tip_slug_cant_change.created_at > 1.day.ago
-          expect(persisted_tip_slug_cant_change.should_generate_new_friendly_id?).to be_truthy
-        end
+        persisted_tip_slug_can_change = user.tips.create(title: "Tips", body: "other tip", description: "tips here", created_at: Time.now)
+        expect(persisted_tip_slug_can_change.should_generate_new_friendly_id?).to be_truthy
       end
     end
 
     context "tip doesn't exist in the database yet" do
       it "should be true" do
-        not_persisted_tip = user.tips.build(title: "Tips", body: "other tip", description: "tips here")        
+        not_persisted_tip = user.tips.create(title: "Tips", body: "other tip", description: "tips here")        
         expect(not_persisted_tip.should_generate_new_friendly_id?).to be_truthy
       end
     end
@@ -114,33 +105,21 @@ describe Tip do
            
   describe "#title_must_be_unique_for_user" do
     context "when slug doesn't exist" do
-      it "should be valid" do  
-        @tip = Tip.all
-        @tip.each do |tip|
-          expect("this-by-mofucker").to_not eq(tip.slug)
-        end
+      it "tip slug shouldn't equal another tips slug" do  
+        expect(tip.title_must_be_unique_for_user).to_not eq("this-by-mofucker")
       end
     end
 
     context "when slug exists" do
-      it "should be invalid" do
-        @tip = Tip.all
-        @tip.each do |tip|
-          expect(tip.slug).to eq(tip.slug)
-        end
+      it "tip slug should equal another tips slug" do
+        expect(tip.title_must_be_unique_for_user).to eq(tip.title_must_be_unique_for_user)
       end
-      it "should raise an error" do
-        tip = user.tips.create(slug: "tip-by-example")
-        tip.valid?
-        expect(tip.errors[:title].size).to be >= 1
-      end
+      
       it "adds correct error message" do
-        @tip = user.tips.create()
         tip = Tip.all
         tip.each do |tip|
-          if tip.slug == @tip.slug
-            expect(tip.errors[:title]).to eq("already exists. Please change it")
-          end
+          expect(tip.errors[:title]).to eq("already exists. Please change it")
+          expect(tip.errors[:title].size).to be > 1
         end
       end       
     end 
