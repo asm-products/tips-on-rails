@@ -7,6 +7,5 @@ FactoryGirl.define do
     password   'foobar123'
     provider   'github'
     uid        '12345'
-    avatar     'github'
   end
 end
