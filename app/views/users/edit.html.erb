@@ -14,6 +14,14 @@
   </div>
 </div>
 
-<%= render 'form', f: f %>
+<div class="row">
+  <div class="col-sm-5 col-sm-push-7 col-md-4 col-md-push-7">
+    <%= render 'large_avatar', user: @user %>
+  </div>
+
+  <div class="col-sm-7 col-sm-pull-5 col-md-7 col-md-pull-4">
+    <%= render 'form', f: f %>    
+  </div>
+</div>
 
 <% end %>

@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
   before_filter :set_user, except: [:index]
 
-  def welcome; end
+  def welcome
+    @user = @user.decorate
+  end
 
   def index; end
 
@@ -9,7 +11,9 @@ class UsersController < ApplicationController
     @user = @user.decorate
   end
 
-  def edit; end
+  def edit
+    @user = @user.decorate
+  end
 
   def update
     if @user.update_attributes(user_params)
