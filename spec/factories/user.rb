@@ -1,9 +1,11 @@
 FactoryGirl.define do
   factory :user do
-    sequence(:first_name) { |n| "Fname-#{n}" }
-    sequence(:last_name)  { |n| "Lname-#{n}" }
-    sequence(:email)      { |n| "person_#{n}@example.com" }
-    sequence(:username)   { |n| "user_#{n}" }
-    password 'foobar123'
+    first_name 'Example'
+    last_name  'User'
+    email      'user@example.com'
+    username   'username'
+    password   'foobar123'
+    provider   'github'
+    uid        '12345'
   end
 end

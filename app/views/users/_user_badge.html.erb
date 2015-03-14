@@ -1,5 +1,5 @@
 <div class="well well-sm" id="user-badge">
-  <%= link_to gravatar_for(user), user_path(user) %>
+  <%= link_to user.display_avatar, user_path(user) %>
   <h4><%= user.name %></h4>
   <p class="username"><%= user.username %></p>
   <p>

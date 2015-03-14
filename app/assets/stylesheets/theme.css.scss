@@ -333,6 +333,19 @@ table#bookmarks {
   }
 }
 
+.avatar {
+  img {
+    float: left;
+    margin-right: 1em;
+  }
+
+  p {
+    font-size: .9em;
+    line-height: 1.45;
+    color: $gray-light;
+  }
+}
+
 
 
 
