@@ -8,6 +8,7 @@ class TipsController < ApplicationController
 
   def show
     @bookmark = @tip.bookmarked_by(current_user)
+    @tip = @tip.decorate
   end
 
   def new
