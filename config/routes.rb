@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     post 'send_destroy_email', on: :member
   end
 
+  get '/rss', to: 'tips#rss_feed', as: :rss_feed
+
   get '/admin/dashboards', to: 'admin/dashboards#dashboards', as: :admin
   get '/admin/dashboards/index', to: 'admin/dashboards#index'
   get '/admin/dashboards/weekly_stats', to: 'admin/dashboards#weekly_stats'
