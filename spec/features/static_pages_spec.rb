@@ -1,20 +1,15 @@
 require 'rails_helper'
 
-describe 'Static pages' do
+feature 'Visiting static content pages' do
+  scenario 'user can read Help page content' do 
+    visit help_path
+    expect(page).to have_title full_title('Help')
+    expect(page).to have_selector 'h2', text: 'Help with Posting Tips'
+  end
 
-	subject { page }
-
-	describe 'Help page' do 
-		before { visit help_path }
-
-		it { should have_content('Help') } 
-		it { should have_title(full_title('Help')) }
-	end
-
-	describe 'About page' do
-	before { visit about_path }
-
-		it { should have_content('About') } 
-		it { should have_title(full_title('About')) }
-	end
+  scenario 'user can read About page content' do
+    visit about_path
+    expect(page).to have_selector 'h2', text: 'About Tips on Rails'
+    expect(page).to have_title full_title('About')
+  end
 end
