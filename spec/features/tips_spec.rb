@@ -1,13 +1,9 @@
 require 'rails_helper'
 
-feature 'View the homepage' do
-  scenario 'user sees relevant information' do
-    visit root_path
-    expect(page).to have_title 'Tips on Rails | Home'
-  end
+feature 'User works with tips' do
+  let(:user) { user = FactoryGirl.create(:user) }
 
-  scenario 'Add a new tip' do
-    user = FactoryGirl.create(:user)
+  scenario 'adds a new tip' do
     login_as(user, scope: :user)
     visit new_tip_path
     fill_in 'tip-title', with: 'This is a test tip'
