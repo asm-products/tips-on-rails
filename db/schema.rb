@@ -20,26 +20,29 @@ ActiveRecord::Schema.define(version: 20150218025117) do
     t.datetime "updated_at"
   end
 
+  add_index "bookmarks", ["tip_id"], name: "index_bookmarks_on_tip_id", using: :btree
+  add_index "bookmarks", ["user_id"], name: "index_bookmarks_on_user_id", using: :btree
+
   create_table "tips", force: true do |t|
-    t.string   "title"
-    t.text     "description"
+    t.text     "title"
+    t.string   "description"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "body"
-    t.integer  "tip_id"
     t.text     "body_cached"
     t.integer  "bookmarks_count", default: 0, null: false
     t.string   "slug"
   end
 
   add_index "tips", ["slug"], name: "index_tips_on_slug", using: :btree
+  add_index "tips", ["user_id", "created_at"], name: "index_tips_on_user_id_and_created_at", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "email",              default: "",    null: false
-    t.string   "encrypted_password", default: "",    null: false
+    t.string   "email",              default: " ",   null: false
+    t.string   "encrypted_password", default: " ",   null: false
     t.integer  "sign_in_count",      default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
@@ -51,9 +54,9 @@ ActiveRecord::Schema.define(version: 20150218025117) do
     t.integer  "bookmarks_count",    default: 0,     null: false
     t.integer  "tips_count",         default: 0,     null: false
     t.boolean  "admin",              default: false
-    t.string   "username",                           null: false
     t.string   "provider"
     t.string   "uid"
+    t.string   "username",                           null: false
     t.string   "slug"
   end
 
