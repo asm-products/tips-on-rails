@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe Tip do
 
-  let(:user) { FactoryGirl.build_stubbed(:user) }
-  let(:tip) { FactoryGirl.build_stubbed(:tip) }
+  let(:user) { build_stubbed(:user) }
+  let(:tip) { build_stubbed(:tip) }
 
   subject { tip }
 
@@ -18,7 +18,7 @@ describe Tip do
     it { should be_valid }
   end
 
-  describe "associations" do
+  describe 'associations' do
     it { should belong_to(:user).counter_cache(true) }
     it { should have_many(:bookmarks).dependent(:destroy) }
   end
@@ -31,108 +31,80 @@ describe Tip do
     it { should validate_length_of(:description).is_at_most(250) }
   end
 
-  describe "before save" do
-    it "should pygmentize_and_cache_body" do
+  describe 'before save' do
+    it 'should pygmentize_and_cache_body' do
       expect(tip).to receive(:pygmentize_and_cache_body)
       tip.save! 
     end
   end
 
-  describe "#title_and_username" do    
-    context "method creates string that" do
-      it "should be equal" do
-        user = User.all
-        user.each do |user|
-          expect(tip.title_and_username).to eq("#{tip.title} by #{user.username}")
-        end
+  describe '#title_and_username' do    
+    context 'method creates string that' do
+      it 'should be equal to "tip.title by user.username"' do
+        expect(tip.title_and_username).to eq("#{tip.title} by #{user.username}")
       end
     end
   end
 
-  describe "#bookmarked_by" do
-    context "for user with no bookmarks" do
-      it "should be false" do
+  describe '#bookmarked_by' do
+    context 'for user with no bookmarks' do
+      it 'should be false' do
         expect(tip.bookmarked_by(user)).to be_falsy
       end
     end
+
+    context 'for user that bookmarked the tip' do
+      it 'should be true' do
+        another_user = build_stubbed(:user, email: 'another_user@example.com')
+        another_user.bookmarks.create(tip: tip)
+        expect(tip.bookmarked_by(another_user)).to be_truthy
+      end
+    end
   end
 
-  describe "#pygmentize_and_cache_body" do
-    it "should render the tip body" do
+  describe '#pygmentize_and_cache_body' do
+    it 'should render the tip body' do
       expect(tip.pygmentize_and_cache_body).to eq("<p>#{tip.body}</p>\n")
     end
   end
 
-  describe "#should_generate_friendly_id?" do
-    let(:user) { User.create(first_name: "Example", last_name: "User", email: "newuser@example.com", 
-                              username: "example") }
-    
-    context "tip is persisted" do
-      it "should be true if tip isn't a new record or been destroyed" do
-        tip_is = user.tips.create(title: "Tips", body: "other tip", description: "tips here", created_at: 1.hour.ago)
-        expect(tip_is.persisted?).to be_truthy
+  describe '#should_generate_new_friendly_id?' do
+    context 'when tip is brand new' do
+      it 'should be true' do
+        brand_new_tip = user.tips.build(attributes_for(:tip))
+        expect(brand_new_tip.should_generate_new_friendly_id?).to be_truthy
       end
     end
 
-    context "tip is persisted" do
-      it "should be false if tip is a new record" do
-        tip = user.tips.build(title: "Tips", body: "other tip", description: "tips here")
-        expect(tip.persisted?).to be_falsy
+    context 'when tip already exists' do
+      it 'should be true if tip has been created less than 1 day ago' do
+        new_tip = user.tips.create(attributes_for(:tip, created_at: 1.hour.ago))
+        expect(new_tip.should_generate_new_friendly_id?).to be_truthy
       end
-    end
-
-    context "has existed for greater than a day" do
-      it "should be false" do
-        persisted_tip_cant_change = user.tips.create(title: "Tips", body: "other tip", description: "tips here", created_at: 2.days.ago)
-        expect(persisted_tip_cant_change.should_generate_new_friendly_id?).to be_falsy
-      end
-    end
-
-    context "has existed less than a day ago" do
-      it "should be true" do
-        persisted_tip_slug_can_change = user.tips.create(title: "Tips", body: "other tip", description: "tips here", created_at: Time.now)
-        expect(persisted_tip_slug_can_change.should_generate_new_friendly_id?).to be_truthy
-      end
-    end
-
-    context "tip doesn't exist in the database yet" do
-      it "should be true" do
-        not_persisted_tip = user.tips.create(title: "Tips", body: "other tip", description: "tips here")        
-        expect(not_persisted_tip.should_generate_new_friendly_id?).to be_truthy
+ 
+      it 'should be false if tip has been created more than 1 day ago' do
+        old_tip = user.tips.create(attributes_for(:tip, created_at: 25.hours.ago))
+        expect(old_tip.should_generate_new_friendly_id?).to be_falsy
       end
     end
   end
            
-  describe "#title_must_be_unique_for_user" do
-    context "when slug doesn't exist" do
-      it "tip slug shouldn't equal another tips slug" do  
-        expect(tip.title_must_be_unique_for_user).to_not eq("this-by-mofucker")
+  describe '#title_must_be_unique_for_user' do
+    context 'when tip with the same title already exists' do
+      it 'should generate a validation error' do
+        existing_tip = user.tips.create(attributes_for(:tip, title: 'Tip title'))
+        new_tip = user.tips.create(attributes_for(:tip, title: 'Tip title'))
+        expect(new_tip.errors.size).to be > 0
+        expect(new_tip.errors[:title].first).to eq 'already exists. Please change it'
       end
     end
-
-    context "when slug exists" do
-      it "tip slug should equal another tips slug" do
-        expect(tip.title_must_be_unique_for_user).to eq(tip.title_must_be_unique_for_user)
-      end
-      
-      it "adds correct error message" do
-        tip = Tip.all
-        tip.each do |tip|
-          expect(tip.errors[:title]).to eq("already exists. Please change it")
-          expect(tip.errors[:title].size).to be > 1
-        end
-      end       
-    end 
   end
 
-  describe "Order of tips" do
-    before do
-      FactoryGirl.create(:tip, title: 'Older tip title', created_at: 1.day.ago, user: user)
-      FactoryGirl.create(:tip, title: 'Newer tip title', created_at: 1.hour.ago, user: user)
-    end
-
-    it 'should have the newer_tip first and older_tip second' do
-      expect(user.tips.map(&:title)).to eq(['Newer tip title', 'Older tip title'])
+  describe 'Default tip scope' do
+    it 'should return the newer_tip first and older_tip second' do
+      create(:tip, title: 'Older tip title', created_at: 1.day.ago, user: user)
+      create(:tip, title: 'Newer tip title', created_at: 1.hour.ago, user: user)
+      expect(Tip.all.map(&:title)).to eq(['Newer tip title', 'Older tip title'])
     end
   end
 end
