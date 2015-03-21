@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe Tip do
-
   let(:user) { build_stubbed(:user) }
   let(:tip) { build_stubbed(:tip) }
 
@@ -13,7 +12,7 @@ describe Tip do
   it { should respond_to(:user_id) }
   it { should respond_to(:slug) }
   it { should respond_to(:user) }
-  
+
   describe 'when all validations are satisfied' do
     it { should be_valid }
   end
@@ -34,11 +33,11 @@ describe Tip do
   describe 'before save' do
     it 'should pygmentize_and_cache_body' do
       expect(tip).to receive(:pygmentize_and_cache_body)
-      tip.save! 
+      tip.save!
     end
   end
 
-  describe '#title_and_username' do    
+  describe '#title_and_username' do
     context 'method creates string that' do
       it 'should be equal to "tip.title by user.username"' do
         expect(tip.title_and_username).to eq("#{tip.title} by #{user.username}")
@@ -81,18 +80,18 @@ describe Tip do
         new_tip = user.tips.create(attributes_for(:tip, created_at: 1.hour.ago))
         expect(new_tip.should_generate_new_friendly_id?).to be_truthy
       end
- 
+
       it 'should be false if tip has been created more than 1 day ago' do
         old_tip = user.tips.create(attributes_for(:tip, created_at: 25.hours.ago))
         expect(old_tip.should_generate_new_friendly_id?).to be_falsy
       end
     end
   end
-           
+
   describe '#title_must_be_unique_for_user' do
     context 'when tip with the same title already exists' do
       it 'should generate a validation error' do
-        existing_tip = user.tips.create(attributes_for(:tip, title: 'Tip title'))
+        user.tips.create(attributes_for(:tip, title: 'Tip title'))
         new_tip = user.tips.create(attributes_for(:tip, title: 'Tip title'))
         expect(new_tip.errors.size).to be > 0
         expect(new_tip.errors[:title].first).to eq 'already exists. Please change it'

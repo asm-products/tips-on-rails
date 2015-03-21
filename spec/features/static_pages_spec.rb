@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'Visiting static content pages' do
-  scenario 'user can read Help page content' do 
+  scenario 'user can read Help page content' do
     visit help_path
     expect(page).to have_title full_title('Help')
     expect(page).to have_selector 'h2', text: 'Help with Posting Tips'

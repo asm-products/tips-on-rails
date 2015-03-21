@@ -3,8 +3,9 @@ require 'rails_helper'
 feature 'User works with tips' do
   let(:user) { create(:user) }
 
+  before { login_as(user, scope: :user) }
+
   scenario 'adds a new tip' do
-    login_as(user, scope: :user)
     visit new_tip_path
     fill_in 'tip-title', with: 'This is a test tip'
     fill_in 'tip-description', with: 'This is a test description'
