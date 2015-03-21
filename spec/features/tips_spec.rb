@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'User works with tips' do
-  let(:user) { user = FactoryGirl.create(:user) }
+  let(:user) { create(:user) }
 
   scenario 'adds a new tip' do
     login_as(user, scope: :user)

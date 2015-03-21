@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'User visits the homepage' do
-  let(:user) { user = FactoryGirl.create(:user) }
+  let(:user) { create(:user) }
 
   scenario 'as a guest user' do
     visit root_path

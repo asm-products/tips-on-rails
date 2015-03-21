@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe TipsController do
-  let(:current_user) { FactoryGirl.create(:user) }
-  let(:tip) { FactoryGirl.create(:tip, user: current_user) }
+  let(:current_user) { create(:user) }
+  let(:tip) { create(:tip, user: current_user) }
 
   describe 'GET#index' do
     it "populates an array of tips" do

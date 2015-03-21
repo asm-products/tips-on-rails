@@ -55,7 +55,7 @@ describe Tip do
 
     context 'for user that bookmarked the tip' do
       it 'should be true' do
-        another_user = build_stubbed(:user, email: 'another_user@example.com')
+        another_user = build_stubbed(:user, first_name: 'Another')
         another_user.bookmarks.create(tip: tip)
         expect(tip.bookmarked_by(another_user)).to be_truthy
       end
