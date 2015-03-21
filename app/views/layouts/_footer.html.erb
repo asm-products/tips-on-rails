@@ -1,4 +1,10 @@
 <footer class="footer">
+  <p class="pull-right">
+    <small>
+      <%= link_to rss_feed_path do %>
+        RSS <i class="fa fa-rss"></i>
+      <% end %>
+    </small></p>
   <p><small>&copy; <%= Date.today.strftime('%Y') %> Mr. Beardface &amp; Co. All rights reversed.</small></p>
 </footer>
 

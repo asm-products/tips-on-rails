@@ -7,6 +7,8 @@ class Tip < ActiveRecord::Base
   before_save :pygmentize_and_cache_body
 
   default_scope -> { order('created_at DESC') }
+  scope :rss_feed, -> { limit(25) }
+
   validates :title, presence: true, length: { maximum: 50 }
   validate :title_must_be_unique_for_user, on: :create
   validates :description, presence: true, length: { maximum: 250 }

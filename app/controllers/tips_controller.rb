@@ -1,6 +1,6 @@
 class TipsController < ApplicationController
-  before_filter :authenticate_user!, except: [:show, :index]
-  before_filter :set_tip, except: [:index, :new, :create, :preview]
+  before_filter :authenticate_user!, except: [:show, :index, :rss_feed]
+  before_filter :set_tip, except: [:index, :new, :create, :preview, :rss_feed]
 
   def index
     @tips = Tip.includes(:user).paginate(page: params[:page], per_page: 10)
@@ -48,6 +48,10 @@ class TipsController < ApplicationController
   def send_destroy_email
     @delete = DeleteMailer.reason_to_delete(@tip, params[:message]).deliver
     redirect_to tips_path, notice: 'Thanks for your input!'
+  end
+
+  def rss_feed
+    @tips = Tip.rss_feed.includes(:user)
   end
 
   private
