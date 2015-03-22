@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe UserDecorator do
-  let(:user) { FactoryGirl.build_stubbed(:user) }
+  let(:user) { build_stubbed(:user) }
 
   describe 'when avatar size is not set' do
     it 'should display github picture with size 80' do

@@ -37,7 +37,7 @@ class Tip < ActiveRecord::Base
 
   def title_must_be_unique_for_user
     if Tip.exists?(slug: title_and_username.parameterize)
-      errors.add(:title, "already exsits. Please change it")
+      errors.add(:title, "already exists. Please change it")
     end
   end
 end

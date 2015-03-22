@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe User do
-  let(:user) { FactoryGirl.build_stubbed(:user) }
+  let(:user) { build_stubbed(:user) }
   subject { user }
 
   it { should respond_to(:first_name) }
@@ -62,18 +62,13 @@ describe User do
   end
 
   describe 'when first name is Example and last name is User then #name' do
-    before do
-      user.first_name = 'Example'
-      user.last_name = 'User'
-    end
-
     it { expect(user.name).to eq('Example User') }
   end
 
   describe '#bookmarked_tips' do
     before do
       (0..3).each do |bookmarks_count|
-        FactoryGirl.create(:tip, user: user, bookmarks_count: bookmarks_count)
+        create(:tip, user: user, bookmarks_count: bookmarks_count)
       end
     end
     it 'should return how many times the user\'s tips have been bookmarked' do
@@ -102,7 +97,7 @@ describe User do
 
     describe 'with an existing account' do
       before do
-        FactoryGirl.create(:user, provider: 'github', uid: '12345', username: 'existing_username')
+        create(:user, provider: 'github', uid: '12345', username: 'existing_username')
       end
 
       let(:existing_user) { User.from_omniauth(auth) }
@@ -111,17 +106,6 @@ describe User do
         expect(existing_user).to be_persisted
         expect(existing_user.username).to eq('existing_username')
       end
-    end
-  end
-
-  describe 'tips association' do
-    before do
-      FactoryGirl.create(:tip, title: 'Older tip title', created_at: 1.day.ago, user: user)
-      FactoryGirl.create(:tip, title: 'Newer tip title', created_at: 1.hour.ago, user: user)
-    end
-
-    it 'should have the newer_tip first and older_tip second' do
-      expect(user.tips.map(&:title)).to eq(['Newer tip title', 'Older tip title'])
     end
   end
 end
